@@ -7,7 +7,7 @@
 	},
 	"name": "neptunesoftware-connector-odata",
 	"description": "SAP OData Connector",
-	"ver": "23.2.6.1533",
+	"ver": "23.2.6.1534",
 	"enableCICD": true,
 	"apps": [],
 	"api": [],
