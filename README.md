@@ -1,2 +1,0 @@
-# odataconnector
-SAP OData Connector
