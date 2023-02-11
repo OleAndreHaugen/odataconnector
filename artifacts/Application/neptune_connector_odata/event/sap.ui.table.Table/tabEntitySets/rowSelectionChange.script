@@ -1,0 +1,9 @@
+const context = this.getContextByIndex(this.getSelectedIndex());
+
+if (context) {
+    const data = context.getObject();
+    modeloPageDetail.oData.config.entitySet = data.name;
+    modeloPageDetail.refresh();
+    diaEntitySets.close();
+    controller.updateFields();
+}

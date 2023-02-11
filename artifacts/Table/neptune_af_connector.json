@@ -1,0 +1,49 @@
+{
+	"id": "a572b86e-4f36-422c-8043-90eae252246d",
+	"createdAt": "2023-02-11T06:41:07.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"fields": [
+		{
+			"id": "5bb80655-5a71-4013-8a51-e57e1aca6dd5",
+			"fieldName": "name",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Name",
+			"isNullable": true
+		},
+		{
+			"id": "b16d3379-acd8-4691-82f9-07bd46e2b3ac",
+			"fieldName": "description",
+			"fieldType": "mediumtext",
+			"isUnique": false,
+			"description": "Description",
+			"isNullable": true
+		},
+		{
+			"id": "4bf6d677-4edf-480a-fe47-126d2faad4cc",
+			"fieldName": "metadata",
+			"fieldType": "json",
+			"isUnique": false,
+			"description": "Metadata",
+			"isNullable": true
+		},
+		{
+			"id": "39e69004-bfcc-45e4-b87b-9f32ee2abb8e",
+			"fieldName": "config",
+			"fieldType": "json",
+			"isUnique": false,
+			"isNullable": true,
+			"description": "Configuration"
+		}
+	],
+	"indices": [],
+	"foreignKeys": [],
+	"name": "neptune_af_connector",
+	"description": "Adaptive Framework Connector",
+	"ver": "23.2.11.746",
+	"enableAudit": false,
+	"includeDataInPackage": false,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
+	"rolesRead": [],
+	"rolesWrite": []
+}

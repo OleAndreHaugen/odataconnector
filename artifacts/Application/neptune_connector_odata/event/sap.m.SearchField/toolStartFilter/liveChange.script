@@ -1,0 +1,24 @@
+let binding = tabData.getBinding("rows");
+if (!binding) return;
+
+var filterArr = [];
+
+filterArr.push(
+    new sap.ui.model.Filter({
+        filters: [
+            new sap.ui.model.Filter("name", "Contains", toolStartFilter.getValue()),
+            new sap.ui.model.Filter("description", "Contains", toolStartFilter.getValue()),
+        ],
+        and: false,
+    })
+);
+
+if (typeof systemSettings !== "undefined" || typeof AppCache !== "undefined") {
+    let username = systemSettings ? systemSettings.user.username : AppCache.userInfo.username;
+
+    if (toolStartUser.getSelectedKey() === "Mine") {
+        filterArr.push(new sap.ui.model.Filter("changedBy", "EQ", username));
+    }
+}
+
+binding.filter(filterArr);

@@ -5,25 +5,121 @@
 	"git": {
 		"remote": "https://github.com/OleAndreHaugen/odataconnector.git"
 	},
-	"name": "neptunesoftware-connector-odata",
-	"description": "SAP OData Connector",
-	"ver": "23.2.6.1534",
+	"name": "neptunesoftware-connector-af",
+	"description": "Adaptive Framework Connector",
+	"ver": "23.2.11.748",
 	"enableCICD": true,
-	"apps": [],
-	"api": [],
+	"apps": [
+		{
+			"id": "ac8e4bdd-91e5-4e1f-b614-8aade405b2f8",
+			"application": "neptune_connector_odata",
+			"title": "OData Connector",
+			"description": "OData Connector"
+		}
+	],
+	"api": [
+		{
+			"id": "786a81ca-5973-45fa-b311-c348916d230a",
+			"name": "Neptune Adaptive Framework Connector",
+			"description": "Neptune Adaptive Framework Connector",
+			"apiGroup": "5c76d2dc-2881-41d5-8db1-cd2bb3cd8d4f"
+		},
+		{
+			"id": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
+			"name": "SAP OData Server",
+			"description": "SAP OData Server for Adaptive Framework",
+			"apiGroup": "5c76d2dc-2881-41d5-8db1-cd2bb3cd8d4f"
+		}
+	],
 	"odataSource": [],
 	"odataMock": [],
-	"dictionary": [],
-	"jsclass": [],
-	"jsscript_group": [],
+	"dictionary": [
+		{
+			"id": "a572b86e-4f36-422c-8043-90eae252246d",
+			"name": "neptune_af_connector",
+			"description": "Adaptive Framework Connector"
+		}
+	],
+	"jsclass": [
+		{
+			"id": "f0138351-ad95-486b-97a7-21b0fcc30240",
+			"name": "clientSave",
+			"description": null
+		},
+		{
+			"id": "bfcb3616-29fc-403a-9594-a6c98d57c3e3",
+			"name": "ODataServices",
+			"description": null
+		},
+		{
+			"id": "b8353950-399a-493f-8952-4f176a7386a5",
+			"name": "clientList",
+			"description": null
+		},
+		{
+			"id": "b786f6ca-84f3-4ef1-b6c2-870b01246d8e",
+			"name": "ODataEntitySetFields",
+			"description": null
+		},
+		{
+			"id": "b3a8b56b-9a2c-48c8-a198-f5d269841ef6",
+			"name": "ODataEntitySet",
+			"description": null
+		},
+		{
+			"id": "82c9459e-bc38-4df9-98d3-080bcda58b22",
+			"name": "ODataAdaptiveSetup",
+			"description": "OData Setup Script"
+		},
+		{
+			"id": "715f3ab8-daa6-45ae-a648-80a4ada0d180",
+			"name": "clientGet",
+			"description": null
+		},
+		{
+			"id": "4a64df7b-bce9-482c-92f4-b0a8054ea75b",
+			"name": "ODataAdaptiveRun",
+			"description": "OData Run Script"
+		},
+		{
+			"id": "08579743-0006-48bb-85d6-8f1de21fe0ba",
+			"name": "clientDelete",
+			"description": null
+		}
+	],
+	"jsscript_group": [
+		{
+			"id": "8407e587-50c3-4d42-bb2e-35abf1281c47",
+			"name": "NeptuneConnectors",
+			"description": "Adaptive Framework Connectors"
+		}
+	],
 	"theme": [],
 	"pdf": [],
 	"rulesengine": [],
 	"reports": [],
 	"api_authentication": [],
-	"api_group": [],
-	"tile": [],
-	"category": [],
+	"api_group": [
+		{
+			"id": "5c76d2dc-2881-41d5-8db1-cd2bb3cd8d4f",
+			"name": "Adaptive Framework Connector",
+			"description": "Adaptive Framework Connector"
+		}
+	],
+	"tile": [
+		{
+			"id": "97410b27-9c82-48ba-86b5-504622db44e4",
+			"description": "Connect to SAP OData",
+			"name": "OData Connector"
+		}
+	],
+	"category": [
+		{
+			"id": "0bb57573-5d51-4637-8833-13195df55a98",
+			"description": null,
+			"name": "Adaptive Framework Connector"
+		}
+	],
 	"launchpad": [],
 	"certificates": [],
 	"role": [],

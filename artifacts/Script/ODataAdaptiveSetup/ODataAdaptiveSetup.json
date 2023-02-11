@@ -1,0 +1,33 @@
+{
+	"id": "82c9459e-bc38-4df9-98d3-080bcda58b22",
+	"createdAt": "2023-02-06T14:39:04.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"globalScripts": [],
+	"externalModules": [
+		{
+			"id": "ca4a9481-db6b-400b-9977-41b143363417",
+			"name": "xml2js",
+			"contextname": "xml2js",
+			"path": "C:\\Planet9\\customnpm\\node_modules\\xml2js"
+		}
+	],
+	"entitySets": [
+		{
+			"id": "a572b86e-4f36-422c-8043-90eae252246d",
+			"name": "neptune_af_connector",
+			"contextname": "neptune_af_connector"
+		}
+	],
+	"apis": [],
+	"name": "ODataAdaptiveSetup",
+	"ver": "23.2.11.1050",
+	"description": "OData Setup Script",
+	"content": "file:///content.js",
+	"useAsGlobalScript": false,
+	"transpiledContent": null,
+	"lastRunSuccessful": true,
+	"isTypescript": false,
+	"language": "javascript",
+	"jsscriptGroup": "8407e587-50c3-4d42-bb2e-35abf1281c47",
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

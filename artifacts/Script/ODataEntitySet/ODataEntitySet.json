@@ -1,0 +1,35 @@
+{
+	"id": "b3a8b56b-9a2c-48c8-a198-f5d269841ef6",
+	"createdAt": "2023-02-11T08:10:56.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"globalScripts": [],
+	"externalModules": [
+		{
+			"id": "ca4a9481-db6b-400b-9977-41b143363417",
+			"name": "xml2js",
+			"contextname": "xml2js",
+			"path": "C:\\Planet9\\customnpm\\node_modules\\xml2js"
+		}
+	],
+	"entitySets": [],
+	"apis": [
+		{
+			"id": "61b9fc8a-54ef-47f1-cc4a-4fc7499a29b5",
+			"parent": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
+			"name": "/sap/(service)/$metadata",
+			"contextname": "metadata",
+			"method": "GET"
+		}
+	],
+	"name": "ODataEntitySet",
+	"ver": "23.2.11.950",
+	"description": null,
+	"content": "file:///content.js",
+	"useAsGlobalScript": false,
+	"transpiledContent": null,
+	"lastRunSuccessful": true,
+	"isTypescript": false,
+	"language": "javascript",
+	"jsscriptGroup": "8407e587-50c3-4d42-bb2e-35abf1281c47",
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

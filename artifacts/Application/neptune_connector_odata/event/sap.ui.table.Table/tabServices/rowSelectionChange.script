@@ -1,0 +1,9 @@
+const context = this.getContextByIndex(this.getSelectedIndex());
+
+if (context) {
+    const data = context.getObject();
+    modeloPageDetail.oData.config.service = data.title;
+    modeloPageDetail.oData.config.entitySet = "";
+    modeloPageDetail.refresh();
+    diaServices.close();
+}

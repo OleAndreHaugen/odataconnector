@@ -1,0 +1,11 @@
+const binding = tabServices.getBinding("rows");
+
+const filter = new sap.ui.model.Filter({
+    filters: [
+        new sap.ui.model.Filter("title", "Contains", this.getValue()),
+        new sap.ui.model.Filter("description", "Contains", this.getValue()),
+        new sap.ui.model.Filter("author", "Contains", this.getValue()),
+    ],
+    and: false,
+});
+binding.filter([filter]);
