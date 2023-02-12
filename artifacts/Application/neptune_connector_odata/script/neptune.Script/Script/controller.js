@@ -95,7 +95,8 @@ const controller = {
                 entitySet: modeloPageDetail.oData.config.entitySet,
             },
         }).then(function (res) {
-            modeloPageDetail.oData.config.fields = res;
+            modeloPageDetail.oData.metadata = res.metadata;
+            modeloPageDetail.oData.config.fields = res.fields;
 
             for (let i = 0; i < selected.length; i++) {
                 const sel = selected[i];

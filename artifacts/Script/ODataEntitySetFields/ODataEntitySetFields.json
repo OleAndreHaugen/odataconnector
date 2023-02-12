@@ -22,7 +22,7 @@
 		}
 	],
 	"name": "ODataEntitySetFields",
-	"ver": "23.2.11.1010",
+	"ver": "23.2.12.1451",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

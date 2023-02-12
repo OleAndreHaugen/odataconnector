@@ -1,7 +1,7 @@
 const XMLParser = modules.xml2js;
 
-const Service = req.query.service; //"FAR_CUSTOMER_LINE_ITEMS";
-const EntitySet = req.query.entitySet; // "Items";
+const Service = req.query.service;
+const EntitySet = req.query.entitySet;
 
 let fields = [];
 
@@ -18,7 +18,6 @@ try {
 
     let entitySets = metaJson["edmx:Edmx"]["edmx:DataServices"].Schema.EntityContainer.EntitySet;
     let entityTypes = metaJson["edmx:Edmx"]["edmx:DataServices"].Schema.EntityType;
-    let annotations = metaJson["edmx:Edmx"]["edmx:DataServices"].Schema.Annotations;
 
     const entitySet = entitySets.find(entitySets => entitySets.Name === EntitySet);
     const entityTypeName = entitySet.EntityType.split(".");
@@ -37,58 +36,19 @@ try {
 
         // Value Help
         if (property["sap:value-list"]) {
-
-            field.valueListTarget = entitySet.EntityType + "/" + property.Name;
-            field.VH = property["sap:value-list"];
-
-            const annotation = annotations.find(annotations => annotations.Target === field.valueListTarget);
-
-            if (annotation) {
-                const collectionPath = annotation.Annotation.Record.PropertyValue.find(value => value.Property === "CollectionPath");
-                field.collectionPath = collectionPath.String;
-
-                // const entitySet = entitySets.find(entitySets => entitySets.Name === field.collectionPath);
-                // const entityTypeName = entitySet.EntityType.split(".");
-                // const entityType = entityTypes.find(entityTypes => entityTypes.Name === entityTypeName[entityTypeName.length - 1]);
-                // field.entityType = entityType.Property;
-
-
-                // SINGLE VS MULTI
-
-                // if (!valueHelp[field.collectionPath]) {
-
-                // const vhOptions = {
-                //     service: Service,
-                //     entitySet: field.collectionPath,
-                //     parameters: {
-                //         "$format": "json",
-                //     }
-                // }
-
-                // const resItems = await apis.get(vhOptions);
-                // valueHelp[field.collectionPath] = resItems.data.d.results.map(function (item) {
-                //     return {
-                //         key: item[field.name],
-                //         text: item[field.name + "Name"]
-                //     }
-                // });
-
-                // }
-
-                // CollectionPath 
-                // Fields 
-
-                //     field.items = valueHelp[field.collectionPath];
-
-            }
-
+            const valueListTarget = entitySet.EntityType + "/" + property.Name;
+            field.valueListTarget = valueListTarget;
         }
 
         fields.push(field);
 
     }
 
-    result.data = fields.sort(sortByProperty("label"));
+    result.data = {
+        fields: fields.sort(sortByProperty("label")),
+        metadata: metaJson
+    }
+
     complete();
 
 } catch (error) {

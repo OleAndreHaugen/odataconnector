@@ -20,6 +20,7 @@ for (i = 0; i < connector.config.fields.length; i++) {
             name: field.name,
             label: field.label,
             usage: "BOTH",
+            valueListTarget: field.valueListTarget
         })
     }
 

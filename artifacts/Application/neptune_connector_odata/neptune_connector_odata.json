@@ -3563,7 +3563,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.11.115",
+	"ver": "23.2.12.948",
 	"application": "neptune_connector_odata",
 	"title": "OData Connector",
 	"description": "OData Connector",
