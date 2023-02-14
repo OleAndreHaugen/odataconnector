@@ -2,7 +2,13 @@
 	"id": "b786f6ca-84f3-4ef1-b6c2-870b01246d8e",
 	"createdAt": "2023-02-11T08:52:02.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
-	"globalScripts": [],
+	"globalScripts": [
+		{
+			"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
+			"name": "NeptuneConnectors - Utils",
+			"contextname": "Utils"
+		}
+	],
 	"externalModules": [
 		{
 			"id": "ca4a9481-db6b-400b-9977-41b143363417",
@@ -12,17 +18,9 @@
 		}
 	],
 	"entitySets": [],
-	"apis": [
-		{
-			"id": "61b9fc8a-54ef-47f1-cc4a-4fc7499a29b5",
-			"parent": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
-			"name": "/sap/(service)/$metadata",
-			"contextname": "metadata",
-			"method": "GET"
-		}
-	],
+	"apis": [],
 	"name": "ODataEntitySetFields",
-	"ver": "23.2.12.1451",
+	"ver": "23.2.13.2223",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

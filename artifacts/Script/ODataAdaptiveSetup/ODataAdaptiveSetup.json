@@ -2,7 +2,13 @@
 	"id": "82c9459e-bc38-4df9-98d3-080bcda58b22",
 	"createdAt": "2023-02-06T14:39:04.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
-	"globalScripts": [],
+	"globalScripts": [
+		{
+			"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
+			"name": "NeptuneConnectors - Utils",
+			"contextname": "Utils"
+		}
+	],
 	"externalModules": [
 		{
 			"id": "ca4a9481-db6b-400b-9977-41b143363417",
@@ -20,7 +26,7 @@
 	],
 	"apis": [],
 	"name": "ODataAdaptiveSetup",
-	"ver": "23.2.12.105",
+	"ver": "23.2.13.2156",
 	"description": "OData Setup Script",
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

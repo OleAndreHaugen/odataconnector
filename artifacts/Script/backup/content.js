@@ -1,110 +1,32 @@
-const XMLParser = modules.xml2js;
-
-const Service = req.query.service; //"FAR_CUSTOMER_LINE_ITEMS";
-const EntitySet = req.query.entitySet; // "Items";
-
-let fields = [];
+// const metadata = await globals.Utils.RequestHandler("29c0b5b2-df23-4489-aad0-904389c86308");
+// console.log(metadata);
+// complete();
+let services = [];
 
 try {
 
-    const res = await apis.metadata({
-        service: Service,
-    });
+    const url = "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/ServiceCollection?$format=json";
 
-    const metaJson = await XMLParser.parseStringPromise(res.data, {
-        explicitArray: false,
-        mergeAttrs: true
-    });
+    const res = await globals.Utils.RequestHandler(url, "29c0b5b2-df23-4489-aad0-904389c86308");
 
-    let entitySets = metaJson["edmx:Edmx"]["edmx:DataServices"].Schema.EntityContainer.EntitySet;
-    let entityTypes = metaJson["edmx:Edmx"]["edmx:DataServices"].Schema.EntityType;
-    let annotations = metaJson["edmx:Edmx"]["edmx:DataServices"].Schema.Annotations;
+    console.log(res.headers)
 
-    const entitySet = entitySets.find(entitySets => entitySets.Name === EntitySet);
-    const entityTypeName = entitySet.EntityType.split(".");
-    const entityType = entityTypes.find(entityTypes => entityTypes.Name === entityTypeName[entityTypeName.length - 1]);
+    for (i = 0; i < res.data.d.results.length; i++) {
 
-    // Fields
-    for (iProp = 0; iProp < entityType.Property.length; iProp++) {
+        const service = res.data.d.results[i];
 
-        const property = entityType.Property[iProp];
-
-        const field = {
-            type: property.Type.split(".")[1].toLowerCase(),
-            name: property.Name,
-            label: property["sap:label"],
-        }
-
-        // Value Help
-        if (property["sap:value-list"]) {
-
-            const valueListTarget = entitySet.EntityType + "/" + property.Name;
-            // field.VH = property["sap:value-list"];
-
-            const annotation = annotations.find(annotations => annotations.Target === valueListTarget);
-
-            if (annotation) {
-                const collectionPath = annotation.Annotation.Record.PropertyValue.find(value => value.Property === "CollectionPath");
-                field.collectionPath = collectionPath.String;
-
-                // const entitySet = entitySets.find(entitySets => entitySets.Name === field.collectionPath);
-                // const entityTypeName = entitySet.EntityType.split(".");
-                // const entityType = entityTypes.find(entityTypes => entityTypes.Name === entityTypeName[entityTypeName.length - 1]);
-                // field.entityType = entityType.Property;
-
-
-                // SINGLE VS MULTI
-
-                // if (!valueHelp[field.collectionPath]) {
-
-                // const vhOptions = {
-                //     service: Service,
-                //     entitySet: field.collectionPath,
-                //     parameters: {
-                //         "$format": "json",
-                //     }
-                // }
-
-                // const resItems = await apis.get(vhOptions);
-                // valueHelp[field.collectionPath] = resItems.data.d.results.map(function (item) {
-                //     return {
-                //         key: item[field.name],
-                //         text: item[field.name + "Name"]
-                //     }
-                // });
-
-                // }
-
-                // CollectionPath 
-                // Fields 
-
-                //     field.items = valueHelp[field.collectionPath];
-
-            }
-
-        }
-
-        fields.push(field);
+        services.push({
+            title: service.Title,
+            description: service.Description,
+            author: service.Author,
+        })
 
     }
 
-    result.data = fields.sort(sortByProperty("label"));
+console.log(services)
+    result.data = services;
     complete();
-
 } catch (error) {
     log.error("Error in request: ", error);
-    complete();
+    return fail();
 }
-
-
-function sortByProperty(property) {
-    return function (a, b) {
-        if (a[property] > b[property])
-            return 1;
-        else if (a[property] < b[property])
-            return -1;
-
-        return 0;
-    }
-}
-

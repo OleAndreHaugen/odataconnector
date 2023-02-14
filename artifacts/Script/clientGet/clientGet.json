@@ -13,7 +13,7 @@
 	],
 	"apis": [],
 	"name": "clientGet",
-	"ver": "23.2.11.815",
+	"ver": "23.2.13.628",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

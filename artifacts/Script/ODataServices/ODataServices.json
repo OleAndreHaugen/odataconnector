@@ -2,20 +2,18 @@
 	"id": "bfcb3616-29fc-403a-9594-a6c98d57c3e3",
 	"createdAt": "2023-02-11T07:36:17.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
-	"globalScripts": [],
-	"externalModules": [],
-	"entitySets": [],
-	"apis": [
+	"globalScripts": [
 		{
-			"id": "e8067531-6f87-4a1f-acf0-09ab83e3820d",
-			"parent": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
-			"name": "/IWFND/CATALOGSERVICE;v=2/ServiceCollection",
-			"contextname": "services",
-			"method": "GET"
+			"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
+			"name": "NeptuneConnectors - Utils",
+			"contextname": "Utils"
 		}
 	],
+	"externalModules": [],
+	"entitySets": [],
+	"apis": [],
 	"name": "ODataServices",
-	"ver": "23.2.11.950",
+	"ver": "23.2.13.2148",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

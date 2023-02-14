@@ -34,13 +34,21 @@
 			"isUnique": false,
 			"isNullable": true,
 			"description": "Configuration"
+		},
+		{
+			"id": "2c0b4db0-a888-42ae-8551-595e8bf28eb9",
+			"fieldName": "systemid",
+			"fieldType": "mediumtext",
+			"isUnique": false,
+			"description": "System ID",
+			"isNullable": true
 		}
 	],
 	"indices": [],
 	"foreignKeys": [],
 	"name": "neptune_af_connector",
 	"description": "Adaptive Framework Connector",
-	"ver": "23.2.11.746",
+	"ver": "23.2.13.2124",
 	"enableAudit": false,
 	"includeDataInPackage": false,
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",

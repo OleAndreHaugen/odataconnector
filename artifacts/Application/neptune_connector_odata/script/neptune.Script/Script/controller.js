@@ -62,15 +62,12 @@ const controller = {
 
     list: function () {
         apiList().then(function (res) {
-            modeltabData.setData(res);
+            modelappData.setData(res);
         });
     },
 
     openServices: function () {
-        if (!modeltabServices.oData.length) {
-            toolServicesUpdate.firePress();
-        }
-
+        toolServicesUpdate.firePress();
         toolServicesFilter.setValue();
         toolServicesFilter.fireLiveChange();
         tabServices.clearSelection();
@@ -88,11 +85,17 @@ const controller = {
     },
 
     updateFields: function () {
-        const selected = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
+        let selected = [];
+
+        if (modeloPageDetail.oData && modeloPageDetail.oData.config && modeloPageDetail.oData.config.fields) {
+            selected = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
+        }
+
         apiGetEntitySetFields({
             parameters: {
                 service: modeloPageDetail.oData.config.service,
                 entitySet: modeloPageDetail.oData.config.entitySet,
+                systemid: modeloPageDetail.oData.systemid,
             },
         }).then(function (res) {
             modeloPageDetail.oData.metadata = res.metadata;

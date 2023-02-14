@@ -2,7 +2,13 @@
 	"id": "4a64df7b-bce9-482c-92f4-b0a8054ea75b",
 	"createdAt": "2023-02-06T19:38:00.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
-	"globalScripts": [],
+	"globalScripts": [
+		{
+			"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
+			"name": "NeptuneConnectors - Utils",
+			"contextname": "Utils"
+		}
+	],
 	"externalModules": [],
 	"entitySets": [
 		{
@@ -18,10 +24,17 @@
 			"name": "/(service)/(entitySet)",
 			"contextname": "get",
 			"method": "GET"
+		},
+		{
+			"id": "27904db2-3729-462c-90f1-7ffa25896ac1",
+			"parent": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
+			"name": "/sap/(service)/(entitySet)",
+			"contextname": "save",
+			"method": "PATCH"
 		}
 	],
 	"name": "ODataAdaptiveRun",
-	"ver": "23.2.12.1645",
+	"ver": "23.2.14.826",
 	"description": "OData Run Script",
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

@@ -4,7 +4,7 @@ const filter = new sap.ui.model.Filter({
     filters: [
         new sap.ui.model.Filter("label", "Contains", this.getValue()),
         new sap.ui.model.Filter("name", "Contains", this.getValue()),
-        new sap.ui.model.Filter("collectionPath", "Contains", this.getValue()),
+        new sap.ui.model.Filter("valueListTarget", "Contains", this.getValue()),
     ],
     and: false,
 });

@@ -3,6 +3,9 @@ const context = this.getContextByIndex(this.getSelectedIndex());
 if (context) {
     const data = context.getObject();
     modeloPageDetail.oData.config.entitySet = data.name;
+    modeloPageDetail.oData.config.creatable = data.creatable;
+    modeloPageDetail.oData.config.updatable = data.updatable;
+    modeloPageDetail.oData.config.deletable = data.deletable;
     modeloPageDetail.refresh();
     diaEntitySets.close();
     controller.updateFields();

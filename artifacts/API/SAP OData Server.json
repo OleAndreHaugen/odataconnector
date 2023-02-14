@@ -8,7 +8,7 @@
 			"apiAuth": "f9e491dd-6713-4db2-9019-d4b9132d5c9f",
 			"authName": "S4 Production",
 			"authDesc": "Service User",
-			"id": "a4ba9bcc-3a5f-4f87-b774-c748e1f3dc82"
+			"id": "c64f289b-29f7-4cb0-e496-3e6630085715"
 		}
 	],
 	"endpoints": [],
@@ -33,7 +33,8 @@
 			"responses": [],
 			"content": [],
 			"auth": [],
-			"endpoints": []
+			"endpoints": [],
+			"tags": "Metadata"
 		},
 		{
 			"id": "a1878038-236a-468e-d25c-9a92b30ed7ce",
@@ -109,7 +110,8 @@
 			"responses": [],
 			"content": [],
 			"auth": [],
-			"endpoints": []
+			"endpoints": [],
+			"tags": "EntitySet"
 		},
 		{
 			"id": "e8067531-6f87-4a1f-acf0-09ab83e3820d",
@@ -121,14 +123,28 @@
 			"responses": [],
 			"content": [],
 			"auth": [],
-			"endpoints": []
+			"endpoints": [],
+			"tags": "Discovery"
+		},
+		{
+			"id": "27904db2-3729-462c-90f1-7ffa25896ac1",
+			"method": "PATCH",
+			"path": "/sap/(service)/(entitySet)",
+			"description": "",
+			"parameters": [],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"tags": "EntitySet"
 		}
 	],
 	"definitions": [],
 	"documentation": [],
 	"name": "SAP OData Server",
-	"endpoint": "https://s4prd.neptune-software.com/sap/opu/odata",
-	"ver": "23.2.11.834",
+	"endpoint": "https://s4dev.neptune-software.com/sap/opu/odata",
+	"ver": "23.2.13.190",
 	"version": "1.0",
 	"description": "SAP OData Server for Adaptive Framework",
 	"mediaType": "",

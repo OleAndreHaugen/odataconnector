@@ -1,14 +1,11 @@
-const opts = {
-    parameters: {
-        "$format": "json"
-    }
-}
+const SystemId = req.query.systemid;
+const SystemUrl = "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/ServiceCollection?$format=json";
 
 let services = [];
 
 try {
 
-    const res = await apis.services(opts);
+    const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json");
 
     for (i = 0; i < res.data.d.results.length; i++) {
 

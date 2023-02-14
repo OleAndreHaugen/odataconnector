@@ -36,7 +36,7 @@ const cockpitUtils = {
         cockpitUtils.dataSet = "OData Connector";
 
         // Required Fieldnames for data validation
-        cockpitUtils.requiredFields = ["informDetailName"];
+        cockpitUtils.requiredFields = ["informDetailName", "informDetailSystem", "informDetailService", "informDetailEntitySet"];
     },
 
     toggleEdit: function (editable) {
@@ -126,9 +126,7 @@ const cockpitUtils = {
                 error: (error) => {
                     toggleDisplay();
                     if (error.status !== 403) {
-                        sap.m.MessageBox.error(
-                            error?.responseJSON?.status || error.status || "An error has ocurred"
-                        );
+                        sap.m.MessageBox.error(error?.responseJSON?.status || error.status || "An error has ocurred");
                     }
                 },
             });
@@ -161,11 +159,7 @@ const cockpitUtils = {
                     success: function (data) {},
                     error: (error) => {
                         if (error.status !== 403) {
-                            sap.m.MessageBox.error(
-                                error?.responseJSON?.status ||
-                                    error.status ||
-                                    "An error has ocurred"
-                            );
+                            sap.m.MessageBox.error(error?.responseJSON?.status || error.status || "An error has ocurred");
                         }
                     },
                 });

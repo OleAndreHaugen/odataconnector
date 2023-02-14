@@ -1,9 +1,18 @@
-const data = await entities.neptune_af_connector.find({
-    select: ["name", "description", "updatedAt", "updatedBy"],
-    order: {
-        name: "ASC"
-    }
+const manager = modules.typeorm.getConnection().manager;
+
+const systems = await manager.find('systems', {
+    select: ["id", "name", "description"],
+    order: { name: "ASC" }
 });
 
-result.data = data;
+const connectors = await entities.neptune_af_connector.find({
+    select: ["id", "name", "description", "updatedAt", "updatedBy", "systemid"],
+    order: { name: "ASC" }
+});
+
+result.data = {
+    connectors,
+    systems
+}
+
 complete();

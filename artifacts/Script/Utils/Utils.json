@@ -1,6 +1,6 @@
 {
-	"id": "b8353950-399a-493f-8952-4f176a7386a5",
-	"createdAt": "2023-02-11T06:45:52.000Z",
+	"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
+	"createdAt": "2023-02-13T18:19:46.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"globalScripts": [],
 	"externalModules": [
@@ -9,21 +9,21 @@
 			"name": "typeorm",
 			"contextname": "typeorm",
 			"path": "typeorm"
-		}
-	],
-	"entitySets": [
+		},
 		{
-			"id": "a572b86e-4f36-422c-8043-90eae252246d",
-			"name": "neptune_af_connector",
-			"contextname": "neptune_af_connector"
+			"id": "internal_request",
+			"name": "request",
+			"contextname": "request",
+			"path": "request"
 		}
 	],
+	"entitySets": [],
 	"apis": [],
-	"name": "clientList",
-	"ver": "23.2.13.2126",
+	"name": "Utils",
+	"ver": "23.2.14.714",
 	"description": null,
 	"content": "file:///content.js",
-	"useAsGlobalScript": false,
+	"useAsGlobalScript": true,
 	"transpiledContent": null,
 	"lastRunSuccessful": false,
 	"isTypescript": false,
