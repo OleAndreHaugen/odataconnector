@@ -17,24 +17,9 @@
 			"contextname": "neptune_af_connector"
 		}
 	],
-	"apis": [
-		{
-			"id": "a1878038-236a-468e-d25c-9a92b30ed7ce",
-			"parent": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
-			"name": "/(service)/(entitySet)",
-			"contextname": "get",
-			"method": "GET"
-		},
-		{
-			"id": "27904db2-3729-462c-90f1-7ffa25896ac1",
-			"parent": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
-			"name": "/sap/(service)/(entitySet)",
-			"contextname": "save",
-			"method": "PATCH"
-		}
-	],
+	"apis": [],
 	"name": "ODataAdaptiveRun",
-	"ver": "23.2.14.826",
+	"ver": "23.2.16.97",
 	"description": "OData Run Script",
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

@@ -9,6 +9,12 @@ let fields = [];
 
 try {
 
+    // Check if xml2js is installed
+    if (!modules.xml2j1s) {
+        result.data = { error: "Missing NPM module xml2js.Please install from NPM Modules" };
+        return complete();
+    }
+
     const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "xml");
 
     const metaJson = await XMLParser.parseStringPromise(res.data, {

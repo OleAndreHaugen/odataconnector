@@ -23,21 +23,25 @@
 			"name": "Neptune Adaptive Framework Connector",
 			"description": "Neptune Adaptive Framework Connector",
 			"apiGroup": "5c76d2dc-2881-41d5-8db1-cd2bb3cd8d4f"
-		},
-		{
-			"id": "75fdeb75-484e-441e-94aa-2ed3d653a28f",
-			"name": "SAP OData Server",
-			"description": "SAP OData Server for Adaptive Framework",
-			"apiGroup": "5c76d2dc-2881-41d5-8db1-cd2bb3cd8d4f"
 		}
 	],
 	"odataSource": [],
 	"odataMock": [],
 	"dictionary": [
 		{
+			"id": "fcd4c787-3174-435e-9a02-3895b7d76cc2",
+			"name": "neptune_af_connector_auth",
+			"description": "Adaptive Framework Connector: Auth"
+		},
+		{
 			"id": "a572b86e-4f36-422c-8043-90eae252246d",
 			"name": "neptune_af_connector",
 			"description": "Adaptive Framework Connector"
+		},
+		{
+			"id": "5703f6bd-5b68-4695-a2a1-3ae7fb45c999",
+			"name": "neptune_af_connector_role",
+			"description": "Adaptive Framework Connector: Roles"
 		}
 	],
 	"jsclass": [
@@ -107,7 +111,14 @@
 	"theme": [],
 	"pdf": [],
 	"rulesengine": [],
-	"reports": [],
+	"reports": [
+		{
+			"id": "5d2ac95a-0486-45bb-a88a-04f1bed585d8",
+			"name": "NeptuneAdaptiveConnectorAuth",
+			"description": "",
+			"application": "planet9_adaptive_list"
+		}
+	],
 	"api_authentication": [],
 	"api_group": [
 		{
@@ -120,7 +131,12 @@
 		{
 			"id": "97410b27-9c82-48ba-86b5-504622db44e4",
 			"description": "Connect to SAP OData",
-			"name": "OData Connector"
+			"name": "Adaptive Framework Connector: OData Connector"
+		},
+		{
+			"id": "8ccfd807-d5f0-48dc-9770-334876e3035b",
+			"description": "Register local API Token",
+			"name": "Adaptive Framework Connector: Setup"
 		}
 	],
 	"category": [
@@ -139,7 +155,13 @@
 	"department": [],
 	"script_scheduler": [],
 	"wf_definition": [],
-	"connector": [],
+	"connector": [
+		{
+			"id": "35609f0f-fd34-4656-b371-6fe70b4245e5",
+			"name": "Neptune Adaptive Connector Auth",
+			"description": null
+		}
+	],
 	"events": [],
 	"media_library": []
 }

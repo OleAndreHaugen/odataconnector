@@ -1,0 +1,41 @@
+{
+	"id": "fcd4c787-3174-435e-9a02-3895b7d76cc2",
+	"createdAt": "2023-02-16T06:35:16.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"fields": [
+		{
+			"id": "7984d0d1-cfc2-41a8-d7a3-a723d417d9d6",
+			"fieldName": "role",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "System Role",
+			"isNullable": true
+		},
+		{
+			"id": "ecae32e3-a991-41e6-de2d-c3605cfb5635",
+			"fieldName": "username",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Username",
+			"isNullable": true
+		},
+		{
+			"id": "ba3d006e-072f-4191-c0c3-b21ae1c72472",
+			"fieldName": "password",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"isNullable": true,
+			"description": "Password"
+		}
+	],
+	"indices": [],
+	"foreignKeys": [],
+	"name": "neptune_af_connector_auth",
+	"description": "Adaptive Framework Connector: Auth",
+	"ver": "23.2.16.834",
+	"enableAudit": false,
+	"includeDataInPackage": false,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
+	"rolesRead": [],
+	"rolesWrite": []
+}

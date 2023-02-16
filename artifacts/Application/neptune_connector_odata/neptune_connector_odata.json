@@ -1219,7 +1219,7 @@
 																{
 																	"attribute": "text",
 																	"grouping": "Properties",
-																	"value": "{/name}",
+																	"value": "OData Connector",
 																	"script": "",
 																	"translation": []
 																},
@@ -1260,7 +1260,7 @@
 																{
 																	"attribute": "text",
 																	"grouping": "Properties",
-																	"value": "Layout",
+																	"value": "{/name}",
 																	"script": "",
 																	"translation": []
 																}
@@ -4231,7 +4231,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.14.823",
+	"ver": "23.2.16.843",
 	"application": "neptune_connector_odata",
 	"title": "OData Connector",
 	"description": "OData Connector",

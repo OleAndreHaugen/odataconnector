@@ -3,6 +3,10 @@ apiGetServices({
         systemid: modeloPageDetail.oData.systemid,
     },
 }).then(function (res) {
-    modeltabServices.setData(res);
-    diaServices.setTitle("OData Services (" + res.length + ")");
+    if (res.error) {
+        sap.m.MessageToast.show(res.error);
+    } else {
+        modeltabServices.setData(res);
+        diaServices.setTitle("OData Services (" + res.length + ")");
+    }
 });

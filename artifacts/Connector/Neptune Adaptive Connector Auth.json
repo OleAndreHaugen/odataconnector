@@ -1,0 +1,17 @@
+{
+	"id": "35609f0f-fd34-4656-b371-6fe70b4245e5",
+	"createdAt": "2023-02-16T06:36:44.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"settings": {
+		"tableid": "fcd4c787-3174-435e-9a02-3895b7d76cc2",
+		"hasDocumentation": false
+	},
+	"documentation": {},
+	"name": "Neptune Adaptive Connector Auth",
+	"description": null,
+	"group": null,
+	"type": "T",
+	"ver": "23.2.16.736",
+	"disabled": false,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

@@ -98,16 +98,20 @@ const controller = {
                 systemid: modeloPageDetail.oData.systemid,
             },
         }).then(function (res) {
-            modeloPageDetail.oData.metadata = res.metadata;
-            modeloPageDetail.oData.config.fields = res.fields;
+            if (res.error) {
+                sap.m.MessageToast.show(res.error);
+            } else {
+                modeloPageDetail.oData.metadata = res.metadata;
+                modeloPageDetail.oData.config.fields = res.fields;
 
-            for (let i = 0; i < selected.length; i++) {
-                const sel = selected[i];
-                const field = ModelData.FindFirst(modeloPageDetail.oData.config.fields, "name", sel.name);
-                if (field) field.sel = true;
+                for (let i = 0; i < selected.length; i++) {
+                    const sel = selected[i];
+                    const field = ModelData.FindFirst(modeloPageDetail.oData.config.fields, "name", sel.name);
+                    if (field) field.sel = true;
+                }
+
+                modeloPageDetail.refresh(true);
             }
-
-            modeloPageDetail.refresh(true);
         });
     },
 };

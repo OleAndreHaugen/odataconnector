@@ -1,0 +1,33 @@
+{
+	"id": "5703f6bd-5b68-4695-a2a1-3ae7fb45c999",
+	"createdAt": "2023-02-16T06:39:34.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"fields": [
+		{
+			"id": "aaf625f7-329b-405b-825f-4161fd57b144",
+			"fieldName": "role",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Role",
+			"isNullable": true
+		},
+		{
+			"id": "8b3129a5-6d23-4100-e110-8a2a03fe8a7f",
+			"fieldName": "Name",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Name",
+			"isNullable": true
+		}
+	],
+	"indices": [],
+	"foreignKeys": [],
+	"name": "neptune_af_connector_role",
+	"description": "Adaptive Framework Connector: Roles",
+	"ver": "23.2.16.739",
+	"enableAudit": false,
+	"includeDataInPackage": true,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
+	"rolesRead": [],
+	"rolesWrite": []
+}

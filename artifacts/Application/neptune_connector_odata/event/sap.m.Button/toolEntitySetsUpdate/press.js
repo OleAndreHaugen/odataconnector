@@ -4,6 +4,10 @@ apiGetEntitySets({
         systemid: modeloPageDetail.oData.systemid,
     },
 }).then(function (res) {
-    modeltabEntitySets.setData(res);
-    diaEntitySets.setTitle("OData Entity Sets (" + res.length + ")");
+    if (res.error) {
+        sap.m.MessageToast.show(res.error);
+    } else {
+        modeltabEntitySets.setData(res);
+        diaEntitySets.setTitle("OData Entity Sets (" + res.length + ")");
+    }
 });

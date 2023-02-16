@@ -17,10 +17,16 @@
 			"path": "request"
 		}
 	],
-	"entitySets": [],
+	"entitySets": [
+		{
+			"id": "fcd4c787-3174-435e-9a02-3895b7d76cc2",
+			"name": "neptune_af_connector_auth",
+			"contextname": "neptune_af_connector_auth"
+		}
+	],
 	"apis": [],
 	"name": "Utils",
-	"ver": "23.2.14.714",
+	"ver": "23.2.16.96",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": true,

@@ -6,7 +6,27 @@ const SystemUrl = "/sap/opu/odata/sap/" + Service + "/$metadata";
 
 const EntitySets = [];
 
+
+
 try {
+
+    // Check if xml2js is installed
+    if (!modules.xml2js) {
+        result.data = { error: "Missing NPM module xml2js.Please install from NPM Modules" };
+        return complete();
+    }
+
+    // Check for SystemId
+    if (!SystemId) {
+        result.data = { error: "Please select system" };
+        return complete();
+    }
+
+    // Check for Service
+    if (!Service) {
+        result.data = { error: "Please select service" };
+        return complete();
+    }
 
     const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "xml");
 

@@ -1,0 +1,74 @@
+[
+	{
+		"id": "bf40ebc8-4ed3-4320-8aa0-e58a047d87be",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "STA",
+		"Name": "Staging"
+	},
+	{
+		"id": "aea5cb5c-7abb-460d-a55d-c577f7d2f5cc",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "SAN",
+		"Name": "Sandbox"
+	},
+	{
+		"id": "9a2f6016-cbf6-4622-9d6f-8f6dbc682001",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "LOC",
+		"Name": "Local"
+	},
+	{
+		"id": "82cab6cc-9c7b-40cd-a6ab-bd8f4336e88f",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "INT",
+		"Name": "Integration"
+	},
+	{
+		"id": "500b7044-5ce7-4a41-b70c-287632c0529c",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "DEV",
+		"Name": "Development"
+	},
+	{
+		"id": "3b9a6c22-62e2-4355-b0e2-244062b740df",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "QUA",
+		"Name": "Quality Assurance"
+	},
+	{
+		"id": "14393dac-5fea-4d4c-b358-b08cbe25c997",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "PRD",
+		"Name": "Production"
+	},
+	{
+		"id": "03451bd6-6a61-4791-b7ac-5b103d6f6e13",
+		"createdAt": "1676529725354",
+		"updatedAt": "1676529725354",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "TST",
+		"Name": "Test"
+	}
+]
