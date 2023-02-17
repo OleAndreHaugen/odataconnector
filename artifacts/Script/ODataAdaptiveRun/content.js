@@ -98,7 +98,7 @@ async function processValueListSetup() {
 
                 let res = {
                     fields: fields,
-                    valueListLabel: (valueListLabel ? valueListLabel.String : valueListCollectionPath.String),
+                    valueListLabel: (valueListLabel ? valueListLabel.String : ""),
                     valueListKeyField: valueListKeyField,
                     valueListSearchSupported: (valueListSearchSupported ? true : false),
                     valueListCollectionPath: valueListCollectionPath.String
@@ -169,8 +169,6 @@ async function processValueListRun() {
 
         const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json");
 
-        // const res = await apis.get(opts);
-
         result.data = {
             result: res.data.d.results,
             count: res.data.d.__count,
@@ -233,7 +231,7 @@ async function processListAndGet() {
             // API Query - Filter
             if (req.body.__metadata && req.body.__metadata.id) {
                 const parts = req.body.__metadata.id.split("/");
-                SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + parts[parts.length - 1] + "?&$format=json";
+                SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + parts[parts.length - 1] + "?$format=json";
             }
 
         } else {
@@ -354,30 +352,58 @@ async function processListAndGet() {
 
         const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json");
 
-        // opts.service = Service;
-        // opts.entitySet = connector.config.entitySet;
-        // const res = await apis.get(opts);
-
         // Adaptive Framework Binding 
-        if (res.data.d && res.data.d.results && res.data.d.results.length) {
-            res.data.d.results.forEach(function (row) {
-                formatData(row);
-            });
-        } else {
-            formatData(res.data.d);
+        if (res.data && res.data.d) {
+            if (res.data.d.results && res.data.d.results.length) {
+                res.data.d.results.forEach(function (row) {
+                    formatData(row);
+                });
+            } else {
+                formatData(res.data.d);
+            }
         }
 
         if (req.query.method === "Get") {
-            result.data = res.data.d;
+
+            if (res.message) {
+                result.data = {
+                    status: "ERROR",
+                    message: {
+                        text: res.message
+                    },
+                    debug: {
+                        opts,
+                        SystemUrl
+                    }
+                }
+            } else {
+                result.data = res.data.d;
+            }
+
         } else {
-            result.data = {
-                result: res.data.d.results,
-                count: res.data.d.__count,
-                debug: {
-                    opts: opts,
-                    SystemUrl: SystemUrl
+
+            if (res.message) {
+                result.data = {
+                    status: "ERROR",
+                    message: {
+                        text: res.message
+                    },
+                    debug: {
+                        opts,
+                        SystemUrl
+                    }
+                }
+            } else {
+                result.data = {
+                    result: res.data.d.results,
+                    count: res.data.d.__count,
+                    debug: {
+                        opts,
+                        SystemUrl
+                    }
                 }
             }
+
         }
         complete();
 
@@ -400,18 +426,18 @@ async function processSave() {
 
     let dataPatch = {};
     let sep = "";
-    let whereSep = "";
     let resSave;
     let resFetch;
+    let entitySet;
 
     let opts = {
-        service: Service,
-        entitySet: connector.config.entitySet,
-        parameters: {
-            "$select": "",
-        },
+        body: null,
+        method: "GET",
+        // parameters: {
+        //     "$select": "",
+        // },
         headers: {
-            "x-csrf-token": "fetch",
+            "X-CSRF-Token": "fetch",
             "cookie": "",
         },
     }
@@ -423,52 +449,70 @@ async function processSave() {
         if (field.editable) dataPatch[field.name] = req.body[field.name];
 
         // Fields to Select
-        opts.parameters.$select += sep + field.name;
+        // opts.parameters.$select += sep + field.name;
         sep = ",";
 
     });
 
-    // API Query - Filter
+    // API Query - Record ID
     if (req.body.__metadata && req.body.__metadata.id) {
         const parts = req.body.__metadata.id.split("/");
-        opts.entitySet = parts[parts.length - 1];
+        // dataPatch.__metadata = req.body.__metadata;
+        entitySet = parts[parts.length - 1];
     }
 
     try {
 
-        // Fetxh x-csrf-token
-        resFetch = await apis.get(opts);
+        // GET X-CSRF-TOKEN
+        let SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + entitySet + "?$format=json";
 
-        if (resFetch.headers["x-csrf-token"]) {
-            opts.headers["x-csrf-token"] = resFetch.headers["x-csrf-token"];
+        // if (opts.parameters.$select) SystemUrl += "&$select=" + opts.parameters.$select;
+
+        resFetch = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json", opts);
+
+        // console.log(resFetch.headers);
+
+        opts.headers["X-CSRF-Token"] = resFetch.headers.get("x-csrf-token");
+        opts.headers["cookie"] = resFetch.headers.get("set-cookie");
+
+        opts.method = "PATCH";
+        opts.body = JSON.stringify(dataPatch);
+        // opts.body = resFetch.data;
+
+        // delete opts.parameters.$select;
+
+        // TODO: Problem is csrf validation
+
+        // SAVE
+        // SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet;
+
+        resSave = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json", opts);
+
+        if (resSave.message) {
+
+            result.data = {
+                status: "ERROR",
+                message: {
+                    text: resSave.message
+                },
+                debug: {
+                    opts,
+                    dataPatch,
+                    SystemUrl
+                }
+            }
+
         } else {
-            delete opts.headers["x-csrf-token"];
-        }
 
-
-        // "XSRF-TOKEN"
-        // "X-XSRF-TOKEN"
-
-        // Cookie Handler
-        const cookies = resFetch.headers["set-cookie"];
-
-        sep = "";
-        cookies.forEach(function (cookie) {
-            opts.headers["cookie"] += sep + cookie;
-            sep = ";"
-        });
-
-        // Save data with x-csrf-token
-        resSave = await apis.save(opts);
-
-        result.data = {
-            status: "OK",
-            debug: {
-                opts,
-                dataPatch,
-                headers: resFetch.headers
+            result.data = {
+                status: "OK",
+                debug: {
+                    opts,
+                    dataPatch,
+                }
             }
         }
+
 
         complete();
 
@@ -481,8 +525,6 @@ async function processSave() {
         result.data = {
             error: error,
             debug: {
-                // resSave: resSave.data,
-                // resFetch: resFetch.data,
                 req: req.body,
                 dataPatch,
                 opts: opts
@@ -502,49 +544,6 @@ async function formatData(row) {
     rowFields = Object.keys(row);
 
     rowFields.forEach(function (fieldName) {
-
-        const fieldRun = req.body._settings.fieldsRun.find((f) => f.name === fieldName);
-
-        if (fieldRun) {
-
-            switch (fieldRun.type) {
-
-                case "ObjectStatus":
-
-                    // Unit
-                    if (fieldRun.statusUnitType === "Binding") row[fieldName + "_unit"] = row[fieldRun.statusUnitBinding];
-                    if (fieldRun.statusUnitType === "Fixed") row[fieldName + "_unit"] = fieldRun.statusUnitFixed;
-
-                    // State
-                    if (fieldRun.statusStateType === "Binding") row[fieldName + "_state"] = row[fieldRun.statusStateBinding];
-                    if (fieldRun.statusStateType === "Fixed") row[fieldName + "_state"] = fieldRun.statusStateFixed;
-
-                    // Icon
-                    if (fieldRun.statusIconType === "Binding") row[fieldName + "_icon"] = row[fieldRun.statusIconBinding];
-                    if (fieldRun.statusIconType === "Fixed") row[fieldName + "_icon"] = fieldRun.statusIconFixed;
-
-                    // Title
-                    if (fieldRun.statusTitleType === "Binding") row[fieldName + "_title"] = row[fieldRun.statusTitleBinding];
-                    if (fieldRun.statusTitleType === "Fixed") row[fieldName + "_title"] = fieldRun.statusTitleFixed;
-
-                    break;
-
-                case "ObjectNumber":
-
-                    // Unit
-                    if (fieldRun.numberUnitType === "Binding") row[fieldName + "_unit"] = row[fieldRun.numberUnitBinding];
-                    if (fieldRun.numberUnitType === "Fixed") row[fieldName + "_unit"] = fieldRun.numberUnitFixed;
-
-                    // State
-                    if (fieldRun.numberStateType === "Binding") row[fieldName + "_state"] = row[fieldRun.numberStateBinding];
-                    if (fieldRun.numberStateType === "Fixed") row[fieldName + "_state"] = fieldRun.numberStateFixed;
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
 
         // DateTime Format 
         if (row[fieldName].indexOf && row[fieldName].indexOf("/Date(") > -1) {

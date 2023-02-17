@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "ODataAdaptiveRun",
-	"ver": "23.2.16.97",
+	"ver": "23.2.17.942",
 	"description": "OData Run Script",
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

@@ -1,7 +1,5 @@
 async function RequestHandler(path, systemid, format, opts) {
 
-    const request = modules.request;
-
     // Get system information
     const manager = modules.typeorm.getConnection().manager;
     const system = await manager.findOne('systems', { select: ["url", "id"], where: { id: systemid } });
@@ -25,14 +23,40 @@ async function RequestHandler(path, systemid, format, opts) {
         }
     };
 
+    if (opts && opts.body) options.body = opts.body;
+    if (opts && opts.method) options.method = opts.method;
     if (opts && opts.headers) options.headers = { ...options.headers, ...opts.headers };
+
+    if (format === "xml") options.headers["content-type"] = "application/xml";
+    if (format === "json") options.headers["content-type"] = "application/json";
 
     const response = await fetch(url, options);
 
-    return {
-        data: await response.json(),
-        headers: response.headers
+    const contentType = response.headers.get("content-type");
+
+    let responseData = {
+        headers: response.headers,
+        data: null
     }
+
+    if (response.status !== 200) {
+        responseData.message = response.status + ": " + response.statusText;
+    }
+
+    if (response.status === 401) {
+        return responseData;
+    }
+
+    if (contentType.indexOf("text/plain") > -1) {
+        responseData.data = await response.text();
+        responseData.message += " - " + responseData.data;
+    } else if (format === "xml") {
+        responseData.data = await response.text();
+    } else {
+        responseData.data = await response.json();
+    }
+
+    return responseData;
 
 }
 
