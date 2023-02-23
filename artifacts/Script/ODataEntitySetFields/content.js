@@ -10,7 +10,7 @@ let fields = [];
 try {
 
     // Check if xml2js is installed
-    if (!modules.xml2j1s) {
+    if (!XMLParser) {
         result.data = { error: "Missing NPM module xml2js.Please install from NPM Modules" };
         return complete();
     }

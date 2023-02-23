@@ -4198,11 +4198,11 @@
 					"attributes": [],
 					"data": [
 						{
-							"fieldNo": "4ada19cf-46e9-4246-8be7-e9204cf9a428",
-							"fieldName": "controller",
+							"fieldNo": "abe3f571-7604-486a-c8fb-1b003a92d480",
+							"fieldName": "cockpitUtils",
 							"fieldParent": "9a908f5d-5422-474e-adc2-0b14d7e5d638",
 							"fieldType": "neptune.Script",
-							"script": "file://script/neptune.Script/Script/controller.js",
+							"script": "file://script/neptune.Script/Script/cockpitUtils.js",
 							"customComponent": false,
 							"request": [],
 							"response": [],
@@ -4210,11 +4210,11 @@
 							"data": []
 						},
 						{
-							"fieldNo": "abe3f571-7604-486a-c8fb-1b003a92d480",
-							"fieldName": "cockpitUtils",
+							"fieldNo": "4ada19cf-46e9-4246-8be7-e9204cf9a428",
+							"fieldName": "controller",
 							"fieldParent": "9a908f5d-5422-474e-adc2-0b14d7e5d638",
 							"fieldType": "neptune.Script",
-							"script": "file://script/neptune.Script/Script/cockpitUtils.js",
+							"script": "file://script/neptune.Script/Script/controller.js",
 							"customComponent": false,
 							"request": [],
 							"response": [],
@@ -4231,7 +4231,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.16.843",
+	"ver": "23.2.23.1656",
 	"application": "neptune_connector_odata",
 	"title": "OData Connector",
 	"description": "OData Connector",

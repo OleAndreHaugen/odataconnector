@@ -482,9 +482,10 @@ async function processSave() {
         // delete opts.parameters.$select;
 
         // TODO: Problem is csrf validation
+        // Need both Cookie + x-csrf-token in SAVE Request
 
         // SAVE
-        // SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet;
+         SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet;
 
         resSave = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json", opts);
 

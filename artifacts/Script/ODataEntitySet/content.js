@@ -6,12 +6,10 @@ const SystemUrl = "/sap/opu/odata/sap/" + Service + "/$metadata";
 
 const EntitySets = [];
 
-
-
 try {
 
     // Check if xml2js is installed
-    if (!modules.xml2js) {
+    if (!XMLParser) {
         result.data = { error: "Missing NPM module xml2js.Please install from NPM Modules" };
         return complete();
     }

@@ -11,7 +11,7 @@
 	"configMessage": {
 		"type": "None"
 	},
-	"title": "Adaptive Framework Connector",
+	"title": "Neptune Extended Connectors",
 	"subTitle": null,
 	"description": null,
 	"titleAlignment": null,
@@ -30,7 +30,7 @@
 	"enableShadeCalc": false,
 	"numTiles": null,
 	"enableMessage": false,
-	"ver": "23.2.16.744",
+	"ver": "23.2.23.1711",
 	"headColor": null,
 	"headTxtClr": null,
 	"subheadTxtClr": null,
@@ -44,7 +44,7 @@
 	"imageMobileHeight": null,
 	"imageTabletHeight": null,
 	"imageHeight": null,
-	"name": "Adaptive Framework Connector",
+	"name": "Neptune Extended Connectors",
 	"cardContentWidth": null,
 	"cardContentAlign": null,
 	"cardPerRow": null,
@@ -63,7 +63,13 @@
 	"roleTag": null,
 	"cockpitTileGroup": true,
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
-	"roles": [],
+	"roles": [
+		{
+			"id": "87925322-9fd3-453b-a018-f2add088a820",
+			"name": "neptunesoftware-connectors",
+			"ver": "23.2.23.1659"
+		}
+	],
 	"tiles": [
 		{
 			"id": "97410b27-9c82-48ba-86b5-504622db44e4",

@@ -1,5 +1,21 @@
 const controller = {
-    init: function () {},
+    init: function () {
+        jQuery.sap.require("sap.m.MessageBox");
+
+        if (!cockpitUtils.isCockpit) {
+            sap.m.MessageBox.confirm("Neptune OData Connectors is only supported to run inside our Cockpit. Press OK and we will guide to to the right place.", {
+                icon: sap.m.MessageBox.Icon.INFORMATION,
+                title: "System Information",
+                actions: [sap.m.MessageBox.Action.OK],
+                initialFocus: "Ok",
+                onClose: function (sAction) {
+                    if (sAction === "OK") {
+                        location.href = location.origin + "/cockpit.html#afconnector-odata";
+                    }
+                },
+            });
+        }
+    },
 
     new: function () {
         modeloPageDetail.setData({
@@ -13,6 +29,24 @@ const controller = {
         cockpitUtils.toggleCreate();
         cockpitUtils.dataSaved = modeloPageDetail.getJSON();
         oApp.to(oPageDetail);
+    },
+
+    delete: function () {
+        sap.n.Planet9.objectDelete(function () {
+            oApp.setBusy(true);
+            sap.n.Planet9.setToolbarButton(false);
+
+            apiDelete({
+                parameters: {
+                    id: modeloPageDetail.oData.id,
+                },
+            }).then(function (res) {
+                sap.m.MessageToast.show("Connector Deleted");
+                controller.list();
+                oApp.setBusy(false);
+                oApp.back();
+            });
+        }, "OData Connector");
     },
 
     save: function () {

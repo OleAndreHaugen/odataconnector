@@ -3,7 +3,14 @@
 	"createdAt": "2023-02-11T06:47:00.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"globalScripts": [],
-	"externalModules": [],
+	"externalModules": [
+		{
+			"id": "c1e44158-f85b-48c3-85df-cd3bb1f6c7f4",
+			"name": "typeorm",
+			"contextname": "typeorm",
+			"path": "typeorm"
+		}
+	],
 	"entitySets": [
 		{
 			"id": "a572b86e-4f36-422c-8043-90eae252246d",
@@ -13,7 +20,7 @@
 	],
 	"apis": [],
 	"name": "clientSave",
-	"ver": "23.2.11.747",
+	"ver": "23.2.23.1644",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

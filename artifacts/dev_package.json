@@ -91,11 +91,6 @@
 			"description": "OData Run Script"
 		},
 		{
-			"id": "302ec4ce-48da-4e6e-9b9a-5908f321dacf",
-			"name": "backup",
-			"description": null
-		},
-		{
 			"id": "08579743-0006-48bb-85d6-8f1de21fe0ba",
 			"name": "clientDelete",
 			"description": null
@@ -143,12 +138,18 @@
 		{
 			"id": "0bb57573-5d51-4637-8833-13195df55a98",
 			"description": null,
-			"name": "Adaptive Framework Connector"
+			"name": "Neptune Extended Connectors"
 		}
 	],
 	"launchpad": [],
 	"certificates": [],
-	"role": [],
+	"role": [
+		{
+			"id": "87925322-9fd3-453b-a018-f2add088a820",
+			"name": "neptunesoftware-connectors",
+			"description": "Adaptive Framework Connectors"
+		}
+	],
 	"systems": [],
 	"doc": [],
 	"wf_notifications": [],
@@ -163,5 +164,8 @@
 		}
 	],
 	"events": [],
-	"media_library": []
+	"media_library": [],
+	"code_snippets": [],
+	"wf_determination": [],
+	"wf_taskaction": []
 }
