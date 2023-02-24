@@ -1,0 +1,6 @@
+const context = this.getContextByIndex(this.getSelectedIndex());
+
+if (context) {
+    const data = context.getObject();
+    controller.get(data.id);
+}

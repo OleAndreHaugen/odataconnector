@@ -1,11 +1,35 @@
+let connectorName;
+let connectorScriptSel;
+let connectorScriptRun;
+
+
+switch (req.body.type) {
+    case "odata":
+        connectorName = "OData: ";
+        connectorScriptSel = '82c9459e-bc38-4df9-98d3-080bcda58b22';
+        connectorScriptRun = '4a64df7b-bce9-482c-92f4-b0a8054ea75b';
+        break;
+
+    case "salesforce":
+        connectorName = "Salesforce: ";
+        connectorScriptSel = "dd8c5a6a-f5db-42c1-9a10-c1f74ddc7506";
+        connectorScriptRun = "673eebd6-cb9e-4c85-9164-c3fea3cad947";
+        break;
+
+    default:
+
+        break;
+}
+
+
+// Typeorm connection
 const manager = modules.typeorm.getConnection().manager;
 
+// Save Custom Connector
 const customConnector = await entities.neptune_af_connector.save(req.body);
 
 // Find Existing Connecors in the System
-const systemConnectors = await manager.find('connector', {
-    where: { type: "S", disabled: false }
-});
+const systemConnectors = await manager.find('connector', { where: { type: "S", disabled: false } });
 
 let foundConnector = {};
 
@@ -16,25 +40,33 @@ for (i = 0; i < systemConnectors.length; i++) {
     }
 }
 
+// Fetch Selection Script to validate upper/lowercase ID's
+const script = await manager.findOne('jsscript', {
+    where: { id: connectorScriptSel },
+    select: ["id"]
+});
+
+if (!script && !script.id) {
+    connectorScriptSel = connectorScriptSel.toUpperCase();
+    connectorScriptRun = connectorScriptRun.toUpperCase();
+}
+
 // Auto Create Connector
 if (!foundConnector.id) {
-    foundConnector.name = "OData: " + customConnector.name;
-    foundConnector.description = customConnector.description || "";
     foundConnector.type = "S";
     foundConnector.disabled = false;
     foundConnector.createdAt = new Date();
     foundConnector.createdBy = req.user.username;
     foundConnector.settings = {
-        scriptSel: '82c9459e-bc38-4df9-98d3-080bcda58b22',
-        scriptRun: '4a64df7b-bce9-482c-92f4-b0a8054ea75b',
+        scriptSel: connectorScriptSel,
+        scriptRun: connectorScriptRun,
         startParam: customConnector.id,
         hasDocumentation: false
     }
-} else {
-    foundConnector.name = "OData: " + customConnector.name;
-    foundConnector.description = customConnector.description;
 }
 
+foundConnector.name = connectorName + customConnector.name;
+foundConnector.description = "Auto created from Neptune Extended Connectors";
 foundConnector.updatedAt = new Date();
 foundConnector.changedBy = req.user.username;
 

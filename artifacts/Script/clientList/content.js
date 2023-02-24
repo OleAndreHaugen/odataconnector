@@ -6,6 +6,7 @@ const systems = await manager.find('systems', {
 });
 
 const connectors = await entities.neptune_af_connector.find({
+    where: { type: req.query.type },
     select: ["id", "name", "description", "updatedAt", "updatedBy", "systemid"],
     order: { name: "ASC" }
 });

@@ -4,6 +4,8 @@ async function RequestHandler(path, systemid, format, opts) {
     const manager = modules.typeorm.getConnection().manager;
     const system = await manager.findOne('systems', { select: ["url", "id"], where: { id: systemid } });
 
+    if (!system) return { error: "Remote System not registered in system" };
+
     // Get local proxy auth
     const auth = await entities.neptune_af_connector_auth.findOne({ role: p9.system.role });
 

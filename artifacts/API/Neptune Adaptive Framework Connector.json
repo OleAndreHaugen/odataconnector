@@ -8,7 +8,7 @@
 		{
 			"id": "5799afef-ad16-4869-832d-030b458819f4",
 			"method": "GET",
-			"path": "/metadata",
+			"path": "/metadataDELETEME",
 			"description": "",
 			"parameters": [
 				{
@@ -43,7 +43,17 @@
 			"method": "GET",
 			"path": "/list",
 			"description": "",
-			"parameters": [],
+			"parameters": [
+				{
+					"name": "type",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
 			"headers": [],
 			"responses": [],
 			"content": [],
@@ -99,7 +109,17 @@
 			"method": "GET",
 			"path": "/odataservices",
 			"description": "",
-			"parameters": [],
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
 			"headers": [],
 			"responses": [],
 			"content": [],
@@ -113,7 +133,26 @@
 			"method": "GET",
 			"path": "/odataentitysets",
 			"description": "",
-			"parameters": [],
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "service",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
 			"headers": [],
 			"responses": [],
 			"content": [],
@@ -127,7 +166,35 @@
 			"method": "GET",
 			"path": "/odataentitysetfields",
 			"description": "",
-			"parameters": [],
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "service",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "entitySet",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
 			"headers": [],
 			"responses": [],
 			"content": [],
@@ -135,13 +202,70 @@
 			"endpoints": [],
 			"tags": "OData",
 			"serverScript": "b786f6ca-84f3-4ef1-b6c2-870b01246d8e"
+		},
+		{
+			"id": "ad1a7eca-793f-433b-8cef-cb83b4491236",
+			"method": "GET",
+			"path": "/sobjects",
+			"description": "",
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": false,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"tags": "Salesforce",
+			"serverScript": "0e07b97e-8836-4ac0-86af-4bd3fa0907a0"
+		},
+		{
+			"id": "f9935004-7b23-407c-d379-ddec02d50025",
+			"method": "GET",
+			"path": "/sobject",
+			"description": "",
+			"parameters": [
+				{
+					"name": "table",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"serverScript": "ae1623e0-4640-454f-a058-ce7f361e52ec",
+			"tags": "Salesforce"
 		}
 	],
 	"definitions": [],
 	"documentation": [],
 	"name": "Neptune Adaptive Framework Connector",
 	"endpoint": "/api/serverscript/neptuneadaptiveframeworkconnector",
-	"ver": "23.2.11.102",
+	"ver": "23.2.24.635",
 	"version": "1.0",
 	"description": "Neptune Adaptive Framework Connector",
 	"mediaType": null,

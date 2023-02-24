@@ -1,4 +1,5 @@
 const controller = {
+    type: "odata",
     init: function () {
         jQuery.sap.require("sap.m.MessageBox");
 
@@ -23,6 +24,7 @@ const controller = {
             description: "",
             metadata: {},
             config: {},
+            type: controller.type,
         });
 
         tabDetail.setSelectedItem(tabDetailInfo);
@@ -51,7 +53,7 @@ const controller = {
 
     save: function () {
         // Check Required Fields
-        if (cockpitUtils.isCockpit && !sap.n.Planet9.requiredFieldsCheck(cockpitUtils.requiredFields)) {
+        if (!sap.n.Planet9.requiredFieldsCheck(cockpitUtils.requiredFields)) {
             return;
         }
 
@@ -95,7 +97,11 @@ const controller = {
     },
 
     list: function () {
-        apiList().then(function (res) {
+        apiList({
+            parameters: {
+                type: controller.type,
+            },
+        }).then(function (res) {
             modelappData.setData(res);
         });
     },

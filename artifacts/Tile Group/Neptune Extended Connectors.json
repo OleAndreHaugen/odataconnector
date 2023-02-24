@@ -5,7 +5,8 @@
 	"translation": [],
 	"tilesOrder": [
 		"8ccfd807-d5f0-48dc-9770-334876e3035b",
-		"97410b27-9c82-48ba-86b5-504622db44e4"
+		"97410b27-9c82-48ba-86b5-504622db44e4",
+		"1c426bb7-102f-4e35-bb50-adb157229021"
 	],
 	"tilegroupsOrder": [],
 	"configMessage": {
@@ -30,7 +31,7 @@
 	"enableShadeCalc": false,
 	"numTiles": null,
 	"enableMessage": false,
-	"ver": "23.2.23.1711",
+	"ver": "23.2.24.618",
 	"headColor": null,
 	"headTxtClr": null,
 	"subheadTxtClr": null,
@@ -82,6 +83,12 @@
 			"name": "Adaptive Framework Connector: Setup",
 			"title": "Settings",
 			"ver": "23.2.16.812"
+		},
+		{
+			"id": "1c426bb7-102f-4e35-bb50-adb157229021",
+			"name": "Adaptive Framework Connector: Salesforce Connector ",
+			"title": "Salesforce Connector",
+			"ver": "23.2.24.1225"
 		}
 	],
 	"tilegroups": []
