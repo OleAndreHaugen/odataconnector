@@ -76,7 +76,7 @@
 			"id": "97410b27-9c82-48ba-86b5-504622db44e4",
 			"name": "Adaptive Framework Connector: OData Connector",
 			"title": "OData Connector",
-			"ver": "23.2.24.1313"
+			"ver": "23.2.24.1333"
 		},
 		{
 			"id": "8ccfd807-d5f0-48dc-9770-334876e3035b",
@@ -88,7 +88,7 @@
 			"id": "1c426bb7-102f-4e35-bb50-adb157229021",
 			"name": "Adaptive Framework Connector: Salesforce Connector ",
 			"title": "Salesforce Connector",
-			"ver": "23.2.24.1313"
+			"ver": "23.2.24.1334"
 		}
 	],
 	"tilegroups": []
