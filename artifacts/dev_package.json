@@ -151,7 +151,7 @@
 	"tile": [
 		{
 			"id": "97410b27-9c82-48ba-86b5-504622db44e4",
-			"description": "Connect to SAP OData",
+			"description": "Connect Adaptive Framework to SAP OData",
 			"name": "Adaptive Framework Connector: OData Connector"
 		},
 		{
@@ -161,7 +161,7 @@
 		},
 		{
 			"id": "1c426bb7-102f-4e35-bb50-adb157229021",
-			"description": "Connect to Salesforce ",
+			"description": "Connect Adaptive Framework to Salesforce ",
 			"name": "Adaptive Framework Connector: Salesforce Connector "
 		}
 	],
