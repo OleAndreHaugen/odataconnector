@@ -20,7 +20,7 @@
 	],
 	"apis": [],
 	"name": "clientSave",
-	"ver": "23.2.24.816",
+	"ver": "23.2.24.1355",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

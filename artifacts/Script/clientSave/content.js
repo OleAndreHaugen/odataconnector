@@ -2,7 +2,6 @@ let connectorName;
 let connectorScriptSel;
 let connectorScriptRun;
 
-
 switch (req.body.type) {
     case "odata":
         connectorName = "OData: ";
@@ -17,7 +16,6 @@ switch (req.body.type) {
         break;
 
     default:
-
         break;
 }
 
@@ -40,16 +38,17 @@ for (i = 0; i < systemConnectors.length; i++) {
     }
 }
 
-// Fetch Selection Script to validate upper/lowercase ID's
-const script = await manager.findOne('jsscript', {
+// Get Setup Script (ID)
+const scriptSel = await manager.findOne('jsscript', {
     where: { id: connectorScriptSel },
     select: ["id"]
 });
 
-if (!script && !script.id) {
-    connectorScriptSel = connectorScriptSel.toUpperCase();
-    connectorScriptRun = connectorScriptRun.toUpperCase();
-}
+// Get Run Script (ID)
+const scriptRun = await manager.findOne('jsscript', {
+    where: { id: connectorScriptRun },
+    select: ["id"]
+});
 
 // Auto Create Connector
 if (!foundConnector.id) {
@@ -58,8 +57,8 @@ if (!foundConnector.id) {
     foundConnector.createdAt = new Date();
     foundConnector.createdBy = req.user.username;
     foundConnector.settings = {
-        scriptSel: connectorScriptSel,
-        scriptRun: connectorScriptRun,
+        scriptSel: scriptSel.id,
+        scriptRun: scriptRun.id,
         startParam: customConnector.id,
         hasDocumentation: false
     }
