@@ -1,6 +1,6 @@
 {
-	"id": "dd8c5a6a-f5db-42c1-9a10-c1f74ddc7506",
-	"createdAt": "2023-02-24T07:12:07.000Z",
+	"id": "59d2898d-fed6-42c4-8c20-6f608f8d08a1",
+	"createdAt": "2023-02-24T21:18:20.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"globalScripts": [
 		{
@@ -15,16 +15,11 @@
 			"id": "a572b86e-4f36-422c-8043-90eae252246d",
 			"name": "neptune_af_connector",
 			"contextname": "neptune_af_connector"
-		},
-		{
-			"id": "a572b86e-4f36-422c-8043-90eae252246d",
-			"name": "neptune_af_connector",
-			"contextname": "neptune_af_connector"
 		}
 	],
 	"apis": [],
-	"name": "SalesforceAdaptiveSetup",
-	"ver": "23.2.26.957",
+	"name": "ServiceNowAdaptiveSetup",
+	"ver": "23.2.24.2219",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

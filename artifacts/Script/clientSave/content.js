@@ -15,6 +15,18 @@ switch (req.body.type) {
         connectorScriptRun = "673eebd6-cb9e-4c85-9164-c3fea3cad947";
         break;
 
+    case "servicenow":
+        connectorName = "ServiceNow: ";
+        connectorScriptSel = "59d2898d-fed6-42c4-8c20-6f608f8d08a1";
+        connectorScriptRun = "2a0e920e-225d-43f6-879a-962216222afe";
+        break;
+
+    case "planet9":
+        connectorName = "Open Edition: ";
+        connectorScriptSel = "6ddd1b3b-6f87-4a07-8200-2bed82af1369";
+        connectorScriptRun = "482e0e79-92b0-4fff-8d88-3b501c655d71";
+        break;
+
     default:
         break;
 }
@@ -50,26 +62,30 @@ const scriptRun = await manager.findOne('jsscript', {
     select: ["id"]
 });
 
+
 // Auto Create Connector
-if (!foundConnector.id) {
-    foundConnector.type = "S";
-    foundConnector.disabled = false;
-    foundConnector.createdAt = new Date();
-    foundConnector.createdBy = req.user.username;
-    foundConnector.settings = {
-        scriptSel: scriptSel.id,
-        scriptRun: scriptRun.id,
-        startParam: customConnector.id,
-        hasDocumentation: false
+if (scriptSel && scriptRun) {
+    if (!foundConnector.id) {
+        foundConnector.type = "S";
+        foundConnector.disabled = false;
+        foundConnector.createdAt = new Date();
+        foundConnector.createdBy = req.user.username;
+        foundConnector.settings = {
+            scriptSel: scriptSel.id,
+            scriptRun: scriptRun.id,
+            startParam: customConnector.id,
+            hasDocumentation: false
+        }
     }
+
+    foundConnector.name = connectorName + customConnector.name;
+    foundConnector.description = "Auto created from Neptune Extended Connectors";
+    foundConnector.updatedAt = new Date();
+    foundConnector.changedBy = req.user.username;
+
+    await manager.save('connector', foundConnector);
+
 }
-
-foundConnector.name = connectorName + customConnector.name;
-foundConnector.description = "Auto created from Neptune Extended Connectors";
-foundConnector.updatedAt = new Date();
-foundConnector.changedBy = req.user.username;
-
-await manager.save('connector', foundConnector);
 
 result.data = customConnector;
 complete();

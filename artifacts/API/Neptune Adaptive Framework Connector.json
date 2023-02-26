@@ -6,39 +6,6 @@
 	"endpoints": [],
 	"paths": [
 		{
-			"id": "5799afef-ad16-4869-832d-030b458819f4",
-			"method": "GET",
-			"path": "/metadataDELETEME",
-			"description": "",
-			"parameters": [
-				{
-					"name": "service",
-					"description": "",
-					"required": true,
-					"inPath": false,
-					"value": "",
-					"default": "",
-					"example": ""
-				},
-				{
-					"name": "entitySet",
-					"description": "",
-					"required": true,
-					"inPath": false,
-					"value": "",
-					"default": "",
-					"example": ""
-				}
-			],
-			"headers": [],
-			"responses": [],
-			"content": [],
-			"auth": [],
-			"endpoints": [],
-			"serverScript": "82c9459e-bc38-4df9-98d3-080bcda58b22",
-			"tags": "OData"
-		},
-		{
 			"id": "8fd7f4e6-a387-4bb4-e8aa-d413db07e85b",
 			"method": "GET",
 			"path": "/list",
@@ -206,7 +173,7 @@
 		{
 			"id": "ad1a7eca-793f-433b-8cef-cb83b4491236",
 			"method": "GET",
-			"path": "/sobjects",
+			"path": "/salesforce-sobjects",
 			"description": "",
 			"parameters": [
 				{
@@ -230,7 +197,7 @@
 		{
 			"id": "f9935004-7b23-407c-d379-ddec02d50025",
 			"method": "GET",
-			"path": "/sobject",
+			"path": "/salesforce-sobject",
 			"description": "",
 			"parameters": [
 				{
@@ -259,13 +226,79 @@
 			"endpoints": [],
 			"serverScript": "ae1623e0-4640-454f-a058-ce7f361e52ec",
 			"tags": "Salesforce"
+		},
+		{
+			"id": "35c76df8-87d0-4c84-f83f-c95b9ad93bec",
+			"method": "GET",
+			"path": "/servicenow-tables",
+			"description": "",
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"tags": "ServiceNow",
+			"serverScript": "7b559283-4b5b-4742-b646-e27474b6b9c7"
+		},
+		{
+			"id": "1903ed46-5af3-429f-9439-609e8c0a30b0",
+			"method": "GET",
+			"path": "/servicenow-table",
+			"description": "",
+			"parameters": [],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"serverScript": "b9ac8010-b74d-49a8-a1aa-cf0487d5d176",
+			"tags": "ServiceNow"
+		},
+		{
+			"id": "457be21c-f49c-40bf-c734-72f2dec4f6b4",
+			"method": "GET",
+			"path": "/planet9-entitites",
+			"description": "",
+			"parameters": [],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"tags": "Open Edition",
+			"serverScript": "ab17f37f-ffae-464e-8c7a-9148ee9f3d16"
+		},
+		{
+			"id": "55995560-2b11-4ab0-c682-62fcca78be38",
+			"method": "GET",
+			"path": "/planet9-entity",
+			"description": "",
+			"parameters": [],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"serverScript": "f87d1fe0-a811-41d1-8511-aaa6cb66f0fd",
+			"tags": "Open Edition"
 		}
 	],
 	"definitions": [],
 	"documentation": [],
 	"name": "Neptune Adaptive Framework Connector",
 	"endpoint": "/api/serverscript/neptuneadaptiveframeworkconnector",
-	"ver": "23.2.24.635",
+	"ver": "23.2.26.938",
 	"version": "1.0",
 	"description": "Neptune Adaptive Framework Connector",
 	"mediaType": null,

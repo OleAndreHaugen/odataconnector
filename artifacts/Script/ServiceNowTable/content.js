@@ -1,5 +1,7 @@
 const SystemId = req.query.systemid;
-const SystemUrl = "/services/data/v56.0/sobjects/" + req.query.table + "/describe";
+const SystemUrl = "/api/now/table/sys_dictionary?sysparm_query=name=" + req.query.table;
+
+// active
 
 // Check for system ID
 if (!SystemId) {
@@ -16,7 +18,7 @@ try {
         return complete();
     }
 
-    result.data = res.data;
+    result.data = res.data.result.sort(globals.Utils.SortBy("column_label"));
     complete();
 
 } catch (error) {

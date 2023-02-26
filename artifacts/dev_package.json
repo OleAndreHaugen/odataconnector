@@ -17,6 +17,12 @@
 			"description": "OData Connector"
 		},
 		{
+			"id": "9208d78b-029a-4f51-9d34-b8d1832bde86",
+			"application": "neptune_connector_servicenow",
+			"title": "OData Connector",
+			"description": "OData Connector"
+		},
+		{
 			"id": "8c319344-c115-40d9-b298-74ddf727693b",
 			"application": "neptune_connector_salesforce",
 			"title": "OData Connector",
@@ -52,6 +58,11 @@
 	],
 	"jsclass": [
 		{
+			"id": "f87d1fe0-a811-41d1-8511-aaa6cb66f0fd",
+			"name": "Planet9Entity",
+			"description": null
+		},
+		{
 			"id": "f0138351-ad95-486b-97a7-21b0fcc30240",
 			"name": "clientSave",
 			"description": null
@@ -64,6 +75,11 @@
 		{
 			"id": "bfcb3616-29fc-403a-9594-a6c98d57c3e3",
 			"name": "ODataServices",
+			"description": null
+		},
+		{
+			"id": "b9ac8010-b74d-49a8-a1aa-cf0487d5d176",
+			"name": "ServiceNowTable",
 			"description": null
 		},
 		{
@@ -87,9 +103,19 @@
 			"description": null
 		},
 		{
+			"id": "ab17f37f-ffae-464e-8c7a-9148ee9f3d16",
+			"name": "Planet9Entities",
+			"description": null
+		},
+		{
 			"id": "82c9459e-bc38-4df9-98d3-080bcda58b22",
 			"name": "ODataAdaptiveSetup",
 			"description": "OData Setup Script"
+		},
+		{
+			"id": "7b559283-4b5b-4742-b646-e27474b6b9c7",
+			"name": "ServiceNowTables",
+			"description": null
 		},
 		{
 			"id": "715f3ab8-daa6-45ae-a648-80a4ada0d180",
@@ -102,14 +128,34 @@
 			"description": null
 		},
 		{
+			"id": "6ddd1b3b-6f87-4a07-8200-2bed82af1369",
+			"name": "Planet9AdaptiveSetup",
+			"description": null
+		},
+		{
 			"id": "673eebd6-cb9e-4c85-9164-c3fea3cad947",
 			"name": "SalesforceAdaptiveRun",
+			"description": null
+		},
+		{
+			"id": "59d2898d-fed6-42c4-8c20-6f608f8d08a1",
+			"name": "ServiceNowAdaptiveSetup",
 			"description": null
 		},
 		{
 			"id": "4a64df7b-bce9-482c-92f4-b0a8054ea75b",
 			"name": "ODataAdaptiveRun",
 			"description": "OData Run Script"
+		},
+		{
+			"id": "482e0e79-92b0-4fff-8d88-3b501c655d71",
+			"name": "Planet9AdaptiveRun",
+			"description": null
+		},
+		{
+			"id": "2a0e920e-225d-43f6-879a-962216222afe",
+			"name": "ServiceNowAdaptiveRun",
+			"description": null
 		},
 		{
 			"id": "0e07b97e-8836-4ac0-86af-4bd3fa0907a0",
@@ -158,6 +204,16 @@
 			"id": "8ccfd807-d5f0-48dc-9770-334876e3035b",
 			"description": "Register local API Token",
 			"name": "Adaptive Framework Connector: Setup"
+		},
+		{
+			"id": "4d5fc771-5a19-4d4b-9de9-59d129beee04",
+			"description": "Connect Adaptive Framework to Open Edition System Data",
+			"name": "Adaptive Framework Connector: Open Edition Connector"
+		},
+		{
+			"id": "2abccfae-f20f-4e40-8db0-0b26520095ea",
+			"description": "Connect Adaptive Framework to ServiceNow  ",
+			"name": "Adaptive Framework Connector: ServiceNow Connector"
 		},
 		{
 			"id": "1c426bb7-102f-4e35-bb50-adb157229021",

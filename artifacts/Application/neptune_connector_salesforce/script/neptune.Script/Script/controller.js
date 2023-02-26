@@ -133,12 +133,8 @@ const controller = {
     },
 
     updateFields: async function () {
-        // Set Filter
         controller.filter = "";
         controller.setFieldFilter();
-
-        modeloPageDetail.oData.config.fields = [];
-
         controller.getFields(modeloPageDetail.oData.config.table);
     },
 

@@ -1,6 +1,6 @@
 {
-	"id": "dd8c5a6a-f5db-42c1-9a10-c1f74ddc7506",
-	"createdAt": "2023-02-24T07:12:07.000Z",
+	"id": "f87d1fe0-a811-41d1-8511-aaa6cb66f0fd",
+	"createdAt": "2023-02-26T08:37:45.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"globalScripts": [
 		{
@@ -9,22 +9,18 @@
 			"contextname": "Utils"
 		}
 	],
-	"externalModules": [],
-	"entitySets": [
+	"externalModules": [
 		{
-			"id": "a572b86e-4f36-422c-8043-90eae252246d",
-			"name": "neptune_af_connector",
-			"contextname": "neptune_af_connector"
-		},
-		{
-			"id": "a572b86e-4f36-422c-8043-90eae252246d",
-			"name": "neptune_af_connector",
-			"contextname": "neptune_af_connector"
+			"id": "c1e44158-f85b-48c3-85df-cd3bb1f6c7f4",
+			"name": "typeorm",
+			"contextname": "typeorm",
+			"path": "typeorm"
 		}
 	],
+	"entitySets": [],
 	"apis": [],
-	"name": "SalesforceAdaptiveSetup",
-	"ver": "23.2.26.957",
+	"name": "Planet9Entity",
+	"ver": "23.2.26.1451",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
