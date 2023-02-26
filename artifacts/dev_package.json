@@ -7,7 +7,7 @@
 	},
 	"name": "neptunesoftware-connector-af",
 	"description": "Adaptive Framework Connector",
-	"ver": "23.2.17.952",
+	"ver": "23.2.26.1524",
 	"enableCICD": true,
 	"apps": [
 		{
