@@ -2879,6 +2879,13 @@
 															"value": "sel",
 															"script": "",
 															"translation": []
+														},
+														{
+															"attribute": "hAlign",
+															"grouping": "Properties",
+															"value": "Center",
+															"script": "",
+															"translation": []
 														}
 													],
 													"data": [
@@ -3053,6 +3060,89 @@
 																}
 															],
 															"data": []
+														}
+													]
+												},
+												{
+													"fieldNo": "2a537f99-c24f-4753-f1f4-c804897aec9d",
+													"fieldName": "coltabFieldschoice_list",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.table.Column",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "100px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "label",
+															"grouping": "Properties",
+															"value": "Choice List",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "hAlign",
+															"grouping": "Properties",
+															"value": "Center",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "284eba85-efce-412b-a6c0-fd0900a80127",
+															"fieldName": "boxFieldChoiceList",
+															"fieldParent": "2a537f99-c24f-4753-f1f4-c804897aec9d",
+															"fieldType": "sap.m.VBox",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "enableCompactMode",
+																	"grouping": "Properties",
+																	"value": "true",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": [
+																{
+																	"fieldNo": "51c958b3-8c33-442f-b772-c456d86ab2f0",
+																	"fieldName": "txttabFieldschoice_list",
+																	"fieldParent": "284eba85-efce-412b-a6c0-fd0900a80127",
+																	"fieldType": "sap.m.CheckBox",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "selected",
+																			"grouping": "Properties",
+																			"value": "{= ${choice_list} === 'true' ? true:false}",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "editable",
+																			"grouping": "Properties",
+																			"value": "false",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																}
+															]
 														}
 													]
 												},
@@ -3694,7 +3784,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.27.1610",
+	"ver": "23.2.27.1635",
 	"application": "neptune_connector_servicenow",
 	"title": "OData Connector",
 	"description": "OData Connector",
