@@ -53,7 +53,7 @@ try {
         if (dictionary && dictionary.column_label) {
             element.label = dictionary.column_label;
         } else {
-            element.label = element.name;
+            element.label = UpperCaseArray(element.name);
         }
 
         // Choice Lists - Do it here vs AdaptiveSetup -> better performance
@@ -73,4 +73,18 @@ try {
 } catch (error) {
     log.error("Error in request: ", error);
     return fail();
+}
+
+function UpperCaseArray(input) {
+
+    let result = input.split("_");
+    let label = "";
+    let sep = "";
+
+    result.forEach(function (part) {
+        label += sep + part.charAt(0).toUpperCase() + part.slice(1)
+        sep = " ";
+    })
+
+    return label;
 }
