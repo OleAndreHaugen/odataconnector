@@ -82,6 +82,7 @@ if (scriptSel && scriptRun) {
     foundConnector.description = "Auto created from Neptune Extended Connectors";
     foundConnector.updatedAt = new Date();
     foundConnector.changedBy = req.user.username;
+    foundConnector.ver = new Date();
 
     await manager.save('connector', foundConnector);
 

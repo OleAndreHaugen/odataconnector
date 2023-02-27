@@ -9,11 +9,18 @@
 			"contextname": "Utils"
 		}
 	],
-	"externalModules": [],
+	"externalModules": [
+		{
+			"id": "ca4a9481-db6b-400b-9977-41b143363417",
+			"name": "xml2js",
+			"contextname": "xml2js",
+			"path": "C:\\Planet9\\customnpm\\node_modules\\xml2js"
+		}
+	],
 	"entitySets": [],
 	"apis": [],
 	"name": "ServiceNowTable",
-	"ver": "23.2.24.225",
+	"ver": "23.2.27.1534",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

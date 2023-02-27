@@ -2950,23 +2950,9 @@
 															"translation": []
 														},
 														{
-															"attribute": "sorted",
-															"grouping": "Properties",
-															"value": "true",
-															"script": "",
-															"translation": []
-														},
-														{
 															"attribute": "sortProperty",
 															"grouping": "Properties",
-															"value": "column_label",
-															"script": "",
-															"translation": []
-														},
-														{
-															"attribute": "sortOrder",
-															"grouping": "Properties",
-															"value": "Ascending",
+															"value": "label",
 															"script": "",
 															"translation": []
 														}
@@ -2992,7 +2978,7 @@
 																{
 																	"attribute": "text",
 																	"grouping": "Properties",
-																	"value": "{column_label}",
+																	"value": "{label}",
 																	"script": "",
 																	"translation": []
 																}
@@ -3019,9 +3005,23 @@
 															"translation": []
 														},
 														{
+															"attribute": "sorted",
+															"grouping": "Properties",
+															"value": "true",
+															"script": "",
+															"translation": []
+														},
+														{
 															"attribute": "sortProperty",
 															"grouping": "Properties",
-															"value": "element",
+															"value": "name",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "sortOrder",
+															"grouping": "Properties",
+															"value": "Ascending",
 															"script": "",
 															"translation": []
 														}
@@ -3047,7 +3047,7 @@
 																{
 																	"attribute": "text",
 																	"grouping": "Properties",
-																	"value": "{element}",
+																	"value": "{name}",
 																	"script": "",
 																	"translation": []
 																}
@@ -3063,14 +3063,13 @@
 													"fieldType": "sap.ui.table.Column",
 													"script": "",
 													"customComponent": false,
-													"disabled": true,
 													"request": [],
 													"response": [],
 													"attributes": [
 														{
 															"attribute": "width",
 															"grouping": "Properties",
-															"value": "100px",
+															"value": "150px",
 															"script": "",
 															"translation": []
 														},
@@ -3084,7 +3083,7 @@
 														{
 															"attribute": "sortProperty",
 															"grouping": "Properties",
-															"value": "type",
+															"value": "internal_type",
 															"script": "",
 															"translation": []
 														}
@@ -3097,7 +3096,6 @@
 															"fieldType": "sap.m.Text",
 															"script": "",
 															"customComponent": false,
-															"disabled": true,
 															"request": [],
 															"response": [],
 															"attributes": [
@@ -3111,7 +3109,7 @@
 																{
 																	"attribute": "text",
 																	"grouping": "Properties",
-																	"value": "{type}",
+																	"value": "{internal_type}",
 																	"script": "",
 																	"translation": []
 																}
@@ -3127,6 +3125,7 @@
 													"fieldType": "sap.ui.table.RowAction",
 													"script": "",
 													"customComponent": false,
+													"disabled": true,
 													"request": [],
 													"response": [],
 													"attributes": [],
@@ -3138,6 +3137,7 @@
 															"fieldType": "sap.ui.table.RowActionItem",
 															"script": "",
 															"customComponent": false,
+															"disabled": true,
 															"request": [],
 															"response": [],
 															"attributes": [
@@ -3750,7 +3750,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.26.924",
+	"ver": "23.2.27.1521",
 	"application": "neptune_connector_servicenow",
 	"title": "OData Connector",
 	"description": "OData Connector",

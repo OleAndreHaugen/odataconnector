@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "ServiceNowAdaptiveSetup",
-	"ver": "23.2.24.2219",
+	"ver": "23.2.27.1540",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

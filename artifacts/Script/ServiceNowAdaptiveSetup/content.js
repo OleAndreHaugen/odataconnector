@@ -11,11 +11,27 @@ for (i = 0; i < connector.config.fields.length; i++) {
 
     const field = connector.config.fields[i];
 
+    let type;
+
+    switch (field.internal_type) {
+
+        case "glide_date_time":
+        case "glide_date":
+            type = "timestamp";
+            break;
+
+        default:
+            type = field.internal_type;
+            break;
+
+    }
+
+
     if (field.sel) {
         fieldCatalog.push({
-            type: "string",
-            name: field.element,
-            label: field.column_label,
+            type: type,
+            name: field.name,
+            label: field.label,
             usage: "BOTH",
         })
     }
