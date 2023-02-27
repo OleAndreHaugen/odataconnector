@@ -27,6 +27,12 @@
 			"application": "neptune_connector_salesforce",
 			"title": "OData Connector",
 			"description": "OData Connector"
+		},
+		{
+			"id": "5cbaca0f-d849-425b-8780-b0642303ddfa",
+			"application": "neptune_connector_planet9",
+			"title": "OData Connector",
+			"description": "OData Connector"
 		}
 	],
 	"api": [

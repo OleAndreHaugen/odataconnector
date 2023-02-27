@@ -1,0 +1,12 @@
+const context = this.getContextByIndex(this.getSelectedIndex());
+
+if (context) {
+    const data = context.getObject();
+    modeloPageDetail.oData.config.table = data.name;
+    modeloPageDetail.oData.config.creatable = false;
+    modeloPageDetail.oData.config.updatable = true;
+    modeloPageDetail.oData.config.deletable = false;
+    modeloPageDetail.refresh();
+    controller.updateFields();
+    diaObjects.close();
+}
