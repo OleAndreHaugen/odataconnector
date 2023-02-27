@@ -54,23 +54,19 @@ async function processList() {
 
             case "CheckBox":
             case "Switch":
-                queryFilter += whereSep + " " + fieldName + " = " + fieldValue;
+                queryFilter += whereSep + fieldName + "=" + fieldValue;
                 break;
 
             case "DateRange":
-                queryFilter += whereSep + " " + fieldName + " >= " + fieldValue;
+                queryFilter += whereSep + fieldName + ">=" + fieldValue;
                 whereSep = " and ";
-                queryFilter += whereSep + " " + fieldName + " <= " + req.body[fieldName + "_end"];
+                queryFilter += whereSep + fieldName + "<=" + req.body[fieldName + "_end"];
                 break;
 
             case "SingleSelect":
             case "SingleSelectLookup":
             case "SingleSelectScript":
-                if (fieldMeta.type === "datetime") {
-                    queryFilter += whereSep + " " + fieldName + " = " + fieldValue;
-                } else {
-                    queryFilter += whereSep + " " + fieldName + " = '" + fieldValue + "'";
-                }
+                queryFilter += whereSep + fieldName + "=" + fieldValue;
                 break;
 
             case "MultiSelect":
@@ -80,11 +76,11 @@ async function processList() {
                 sep = "";
 
                 fieldValue.forEach(function (value) {
-                    multiFilter += sep + fieldName + " eq '" + value + "'";
-                    sep = " or ";
+                    multiFilter += sep + fieldValue;
+                    sep = ",";
                 });
 
-                queryFilter += whereSep + "(" + multiFilter + ")";
+                queryFilter += whereSep + fieldName + "IN" + multiFilter;
                 break;
 
             default:

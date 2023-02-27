@@ -3,6 +3,10 @@ const SystemId = req.query.systemid;
 const SystemUrl = "/api/now/table/sys_dictionary?sysparm_fields=column_label,element&sysparm_query=name=" + req.query.table;
 // const SystemUrl = "/api/now/table/sys_dictionary?sysparm_query=name=" + req.query.table;
 
+// Choice Lists 
+// https://vikingdev.service-now.com
+
+
 let fields = [];
 
 // Check for system ID
@@ -12,6 +16,12 @@ if (!SystemId) {
 }
 
 try {
+
+    // Check if xml2js is installed
+    if (!XMLParser) {
+        result.data = { error: "Missing NPM module xml2js.Please install from NPM Modules" };
+        return complete();
+    }
 
     // Get Schema, to be able to get all fields
     const urlSchema = "/" + req.query.table + ".do?SCHEMA";
@@ -34,10 +44,9 @@ try {
         return complete();
     }
 
-    console.log("SOAP ",elements.length)
-    console.log("META ",res.data.result.length)
+    for (i = 0; i < elements.length; i++) {
 
-    elements.forEach(function (element) {
+        let element = elements[i];
 
         const dictionary = res.data.result.find((f) => f.element === element.name);
 
@@ -47,14 +56,16 @@ try {
             element.label = element.name;
         }
 
-        if (element.name === "upon_reject") {
-            console.log(element);
-            console.log(dictionary);
+        // Choice Lists - Do it here vs AdaptiveSetup -> better performance
+        if (element.choice_list === "true") {
+            const choiceUrl = "/api/now/table/sys_choice?sysparm_fields=label,value&sysparm_query=name=" + req.query.table + "^element=" + element.name;
+            const resChoices = await globals.Utils.RequestHandler(choiceUrl, SystemId, "json");
+            element.items = resChoices.data.result;
         }
 
         fields.push(element);
 
-    });
+    }
 
     result.data = fields.sort(globals.Utils.SortBy("name"));
     complete();

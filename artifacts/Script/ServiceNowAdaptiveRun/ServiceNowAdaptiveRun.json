@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "ServiceNowAdaptiveRun",
-	"ver": "23.2.24.2314",
+	"ver": "23.2.27.1629",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

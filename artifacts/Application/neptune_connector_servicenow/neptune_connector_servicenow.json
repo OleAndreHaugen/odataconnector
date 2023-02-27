@@ -3117,62 +3117,6 @@
 															"data": []
 														}
 													]
-												},
-												{
-													"fieldNo": "1bb9a74c-4f81-4a91-9235-6b491aaa8497",
-													"fieldName": "oRowAction",
-													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
-													"fieldType": "sap.ui.table.RowAction",
-													"script": "",
-													"customComponent": false,
-													"disabled": true,
-													"request": [],
-													"response": [],
-													"attributes": [],
-													"data": [
-														{
-															"fieldNo": "6e6aa5c1-0b1d-41eb-9fd5-2b3574cb567c",
-															"fieldName": "oRowActionGetChildren",
-															"fieldParent": "1bb9a74c-4f81-4a91-9235-6b491aaa8497",
-															"fieldType": "sap.ui.table.RowActionItem",
-															"script": "",
-															"customComponent": false,
-															"disabled": true,
-															"request": [],
-															"response": [],
-															"attributes": [
-																{
-																	"attribute": "icon",
-																	"grouping": "Properties",
-																	"value": "sap-icon://browse-folder",
-																	"script": "",
-																	"translation": []
-																},
-																{
-																	"attribute": "visible",
-																	"grouping": "Properties",
-																	"value": "{= ${type} === 'reference' ? true:false}",
-																	"script": "",
-																	"translation": []
-																},
-																{
-																	"attribute": "press",
-																	"grouping": "Events",
-																	"value": "Anonymous Function",
-																	"script": "file://event/sap.ui.table.RowActionItem/oRowActionGetChildren/press.script",
-																	"translation": []
-																},
-																{
-																	"attribute": "tooltip",
-																	"grouping": "Properties",
-																	"value": "Show reference object fields",
-																	"script": "",
-																	"translation": []
-																}
-															],
-															"data": []
-														}
-													]
 												}
 											]
 										}
@@ -3750,7 +3694,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.27.1521",
+	"ver": "23.2.27.1610",
 	"application": "neptune_connector_servicenow",
 	"title": "OData Connector",
 	"description": "OData Connector",

@@ -135,20 +135,28 @@ const controller = {
             selected = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
         }
 
+        tabFields.setBusy(true);
+
         apiGetTable({
             parameters: {
                 table: modeloPageDetail.oData.config.table,
                 systemid: modeloPageDetail.oData.systemid,
             },
         }).then(function (res) {
-            for (let i = 0; i < res.length; i++) {
-                const field = res[i];
-                const fieldSelected = ModelData.FindFirst(selected, "name", field.name);
-                if (fieldSelected) field.sel = true;
+            if (res.error) {
+                sap.m.MessageToast.show(res.error);
+            } else {
+                for (let i = 0; i < res.length; i++) {
+                    const field = res[i];
+                    const fieldSelected = ModelData.FindFirst(selected, "name", field.name);
+                    if (fieldSelected) field.sel = true;
+                }
+
+                modeloPageDetail.oData.config.fields = res;
+                modeloPageDetail.refresh(true);
             }
 
-            modeloPageDetail.oData.config.fields = res;
-            modeloPageDetail.refresh(true);
+            tabFields.setBusy(false);
         });
     },
 };
