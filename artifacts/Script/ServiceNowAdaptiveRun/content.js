@@ -6,13 +6,22 @@ const connector = await entities.neptune_af_connector.findOne({
 if (!connector) return complete();
 
 const SystemId = connector.systemid;
-const SystemUrl = "/api/now/table/" + connector.config.table + "?sysparm_display_value=true";
+const SystemUrl = "/api/now/table/" + connector.config.table + "?sysparm_display_value=true&sysparm_input_display_value=true";
+const UniqueIdField = "sys_id";
 
 // Handle Method
 switch (req.query.method) {
 
+    case "Delete":
+        await processDelete(req);
+        break;
+
     case "Save":
-        await save(req);
+        await processSave(req);
+        break;
+
+    case "Get":
+        await processGet(req);
         break;
 
     default:
@@ -22,20 +31,154 @@ switch (req.query.method) {
 }
 
 
+async function processDelete() {
+
+    result.data = {
+        status: "ERROR",
+        message: {
+            type: "error",
+            text: "Delete not currently supported."
+        }
+    }
+
+    complete();
+}
+
+async function processSave() {
+
+    if (!req.body[UniqueIdField]) {
+        result.data = {
+            status: "ERROR",
+            message: {
+                type: "error",
+                text: "Create not currently supported."
+            }
+        }
+        return complete();
+    }
+
+    const queryUrl = "/api/now/table/" + connector.config.table + "/" + req.body[UniqueIdField];
+
+    let opts = {
+        body: {},
+        method: "PATCH",
+    }
+
+    // Get fields from Form 
+    req.body._settings.fieldsSel.forEach(function (field) {
+        opts.body[field.name] = req.body[field.name];
+    });
+
+    // Stringify JSON Data
+    opts.body = JSON.stringify(opts.body);
+
+    // Query Table 
+    const res = await globals.Utils.RequestHandler(queryUrl, SystemId, "json", opts);
+
+    if (res.data && res.data.error) {
+        result.data = {
+            status: "ERROR",
+            message: {
+                type: "error",
+                text: res.data.error.detail
+            },
+            debug: res.data
+        }
+    } else {
+        result.data = {
+            status: "OK",
+        }
+    }
+
+    complete();
+}
+
+
+async function processGet() {
+
+    let queryUrl = "/api/now/table/" + connector.config.table + "?sysparm_display_value=all&sysparm_limit=1";;
+    let queryFields = UniqueIdField;
+    let queryFilter = "";
+    let sep = ",";
+    let tableData = {};
+
+    //  Fields Selection 
+    if (req.body._settings.fieldsSel) {
+        req.body._settings.fieldsSel.forEach(function (field) {
+            queryFields += sep + field.name;
+        });
+    }
+
+    // Where 
+    if (req.body[UniqueIdField]) queryFilter += UniqueIdField + "=" + req.body[UniqueIdField];
+
+    // URL
+    if (queryFilter) queryUrl += "&sysparm_query=" + queryFilter;
+    if (queryFields) queryUrl += "&sysparm_fields=" + queryFields;
+
+    // Query Table 
+    const res = await globals.Utils.RequestHandler(queryUrl, SystemId, "json");
+
+    // Format Result Data
+    if (res.data && res.data.result && res.data.result.length) {
+
+        let resData = res.data.result[0];
+        let fieldCatalog = req.body._settings.fieldsSel;
+
+        fieldCatalog.forEach(function (field) {
+
+            switch (field.type) {
+                case "SingleSelect":
+                case "SingleSelectLookup":
+                case "MultiSelect":
+                case "MultiSelectLookup":
+                    tableData[field.name] = resData[field.name].value;
+                    break;
+
+                default:
+                    tableData[field.name] = resData[field.name].display_value;
+                    break;
+            }
+
+        });
+
+        // Add sys_id
+        tableData[UniqueIdField] = resData[UniqueIdField].value;
+
+
+    } else {
+
+        result.data = {
+            status: "ERROR",
+            message: {
+                type: "error",
+                text: "No record found with selected filter."
+            }
+        }
+
+        return complete();
+    }
+
+    result.data = tableData;
+    complete();
+
+
+}
+
+
 async function processList() {
 
     let queryUrl = SystemUrl;
-    let queryFields = "";
+    let queryFields = "sys_id";
     let queryFilter = "";
     let whereSep = "";
-    let sep = "";
+    let sep = ",";
 
 
     // API Query - Select
     if (req.body._settings.fieldsRun) {
         req.body._settings.fieldsRun.forEach(function (field) {
             queryFields += sep + field.name;
-            sep = ",";
         });
     }
 
@@ -123,6 +266,7 @@ async function processList() {
 
     }
 
+    // URL
     if (queryFilter) queryUrl += "&sysparm_query=" + queryFilter;
     if (queryFields) queryUrl += "&sysparm_fields=" + queryFields;
 
@@ -133,27 +277,14 @@ async function processList() {
     // Format Result Data
     if (res.data && res.data.result && res.data.result.length) {
 
-        // Merge LookupFields from SalesForce
-        let fieldCatalog;
-
-        if (req.query.method == "Get") {
-            fieldCatalog = req.body._settings.fieldsSel;
-        } else {
-            fieldCatalog = req.body._settings.fieldsRun;
-        }
+        let fieldCatalog = req.body._settings.fieldsRun;
 
         res.data.result.forEach(function (row) {
-
-            // Format Data
             fieldCatalog.forEach(function (field) {
-
                 if (row[field.name] && typeof row[field.name] === "object") {
-                    // const displayValue = row[field.name].display_value;
                     row[field.name] = row[field.name].display_value;
-
                 }
             });
-
         })
     }
 

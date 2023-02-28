@@ -16,19 +16,35 @@ await getFields();
 // Handle Method
 switch (req.query.method) {
 
+    case "Delete":
+        processDelete();
+        break;
+
     case "Save":
-        await save(req);
+        await processSave(req);
         break;
 
     default:
-        await list(req);
+        await processListAndGet(req);
         break;
 
 }
 
 
+async function processDelete() {
 
-async function save(req) {
+    result.data = {
+        status: "ERROR",
+        message: {
+            type: "error",
+            text: "Delete not currently supported."
+        }
+    }
+
+    complete();
+}
+
+async function processSave(req) {
 
     let dataPatch = {};
 
@@ -46,7 +62,7 @@ async function save(req) {
 
     try {
 
-        // Requires ID in form
+        // Requires ID in form // TODO - Make this automatic
         if (!req.body.Id) {
 
             result.data = {
@@ -61,6 +77,7 @@ async function save(req) {
 
         }
 
+        // TODO Rewrite to Utils instead of API
         const responseSave = await apis.patch({
             id: req.body.Id,
             table: connector.config.table,
@@ -104,7 +121,7 @@ async function save(req) {
 
 }
 
-async function list(req) {
+async function processListAndGet(req) {
 
     let counter = 0;
     let pagination = "";

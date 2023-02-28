@@ -1,11 +1,6 @@
 const XMLParser = modules.xml2js;
 const SystemId = req.query.systemid;
 const SystemUrl = "/api/now/table/sys_dictionary?sysparm_fields=column_label,element&sysparm_query=name=" + req.query.table;
-// const SystemUrl = "/api/now/table/sys_dictionary?sysparm_query=name=" + req.query.table;
-
-// Choice Lists 
-// https://vikingdev.service-now.com
-
 
 let fields = [];
 
@@ -48,6 +43,9 @@ try {
 
         let element = elements[i];
 
+        // System ID Field will be applied automatically 
+        if (element.name === "sys_id") continue;
+
         const dictionary = res.data.result.find((f) => f.element === element.name);
 
         if (dictionary && dictionary.column_label) {
@@ -56,11 +54,17 @@ try {
             element.label = UpperCaseArray(element.name);
         }
 
-        // Choice Lists - Do it here vs AdaptiveSetup -> better performance
+        // Choice Lists - Do it here vs AdaptiveSetup -> better performance but need to update when the choice list changes
         if (element.choice_list === "true") {
             const choiceUrl = "/api/now/table/sys_choice?sysparm_fields=label,value&sysparm_query=name=" + req.query.table + "^element=" + element.name;
             const resChoices = await globals.Utils.RequestHandler(choiceUrl, SystemId, "json");
-            element.items = resChoices.data.result;
+
+            if (resChoices.data.result && resChoices.data.result.length) {
+                element.items = resChoices.data.result;
+            } else {
+                element.choice_list = "false";
+            }
+
         }
 
         fields.push(element);

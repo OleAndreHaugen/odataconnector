@@ -23,6 +23,10 @@ switch (req.query.method) {
         processValueListRun();
         break;
 
+    case "Delete":
+        await processDelete(req);
+        break;
+
     case "Save":
         processSave();
         break;
@@ -30,6 +34,21 @@ switch (req.query.method) {
     default:
         processListAndGet();
         break;
+}
+
+
+
+async function processDelete() {
+
+    result.data = {
+        status: "ERROR",
+        message: {
+            type: "error",
+            text: "Delete not currently supported."
+        }
+    }
+
+    complete();
 }
 
 
@@ -433,9 +452,6 @@ async function processSave() {
     let opts = {
         body: null,
         method: "GET",
-        // parameters: {
-        //     "$select": "",
-        // },
         headers: {
             "X-CSRF-Token": "fetch",
             "cookie": "",
@@ -444,20 +460,12 @@ async function processSave() {
 
     // API Query - Select & Data
     req.body._settings.fieldsSel.forEach(function (field) {
-
-        // Data to Save
-        if (field.editable) dataPatch[field.name] = req.body[field.name];
-
-        // Fields to Select
-        // opts.parameters.$select += sep + field.name;
-        sep = ",";
-
+        dataPatch[field.name] = req.body[field.name];
     });
 
     // API Query - Record ID
     if (req.body.__metadata && req.body.__metadata.id) {
         const parts = req.body.__metadata.id.split("/");
-        // dataPatch.__metadata = req.body.__metadata;
         entitySet = parts[parts.length - 1];
     }
 
@@ -485,7 +493,7 @@ async function processSave() {
         // Need both Cookie + x-csrf-token in SAVE Request
 
         // SAVE
-         SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet;
+        SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet;
 
         resSave = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json", opts);
 
