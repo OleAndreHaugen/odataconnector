@@ -114,6 +114,11 @@
 			"description": null
 		},
 		{
+			"id": "a75c7347-a8ad-4d56-824e-51ce4e2b4d3f",
+			"name": "ServiceNowItems",
+			"description": null
+		},
+		{
 			"id": "82c9459e-bc38-4df9-98d3-080bcda58b22",
 			"name": "ODataAdaptiveSetup",
 			"description": "OData Setup Script"

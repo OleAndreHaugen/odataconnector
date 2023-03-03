@@ -1,6 +1,6 @@
 {
-	"id": "b9ac8010-b74d-49a8-a1aa-cf0487d5d176",
-	"createdAt": "2023-02-24T20:54:44.000Z",
+	"id": "a75c7347-a8ad-4d56-824e-51ce4e2b4d3f",
+	"createdAt": "2023-03-03T15:17:02.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"globalScripts": [
 		{
@@ -9,18 +9,11 @@
 			"contextname": "Utils"
 		}
 	],
-	"externalModules": [
-		{
-			"id": "ca4a9481-db6b-400b-9977-41b143363417",
-			"name": "xml2js",
-			"contextname": "xml2js",
-			"path": "C:\\Planet9\\customnpm\\node_modules\\xml2js"
-		}
-	],
+	"externalModules": [],
 	"entitySets": [],
 	"apis": [],
-	"name": "ServiceNowTable",
-	"ver": "23.3.3.1617",
+	"name": "ServiceNowItems",
+	"ver": "23.3.3.1655",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

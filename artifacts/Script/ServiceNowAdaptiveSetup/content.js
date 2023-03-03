@@ -38,9 +38,12 @@ for (i = 0; i < connector.config.fields.length; i++) {
         if (field.items) {
             element.items = [];
             field.items.forEach(function (item) {
+
+                if (field.reference_table && item.sel === false) return;
+
                 element.items.push({
                     key: item.value,
-                    text: item.label
+                    text: item.label ? item.label : item.value
                 })
             })
         }

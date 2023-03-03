@@ -205,6 +205,8 @@ const controller = {
         let fields = [];
         let _parent = "";
 
+        if (!modeloPageDetail.oData.config.fields) modeloPageDetail.oData.config.fields = [];
+
         // Get Selected Fields
         if (modeloPageDetail.oData && modeloPageDetail.oData.config && modeloPageDetail.oData.config.fields) {
             selected = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);

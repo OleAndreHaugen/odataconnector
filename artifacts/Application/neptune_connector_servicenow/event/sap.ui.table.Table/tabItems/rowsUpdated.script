@@ -1,0 +1,4 @@
+let binding = tabItems.getBinding("rows");
+if (!binding) return;
+
+diaItems.setTitle("Items (" + binding.getLength() + ")");

@@ -256,7 +256,17 @@
 			"method": "GET",
 			"path": "/servicenow-table",
 			"description": "",
-			"parameters": [],
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
 			"headers": [],
 			"responses": [],
 			"content": [],
@@ -292,13 +302,46 @@
 			"endpoints": [],
 			"serverScript": "f87d1fe0-a811-41d1-8511-aaa6cb66f0fd",
 			"tags": "Open Edition"
+		},
+		{
+			"id": "36918947-d606-44dd-a27a-b42d0f12aedc",
+			"method": "GET",
+			"path": "/servicenow-items",
+			"description": "",
+			"parameters": [
+				{
+					"name": "systemid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "displayfield",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"tags": "ServiceNow",
+			"serverScript": "a75c7347-a8ad-4d56-824e-51ce4e2b4d3f"
 		}
 	],
 	"definitions": [],
 	"documentation": [],
 	"name": "Neptune Adaptive Framework Connector",
 	"endpoint": "/api/serverscript/neptuneadaptiveframeworkconnector",
-	"ver": "23.2.26.938",
+	"ver": "23.3.3.1620",
 	"version": "1.0",
 	"description": "Neptune Adaptive Framework Connector",
 	"mediaType": null,

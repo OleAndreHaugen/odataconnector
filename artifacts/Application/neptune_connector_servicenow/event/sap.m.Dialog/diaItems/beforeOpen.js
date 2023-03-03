@@ -1,0 +1,2 @@
+toolItemsFilter.setValue();
+toolItemsFilter.fireLiveChange();

@@ -159,6 +159,49 @@ const controller = {
             tabFields.setBusy(false);
         });
     },
+
+    updateItems: async function () {
+        let selected = [];
+
+        if (modeldiaItems.oData && modeldiaItems.oData.items) {
+            selected = ModelData.Find(modeldiaItems.oData.items, "sel", true);
+        }
+
+        tabItems.setBusy(true);
+
+        apiGetItems({
+            parameters: {
+                table: modeldiaItems.oData.reference_table,
+                systemid: modeloPageDetail.oData.systemid,
+                displayfield: modeldiaItems.oData.display_field,
+            },
+        }).then(function (res) {
+            if (res.error) {
+                sap.m.MessageToast.show(res.error);
+            } else {
+                let items = [];
+
+                for (let i = 0; i < res.length; i++) {
+                    const field = res[i];
+                    let item = {
+                        sel: false,
+                        value: field["sys_id"],
+                        label: field[modeldiaItems.oData.display_field],
+                    }
+                    const fieldSelected = ModelData.FindFirst(selected, "value", field["sys_id"]);
+                    if (fieldSelected) item.sel = true;
+
+                    items.push(item);
+
+
+                }
+                modeldiaItems.oData.items = items;
+                modeldiaItems.refresh(true);
+            }
+
+            tabItems.setBusy(false);
+        });
+    },
 };
 
 controller.init();

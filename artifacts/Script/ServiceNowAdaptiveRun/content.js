@@ -224,6 +224,21 @@ async function processList() {
                 });
 
                 queryFilter += whereSep + fieldName + "IN" + multiFilter;
+
+                // multiFilter = "";
+                // sep = "";
+
+                // fieldValue.forEach(function (value) {
+                //     // multiFilter += sep + fieldValue;
+                //     multiFilter += sep + fieldName + "LIKE" + value;
+                //     sep = "^OR";
+                // });
+
+                // // queryFilter += whereSep + fieldName + "IN" + multiFilter;
+
+                // queryFilter += whereSep + multiFilter;
+
+
                 break;
 
             default:

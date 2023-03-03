@@ -1,0 +1,6 @@
+const deleteItem = oEvent.getParameter("listItem");
+const context = deleteItem.getBindingContext();
+const value = context.getProperty("value");
+
+ModelData.Delete(modeldiaItems.oData.items,"value",value);
+modeldiaItems.refresh();
