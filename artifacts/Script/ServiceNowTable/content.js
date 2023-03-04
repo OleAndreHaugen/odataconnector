@@ -39,6 +39,9 @@ try {
         return complete();
     }
 
+    console.log("XML :", elements.length)
+    console.log("JSON :", res.data.result.length)
+
     for (i = 0; i < elements.length; i++) {
 
         let element = elements[i];
@@ -60,7 +63,11 @@ try {
             const resChoices = await globals.Utils.RequestHandler(choiceUrl, SystemId, "json");
 
             if (resChoices.data.result && resChoices.data.result.length) {
-                element.items = resChoices.data.result;
+                element.items = [];
+                resChoices.data.result.forEach(function (item) {
+                    item.sel = true;
+                    element.items.push(item);
+                })
             } else {
                 element.choice_list = "false";
             }

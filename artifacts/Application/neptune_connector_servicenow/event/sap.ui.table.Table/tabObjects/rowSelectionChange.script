@@ -3,11 +3,16 @@ const context = this.getContextByIndex(this.getSelectedIndex());
 if (context) {
     const data = context.getObject();
     modeloPageDetail.oData.config.table = data.name;
-    modeloPageDetail.oData.config.creatable = data.createable;
-    modeloPageDetail.oData.config.updatable = data.deletable;
-    modeloPageDetail.oData.config.deletable = data.updateable;
+
+    modeloPageDetail.oData.config.creatable = false;
+    modeloPageDetail.oData.config.updatable = false;
+    modeloPageDetail.oData.config.deletable = false;
+
+    if (data.create_access === "true") modeloPageDetail.oData.config.creatable = true;
+    if (data.update_access === "true") modeloPageDetail.oData.config.updatable = true;
+    if (data.delete_access === "true") modeloPageDetail.oData.config.deletable = true;
+
     modeloPageDetail.refresh();
     controller.updateFields();
     diaObjects.close();
 }
-

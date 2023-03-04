@@ -5,4 +5,6 @@ const filter = new sap.ui.model.Filter({
     and: false,
 });
 
-binding.filter([filter]);
+const filterParent = new sap.ui.model.Filter("_parent", "EQ", controller.filter);
+
+binding.filter([filter, filterParent]);

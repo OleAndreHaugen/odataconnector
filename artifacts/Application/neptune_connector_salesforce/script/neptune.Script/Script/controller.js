@@ -177,6 +177,7 @@ const controller = {
             }
         });
 
+        toolFieldsFilter.setValue();
         toolFieldsFilter.fireLiveChange();
     },
 

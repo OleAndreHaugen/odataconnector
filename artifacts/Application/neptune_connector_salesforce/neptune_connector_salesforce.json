@@ -2860,6 +2860,26 @@
 															"data": []
 														},
 														{
+															"fieldNo": "cc759dc3-5f30-4fb8-85de-8cb7c1961771",
+															"fieldName": "toolFieldsLabel",
+															"fieldParent": "b5a28c7e-8af6-492f-c55c-205cd1c3b955",
+															"fieldType": "sap.m.Label",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "text",
+																	"grouping": "Properties",
+																	"value": "Reference Path:",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": []
+														},
+														{
 															"fieldNo": "cb3b2d77-63c1-4134-d70c-3948470a15f2",
 															"fieldName": "toolFieldsNavigation",
 															"fieldParent": "b5a28c7e-8af6-492f-c55c-205cd1c3b955",
@@ -3136,6 +3156,104 @@
 													]
 												},
 												{
+													"fieldNo": "1535d94a-c7b2-46ca-8607-7785d905b108",
+													"fieldName": "coltabFieldsChildren",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.table.Column",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "80px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "label",
+															"grouping": "Properties",
+															"value": "Children",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "hAlign",
+															"grouping": "Properties",
+															"value": "Center",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "5163b464-0662-478a-8231-a6b111f0c0d5",
+															"fieldName": "boxFieldChildren",
+															"fieldParent": "1535d94a-c7b2-46ca-8607-7785d905b108",
+															"fieldType": "sap.m.VBox",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "enableCompactMode",
+																	"grouping": "Properties",
+																	"value": "true",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": [
+																{
+																	"fieldNo": "4c4986b0-3e6f-4e60-ef2c-9a3c0fdde63a",
+																	"fieldName": "butFieldChildren",
+																	"fieldParent": "5163b464-0662-478a-8231-a6b111f0c0d5",
+																	"fieldType": "sap.m.Button",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "visible",
+																			"grouping": "Properties",
+																			"value": "{= ${type} === 'reference' ? true:false}",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "type",
+																			"grouping": "Properties",
+																			"value": "Attention",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "icon",
+																			"grouping": "Properties",
+																			"value": "sap-icon://browse-folder",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "press",
+																			"grouping": "Events",
+																			"value": "Anonymous Function",
+																			"script": "file://event/sap.m.Button/butFieldChildren/press.js",
+																			"language": "javascript",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																}
+															]
+														}
+													]
+												},
+												{
 													"fieldNo": "4443fbc5-474a-4d9f-acc5-852244181cff",
 													"fieldName": "coltabFieldstype",
 													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
@@ -3189,60 +3307,6 @@
 																	"attribute": "text",
 																	"grouping": "Properties",
 																	"value": "{type}",
-																	"script": "",
-																	"translation": []
-																}
-															],
-															"data": []
-														}
-													]
-												},
-												{
-													"fieldNo": "1bb9a74c-4f81-4a91-9235-6b491aaa8497",
-													"fieldName": "oRowAction",
-													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
-													"fieldType": "sap.ui.table.RowAction",
-													"script": "",
-													"customComponent": false,
-													"request": [],
-													"response": [],
-													"attributes": [],
-													"data": [
-														{
-															"fieldNo": "6e6aa5c1-0b1d-41eb-9fd5-2b3574cb567c",
-															"fieldName": "oRowActionGetChildren",
-															"fieldParent": "1bb9a74c-4f81-4a91-9235-6b491aaa8497",
-															"fieldType": "sap.ui.table.RowActionItem",
-															"script": "",
-															"customComponent": false,
-															"request": [],
-															"response": [],
-															"attributes": [
-																{
-																	"attribute": "icon",
-																	"grouping": "Properties",
-																	"value": "sap-icon://browse-folder",
-																	"script": "",
-																	"translation": []
-																},
-																{
-																	"attribute": "visible",
-																	"grouping": "Properties",
-																	"value": "{= ${type} === 'reference' ? true:false}",
-																	"script": "",
-																	"translation": []
-																},
-																{
-																	"attribute": "press",
-																	"grouping": "Events",
-																	"value": "Anonymous Function",
-																	"script": "file://event/sap.ui.table.RowActionItem/oRowActionGetChildren/press.script",
-																	"translation": []
-																},
-																{
-																	"attribute": "tooltip",
-																	"grouping": "Properties",
-																	"value": "Show reference object fields",
 																	"script": "",
 																	"translation": []
 																}
@@ -3842,7 +3906,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.1.1049",
+	"ver": "23.3.4.1110",
 	"application": "neptune_connector_salesforce",
 	"title": "OData Connector",
 	"description": "OData Connector",

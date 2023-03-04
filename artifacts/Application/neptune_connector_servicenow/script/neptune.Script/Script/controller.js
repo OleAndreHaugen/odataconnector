@@ -1,4 +1,5 @@
 const controller = {
+    filter: "",
     type: "servicenow",
     init: function () {
         jQuery.sap.require("sap.m.MessageBox");
@@ -97,6 +98,9 @@ const controller = {
 
             cockpitUtils.toggleEdit(editable);
             cockpitUtils.dataSaved = modeloPageDetail.getJSON();
+
+            controller.filter = "";
+            controller.setFieldFilter();
         });
     },
 
@@ -128,36 +132,119 @@ const controller = {
         diaEntitySets.open();
     },
 
-    updateFields: async function () {
-        let selected = [];
+    setFieldFilter: function () {
+        toolFieldsNavigation.destroyLinks();
 
+        toolFieldsNavigation.addLink(
+            new sap.m.Link({
+                text: modeloPageDetail.oData.config.table,
+                press: function (oEvent) {
+                    controller.filter = "";
+                    controller.setFieldFilter();
+                },
+            })
+        );
+
+        const parts = controller.filter.split(".");
+        let parent = "";
+        let sep = "";
+
+        parts.forEach(function (part) {
+            if (part) {
+                const link = new sap.m.Link({
+                    text: part,
+                    press: function (oEvent) {
+                        const links = toolFieldsNavigation.getLinks();
+
+                        for (let i = 1; i < links.length; i++) {
+                            const link = links[i];
+                            parent += sep + link.getText();
+                            sep = ".";
+                            if (link.sId === this.sId) break;
+                        }
+
+                        controller.filter = parent;
+                        controller.setFieldFilter();
+                    },
+                });
+                toolFieldsNavigation.addLink(link);
+            }
+        });
+
+        toolFieldsFilter.setValue();
+        toolFieldsFilter.fireLiveChange();
+        
+    },
+
+    getFields: function (tableName, parentField) {
+        tabFields.setBusy(true);
+
+        return new Promise(function (resolve) {
+            apiGetTable({
+                parameters: {
+                    table: tableName,
+                    systemid: modeloPageDetail.oData.systemid,
+                },
+            }).then(function (metadata) {
+                resolve(controller.buildFields(metadata, tableName, parentField));
+            });
+        });
+    },
+
+    buildFields: function (metadata, tableName, parentField) {
+        let selected = [];
+        let fields = [];
+        let _parent = "";
+
+        if (!modeloPageDetail.oData.config.fields) modeloPageDetail.oData.config.fields = [];
+
+        // Get Selected Fields
         if (modeloPageDetail.oData && modeloPageDetail.oData.config && modeloPageDetail.oData.config.fields) {
             selected = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
         }
 
-        tabFields.setBusy(true);
+        // Parent
+        if (parentField) {
+            if (parentField._parent) {
+                const fieldParts = parentField.name.split(".");
+                const fieldName = fieldParts[fieldParts.length - 1];
 
-        apiGetTable({
-            parameters: {
-                table: modeloPageDetail.oData.config.table,
-                systemid: modeloPageDetail.oData.systemid,
-            },
-        }).then(function (res) {
-            if (res.error) {
-                sap.m.MessageToast.show(res.error);
+                _parent = parentField._parent + "." + fieldName;
             } else {
-                for (let i = 0; i < res.length; i++) {
-                    const field = res[i];
-                    const fieldSelected = ModelData.FindFirst(selected, "name", field.name);
-                    if (fieldSelected) field.sel = true;
-                }
-
-                modeloPageDetail.oData.config.fields = res;
-                modeloPageDetail.refresh(true);
+                _parent = parentField.name;
             }
+        }
 
-            tabFields.setBusy(false);
+        // Apply Filter
+        controller.filter = _parent;
+
+        // Fields
+        metadata.forEach(function (field) {
+            if (!field._parent) field.name = _parent ? _parent + "." + field.name : field.name;
+            field._parent = _parent;
+
+            // Selected
+            const selectedField = ModelData.FindFirst(selected, "name", field.name);
+            if (selectedField) field.sel = true;
+
+            fields.push(field);
         });
+
+        // Delete Fields with this parent
+        ModelData.Delete(modeloPageDetail.oData.config.fields, "_parent", controller.filter);
+        ModelData.AddArray(modeloPageDetail.oData.config.fields, fields);
+
+        controller.setFieldFilter();
+
+        modeloPageDetail.refresh();
+
+        tabFields.setBusy(false);
+    },
+
+    updateFields: async function () {
+        controller.filter = "";
+        controller.setFieldFilter();
+        controller.getFields(modeloPageDetail.oData.config.table);
     },
 
     updateItems: async function () {
@@ -187,13 +274,11 @@ const controller = {
                         sel: false,
                         value: field["sys_id"],
                         label: field[modeldiaItems.oData.display_field],
-                    }
+                    };
                     const fieldSelected = ModelData.FindFirst(selected, "value", field["sys_id"]);
                     if (fieldSelected) item.sel = true;
 
                     items.push(item);
-
-
                 }
                 modeldiaItems.oData.items = items;
                 modeldiaItems.refresh(true);

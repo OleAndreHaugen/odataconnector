@@ -1,5 +1,5 @@
 const SystemId = req.query.systemid;
-const SystemUrl = "/api/now/table/sys_db_object?sysparm_fields=label,name";
+const SystemUrl = "/api/now/table/sys_db_object?sysparm_fields=label,name,create_access,delete_access,update_access";
 
 let tables = [];
 
