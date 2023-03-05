@@ -141,6 +141,33 @@
 											],
 											"data": [
 												{
+													"fieldNo": "61c35ada-b14d-4177-a1fe-d9dc1ed02117",
+													"fieldName": "oPageHeaderImage",
+													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
+													"fieldType": "sap.m.Image",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "80px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "src",
+															"grouping": "Properties",
+															"value": "/media/root/afconnector/servicenow.png",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": []
+												},
+												{
 													"fieldNo": "aead0db8-c4f6-4b82-9bc1-f573ebe8893f",
 													"fieldName": "oPageHeaderVBox",
 													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
@@ -4986,7 +5013,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.4.119",
+	"ver": "23.3.5.1218",
 	"application": "neptune_connector_servicenow",
 	"title": "OData Connector",
 	"description": "OData Connector",

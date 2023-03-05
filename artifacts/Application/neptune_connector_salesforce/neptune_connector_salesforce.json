@@ -141,6 +141,33 @@
 											],
 											"data": [
 												{
+													"fieldNo": "32495e61-3d98-490e-9c30-14e125a34a5c",
+													"fieldName": "oPageHeaderImage",
+													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
+													"fieldType": "sap.m.Image",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "80px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "src",
+															"grouping": "Properties",
+															"value": "/media/root/afconnector/salesforce-icon.jpg",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": []
+												},
+												{
 													"fieldNo": "aead0db8-c4f6-4b82-9bc1-f573ebe8893f",
 													"fieldName": "oPageHeaderVBox",
 													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
@@ -3906,7 +3933,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.4.1110",
+	"ver": "23.3.5.1219",
 	"application": "neptune_connector_salesforce",
 	"title": "OData Connector",
 	"description": "OData Connector",

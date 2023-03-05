@@ -141,6 +141,33 @@
 											],
 											"data": [
 												{
+													"fieldNo": "c9b99e7a-5fe8-4c81-ea38-87bd54463719",
+													"fieldName": "oPageHeaderImage",
+													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
+													"fieldType": "sap.m.Image",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "80px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "src",
+															"grouping": "Properties",
+															"value": "/media/root/afconnector/odata.png",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": []
+												},
+												{
 													"fieldNo": "aead0db8-c4f6-4b82-9bc1-f573ebe8893f",
 													"fieldName": "oPageHeaderVBox",
 													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
@@ -4231,7 +4258,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.2.24.1259",
+	"ver": "23.3.5.1219",
 	"application": "neptune_connector_odata",
 	"title": "OData Connector",
 	"description": "OData Connector",
