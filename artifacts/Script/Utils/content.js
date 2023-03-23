@@ -73,7 +73,7 @@ async function HANAConnect(dbid) {
         const HDB = modules.hdb;
 
         // Check if HDB is installed
-        if (!HDB) return { error: "Missing NPM module HDB. Please install from NPM Modules" };
+        if (!HDB) return resolve({ error: "Missing NPM module HDB. Please install from NPM Modules" });
 
         // Get database connection - Role
         let dburi = await entities.neptune_af_connector_dburi.findOne({ dbid: dbid, role: p9.system.role });
@@ -82,7 +82,7 @@ async function HANAConnect(dbid) {
         if (!dburi) dburi = await entities.neptune_af_connector_dburi.findOne({ dbid: dbid, role: "DEFAULT" });
 
         // Any DB ? 
-        if (!dburi) return { error: "Database connection string not registered in settings" };
+        if (!dburi) return resolve({ error: "Database connection string not registered in settings" });
 
         // Create Client
         const client = HDB.createClient({
@@ -92,9 +92,13 @@ async function HANAConnect(dbid) {
             password: dburi.password
         });
 
+        client.on('error', function (err) {
+            resolve({ error: err });
+        });
+
         client.connect(function (err) {
             if (err) {
-                resolve(err);
+                resolve({ error: err });
             } else {
                 resolve(client);
             }
@@ -109,6 +113,9 @@ async function HANAExec(client, statement) {
     return new Promise(async function (resolve, reject) {
 
         try {
+
+            if (!client.exec) return resolve({ error: "HANA DB Client is not connected" });
+
             client.exec(statement, function (err, res) {
                 if (err) {
                     resolve(err);
@@ -117,7 +124,7 @@ async function HANAExec(client, statement) {
                 }
             });
         } catch (err) {
-            resolve(err);
+            resolve({ error: err });
         }
 
     });

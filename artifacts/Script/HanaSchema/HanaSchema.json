@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "HanaSchema",
-	"ver": "23.3.23.621",
+	"ver": "23.3.23.1121",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

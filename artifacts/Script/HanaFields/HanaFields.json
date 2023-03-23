@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "HanaFields",
-	"ver": "23.3.23.68",
+	"ver": "23.3.23.1122",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

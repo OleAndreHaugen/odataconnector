@@ -18,10 +18,21 @@ try {
     let resFields = [];
 
     const client = await globals.Utils.HANAConnect(req.query.dbid);
-    const fields = await globals.Utils.HANAExec(client, `select COLUMN_NAME,DATA_TYPE_NAME from table_columns where schema_name = '${req.query.schema}' and table_name = '${req.query.table}'`);
 
-    for (i = 0; i < fields.length; i++) {
-        const field = fields[i];
+    if (client.error) {
+        result.data = client;
+        return complete();
+    }
+
+    const res = await globals.Utils.HANAExec(client, `select COLUMN_NAME,DATA_TYPE_NAME from table_columns where schema_name = '${req.query.schema}' and table_name = '${req.query.table}'`);
+
+    if (res.error) {
+        result.data = res;
+        return complete();
+    }
+
+    for (i = 0; i < res.length; i++) {
+        const field = res[i];
         resFields.push({
             name: field.COLUMN_NAME,
             label: UpperCaseArray(field.COLUMN_NAME),

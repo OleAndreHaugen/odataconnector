@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "HanaAdaptiveRun",
-	"ver": "23.3.22.1643",
+	"ver": "23.3.23.1119",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

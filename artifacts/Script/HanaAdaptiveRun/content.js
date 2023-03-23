@@ -10,6 +10,11 @@ let selectedFields = [];
 
 const client = await globals.Utils.HANAConnect(connector.systemid);
 
+if (client.error) {
+    result.data = client;
+    return complete();
+}
+
 // Get all selected fields
 await getFields();
 
@@ -94,6 +99,11 @@ async function processList() {
     // Count
     const resCount = await globals.Utils.HANAExec(client, `select count(*) from "${connector.config.schema}"."${connector.config.table}" ${where}`);
 
+    if (resCount.error) {
+        result.data = resCount;
+        return complete();
+    }
+
     // Selected Fields
     sep = "";
     if (req.body._settings.fieldsRun) {
@@ -130,12 +140,12 @@ async function processList() {
     // Query Table 
     const resData = await globals.Utils.HANAExec(client, statement);
 
-    if (resData.message) {
+    if (resData.error) {
         result.data = {
             status: "ERROR",
-            message: resData.message,
-            debug: statement
+            message: resData.error
         }
+        return complete();
     } else {
         result.data = {
             count: resCount[0]["COUNT(*)"],
@@ -193,10 +203,10 @@ async function processGet() {
     // Query Table 
     const resData = await globals.Utils.HANAExec(client, statement);
 
-    if (resData.message) {
+    if (resData.error) {
         result.data = {
             status: "ERROR",
-            message: resData.message,
+            message: resData.error,
             debug: statement
         }
     } else {
