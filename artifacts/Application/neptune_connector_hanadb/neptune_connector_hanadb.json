@@ -2000,7 +2000,7 @@
 																		{
 																			"attribute": "text",
 																			"grouping": "Properties",
-																			"value": "Database",
+																			"value": "Database Connection",
 																			"script": "",
 																			"translation": []
 																		},
@@ -4034,7 +4034,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.23.619",
+	"ver": "23.3.23.741",
 	"application": "neptune_connector_hanadb",
 	"title": "HANA DB Connector",
 	"description": "HANA DB Connector",

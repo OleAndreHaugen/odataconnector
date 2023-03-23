@@ -36,7 +36,7 @@ const cockpitUtils = {
         cockpitUtils.dataSet = "HANA DB Connector";
 
         // Required Fieldnames for data validation
-        cockpitUtils.requiredFields = ["informDetailName", "informDetailTable", "informDetailSchema"];
+        cockpitUtils.requiredFields = ["informDetailName", "informDetailSystem", "informDetailTable", "informDetailSchema"];
     },
 
     toggleEdit: function (editable) {

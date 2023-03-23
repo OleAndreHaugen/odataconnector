@@ -75,22 +75,14 @@ async function HANAConnect(dbid) {
         // Check if HDB is installed
         if (!HDB) return { error: "Missing NPM module HDB. Please install from NPM Modules" };
 
-        console.log("Have dbid", dbid);
-
         // Get database connection - Role
         let dburi = await entities.neptune_af_connector_dburi.findOne({ dbid: dbid, role: p9.system.role });
-
-        console.log("Found 1", dburi);
 
         // Get database connection - Default
         if (!dburi) dburi = await entities.neptune_af_connector_dburi.findOne({ dbid: dbid, role: "DEFAULT" });
 
-        console.log("Found 222", dburi);
-
         // Any DB ? 
         if (!dburi) return { error: "Database connection string not registered in settings" };
-
-        console.log("Should not be here");
 
         // Create Client
         const client = HDB.createClient({
