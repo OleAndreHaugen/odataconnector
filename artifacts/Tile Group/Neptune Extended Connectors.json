@@ -92,7 +92,7 @@
 			"id": "79035bcf-ec79-4b5e-a036-97884af90db3",
 			"name": "Adaptive Framework Connector: HANA Database",
 			"title": "HANA Database",
-			"ver": "23.3.22.1227"
+			"ver": "23.3.23.759"
 		},
 		{
 			"id": "4d5fc771-5a19-4d4b-9de9-59d129beee04",
@@ -104,7 +104,7 @@
 			"id": "3b3d79a9-9f3f-427e-87e0-a97d6859b418",
 			"name": "Adaptive Framework Connector: Database Connections",
 			"title": "Database Connections",
-			"ver": "23.3.23.539"
+			"ver": "23.3.23.753"
 		},
 		{
 			"id": "2abccfae-f20f-4e40-8db0-0b26520095ea",

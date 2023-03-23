@@ -141,6 +141,33 @@
 											],
 											"data": [
 												{
+													"fieldNo": "1a7bd616-29c5-4d3f-a840-224498fede8b",
+													"fieldName": "oPageHeaderImage",
+													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
+													"fieldType": "sap.m.Image",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "80px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "src",
+															"grouping": "Properties",
+															"value": "/media/root/afconnector/saphanadb.png",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": []
+												},
+												{
 													"fieldNo": "aead0db8-c4f6-4b82-9bc1-f573ebe8893f",
 													"fieldName": "oPageHeaderVBox",
 													"fieldParent": "8f0873fc-2552-46d6-a01c-1911898a9705",
@@ -1219,7 +1246,7 @@
 																{
 																	"attribute": "text",
 																	"grouping": "Properties",
-																	"value": "Open Edition Connector",
+																	"value": "HANA DB Connector",
 																	"script": "",
 																	"translation": []
 																},
@@ -4034,7 +4061,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.23.741",
+	"ver": "23.3.23.82",
 	"application": "neptune_connector_hanadb",
 	"title": "HANA DB Connector",
 	"description": "HANA DB Connector",

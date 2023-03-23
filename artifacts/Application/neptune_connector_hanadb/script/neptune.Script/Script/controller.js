@@ -119,7 +119,7 @@ const controller = {
     },
 
     openTables: function () {
-        if (!modeltabTables.oData || !modeltabTables.oData.length) toolTablesUpdate.firePress();
+        toolTablesUpdate.firePress();
         toolTablesFilter.setValue();
         toolTablesFilter.fireLiveChange();
         tabTables.clearSelection();
