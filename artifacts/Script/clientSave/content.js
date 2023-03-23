@@ -27,6 +27,12 @@ switch (req.body.type) {
         connectorScriptRun = "482e0e79-92b0-4fff-8d88-3b501c655d71";
         break;
 
+    case "hanadb":
+        connectorName = "HANA Database: ";
+        connectorScriptSel = "1509c7e7-5115-4022-8fab-b2c4a6aca1ec";
+        connectorScriptRun = "dde08a65-ec1d-429d-9c67-e178e4b7a15d";
+        break;
+
     default:
         break;
 }

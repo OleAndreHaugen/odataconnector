@@ -16,11 +16,16 @@
 			"id": "a572b86e-4f36-422c-8043-90eae252246d",
 			"name": "neptune_af_connector",
 			"contextname": "neptune_af_connector"
+		},
+		{
+			"id": "45770513-16d2-40a2-9ced-185dade3ae64",
+			"name": "neptune_af_connector_db",
+			"contextname": "neptune_af_connector_db"
 		}
 	],
 	"apis": [],
 	"name": "clientList",
-	"ver": "23.2.24.620",
+	"ver": "23.3.23.62",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

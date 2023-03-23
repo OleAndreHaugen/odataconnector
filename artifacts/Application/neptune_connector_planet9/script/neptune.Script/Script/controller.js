@@ -4,7 +4,7 @@ const controller = {
         jQuery.sap.require("sap.m.MessageBox");
 
         if (!cockpitUtils.isCockpit) {
-            sap.m.MessageBox.confirm("Neptune ServiceNow Connectors is only supported to run inside our Cockpit. Press OK and we will guide to to the right place.", {
+            sap.m.MessageBox.confirm("Neptune Open Edition Connectors is only supported to run inside our Cockpit. Press OK and we will guide to to the right place.", {
                 icon: sap.m.MessageBox.Icon.INFORMATION,
                 title: "System Information",
                 actions: [sap.m.MessageBox.Action.OK],

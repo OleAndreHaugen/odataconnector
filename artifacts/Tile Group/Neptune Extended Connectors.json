@@ -8,7 +8,9 @@
 		"97410b27-9c82-48ba-86b5-504622db44e4",
 		"1c426bb7-102f-4e35-bb50-adb157229021",
 		"2abccfae-f20f-4e40-8db0-0b26520095ea",
-		"4d5fc771-5a19-4d4b-9de9-59d129beee04"
+		"4d5fc771-5a19-4d4b-9de9-59d129beee04",
+		"3b3d79a9-9f3f-427e-87e0-a97d6859b418",
+		"79035bcf-ec79-4b5e-a036-97884af90db3"
 	],
 	"tilegroupsOrder": [],
 	"configMessage": {
@@ -33,7 +35,7 @@
 	"enableShadeCalc": false,
 	"numTiles": null,
 	"enableMessage": false,
-	"ver": "23.2.26.856",
+	"ver": "23.3.23.539",
 	"headColor": null,
 	"headTxtClr": null,
 	"subheadTxtClr": null,
@@ -82,15 +84,27 @@
 		},
 		{
 			"id": "8ccfd807-d5f0-48dc-9770-334876e3035b",
-			"name": "Adaptive Framework Connector: Setup",
-			"title": "Settings",
-			"ver": "23.2.16.812"
+			"name": "Adaptive Framework Connector: Local Auth",
+			"title": "Local Authorization",
+			"ver": "23.3.23.557"
+		},
+		{
+			"id": "79035bcf-ec79-4b5e-a036-97884af90db3",
+			"name": "Adaptive Framework Connector: HANA Database",
+			"title": "HANA Database",
+			"ver": "23.3.22.1227"
 		},
 		{
 			"id": "4d5fc771-5a19-4d4b-9de9-59d129beee04",
 			"name": "Adaptive Framework Connector: Open Edition Connector",
 			"title": "Open Edition Connector",
 			"ver": "23.2.26.1043"
+		},
+		{
+			"id": "3b3d79a9-9f3f-427e-87e0-a97d6859b418",
+			"name": "Adaptive Framework Connector: Database Connections",
+			"title": "Database Connections",
+			"ver": "23.3.23.539"
 		},
 		{
 			"id": "2abccfae-f20f-4e40-8db0-0b26520095ea",

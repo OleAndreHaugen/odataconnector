@@ -1,0 +1,33 @@
+{
+	"id": "45770513-16d2-40a2-9ced-185dade3ae64",
+	"createdAt": "2023-03-23T04:17:01.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"fields": [
+		{
+			"id": "2c724e40-07ae-4bb8-9b43-ee74a13095d6",
+			"fieldName": "name",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Name",
+			"isNullable": false
+		},
+		{
+			"id": "73dc8f88-79a8-4cf3-f466-e5e2a66728c4",
+			"fieldName": "description",
+			"fieldType": "mediumtext",
+			"isUnique": false,
+			"description": "Description",
+			"isNullable": true
+		}
+	],
+	"indices": [],
+	"foreignKeys": [],
+	"name": "neptune_af_connector_db",
+	"description": "Adaptive Framework Connector: DB Connection",
+	"ver": "23.3.23.517",
+	"enableAudit": false,
+	"includeDataInPackage": false,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
+	"rolesRead": [],
+	"rolesWrite": []
+}

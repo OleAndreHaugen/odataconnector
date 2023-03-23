@@ -335,13 +335,112 @@
 			"endpoints": [],
 			"tags": "ServiceNow",
 			"serverScript": "a75c7347-a8ad-4d56-824e-51ce4e2b4d3f"
+		},
+		{
+			"id": "a894873b-529c-4990-e8e6-e17d61632c31",
+			"method": "GET",
+			"path": "/hana-schema",
+			"description": "",
+			"parameters": [
+				{
+					"name": "dbid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"serverScript": "fd2bb3d2-91fd-4e2d-8656-07e0b442d313",
+			"tags": "HANA"
+		},
+		{
+			"id": "d0f8e117-3516-4ba6-e8a9-5581a226e34f",
+			"method": "GET",
+			"path": "/hana-tables",
+			"description": "",
+			"parameters": [
+				{
+					"name": "dbid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "schema",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"serverScript": "507e64ae-a28f-47fb-a6d8-2bccca4d8613",
+			"tags": "HANA"
+		},
+		{
+			"id": "0baf1979-b67f-459b-ca26-1d368b54d322",
+			"method": "GET",
+			"path": "/hana-fields",
+			"description": "",
+			"parameters": [
+				{
+					"name": "dbid",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "schema",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				},
+				{
+					"name": "table",
+					"description": "",
+					"required": true,
+					"inPath": false,
+					"value": "",
+					"default": "",
+					"example": ""
+				}
+			],
+			"headers": [],
+			"responses": [],
+			"content": [],
+			"auth": [],
+			"endpoints": [],
+			"serverScript": "2164f706-11f3-4a56-b50a-10ac4167f4ae",
+			"tags": "HANA"
 		}
 	],
 	"definitions": [],
 	"documentation": [],
 	"name": "Neptune Adaptive Framework Connector",
 	"endpoint": "/api/serverscript/neptuneadaptiveframeworkconnector",
-	"ver": "23.3.3.1620",
+	"ver": "23.3.23.63",
 	"version": "1.0",
 	"description": "Neptune Adaptive Framework Connector",
 	"mediaType": null,

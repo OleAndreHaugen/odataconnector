@@ -3933,10 +3933,10 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.5.1219",
+	"ver": "23.3.22.119",
 	"application": "neptune_connector_salesforce",
-	"title": "OData Connector",
-	"description": "OData Connector",
+	"title": "Saleforce Connector",
+	"description": "Saleforce Connector",
 	"enableFileStorage": false,
 	"enableManifest": false,
 	"enableStylesheet": true,
@@ -3976,7 +3976,7 @@
 		{
 			"id": "786a81ca-5973-45fa-b311-c348916d230a",
 			"name": "Neptune Adaptive Framework Connector",
-			"ver": "23.3.3.1620"
+			"ver": "23.3.23.63"
 		}
 	],
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"

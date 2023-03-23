@@ -9,9 +9,9 @@
 			"id": "5d2ac95a-0486-45bb-a88a-04f1bed585d8"
 		}
 	},
-	"title": "Settings",
+	"title": "Local Authorization",
 	"subTitle": null,
-	"description": "Register local API Token",
+	"description": "Register local user for usage of proxy server",
 	"categoryID": null,
 	"sort": null,
 	"urlApplication": null,
@@ -60,9 +60,9 @@
 	"helpText": null,
 	"helpEnabled": false,
 	"openClickTile": false,
-	"ver": "23.2.16.812",
+	"ver": "23.3.23.557",
 	"actionWebApp": "",
-	"name": "Adaptive Framework Connector: Setup",
+	"name": "Adaptive Framework Connector: Local Auth",
 	"cardWidth": null,
 	"cardHeight": null,
 	"cardHeightFit": false,

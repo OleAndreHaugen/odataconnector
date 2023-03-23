@@ -1,0 +1,228 @@
+{
+	"id": "8301a1c4-64f7-4557-9078-f24369158c5d",
+	"createdAt": "2023-03-23T04:31:57.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"settings": {
+		"properties": {
+			"report": {
+				"showIcon": false,
+				"actionButtonLeft": false,
+				"iconButtonClose": "",
+				"textButtonClose": "Close",
+				"typeButtonClose": "Transparent",
+				"iconButtonSave": "",
+				"textButtonSave": "Save",
+				"textToastSave": "Saved",
+				"typeButtonSave": "Emphasized",
+				"iconButtonDelete": "",
+				"textButtonDelete": "Delete",
+				"textToastDelete": "Deleted",
+				"typeButtonDelete": "Reject",
+				"iconButtonAttachment": "",
+				"textButtonAttachment": "Add Attachment",
+				"typeButtonAttachment": "Transparent",
+				"tab0Text": "General",
+				"tabAText": "Attachment",
+				"tab1Text": "Tab 1",
+				"tab2Text": "Tab 2",
+				"tab3Text": "Tab 3",
+				"tab4Text": "Tab 4",
+				"tab5Text": "Tab 5",
+				"enableClose": true,
+				"enableSave": true,
+				"enableDelete": true,
+				"enableAttachment": false,
+				"enableTab1": false,
+				"enableTab2": false,
+				"enableTab3": false,
+				"enableTab4": false,
+				"enableTab5": false,
+				"enableUppercase": false,
+				"enablePadding": true,
+				"title": "Connection String"
+			},
+			"form": {
+				"enableCompact": false,
+				"enableCentered": true,
+				"labelSpanL": "12",
+				"labelSpanM": "12"
+			},
+			"table": {}
+		},
+		"fieldCatalog": [
+			{
+				"name": "dbid",
+				"label": "Connection ID",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "createdAt",
+				"label": "Created At",
+				"type": "timestamp",
+				"usage": "BOTH"
+			},
+			{
+				"name": "createdBy",
+				"label": "Created By",
+				"type": "text",
+				"usage": "BOTH"
+			},
+			{
+				"name": "host",
+				"label": "Host",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "password",
+				"label": "Password",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "port",
+				"label": "Port",
+				"type": "integer",
+				"usage": "BOTH"
+			},
+			{
+				"name": "role",
+				"label": "Role",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "updatedAt",
+				"label": "Updated At",
+				"type": "timestamp",
+				"usage": "BOTH"
+			},
+			{
+				"name": "updatedBy",
+				"label": "Updated By",
+				"type": "text",
+				"usage": "BOTH"
+			},
+			{
+				"name": "username",
+				"label": "Username",
+				"type": "smalltext",
+				"usage": "BOTH"
+			}
+		],
+		"fieldsSel": [
+			{
+				"inputFormatter": "",
+				"editable": true,
+				"visible": false,
+				"name": "dbid",
+				"text": "Connection ID",
+				"fieldPos": 1,
+				"required": true
+			},
+			{
+				"inputFormatter": "Input",
+				"editable": true,
+				"visible": true,
+				"name": "role",
+				"text": "Role",
+				"fieldPos": 2,
+				"columnLabel": "General",
+				"type": "SingleSelectLookup",
+				"lookupTable": "neptune_af_connector_role",
+				"lookupFieldKey": "role",
+				"lookupFieldText": "Name",
+				"lookupShowOnlyText": true,
+				"required": true
+			},
+			{
+				"inputFormatter": "Input",
+				"editable": true,
+				"visible": true,
+				"name": "host",
+				"text": "Host",
+				"fieldPos": 3,
+				"required": true
+			},
+			{
+				"inputFormatter": "",
+				"editable": true,
+				"visible": true,
+				"name": "port",
+				"text": "Port",
+				"fieldPos": 4,
+				"required": true,
+				"type": "Input",
+				"stepInputMax": "99999",
+				"stepInputMin": "1",
+				"inputType": "Number"
+			},
+			{
+				"inputFormatter": "Input",
+				"editable": true,
+				"visible": true,
+				"name": "username",
+				"text": "Username",
+				"fieldPos": 5,
+				"required": true
+			},
+			{
+				"inputFormatter": "",
+				"editable": true,
+				"visible": true,
+				"name": "password",
+				"text": "Password",
+				"fieldPos": 6,
+				"required": true,
+				"inputType": "Password"
+			},
+			{
+				"inputFormatter": "Input",
+				"editable": false,
+				"visible": true,
+				"name": "updatedAt",
+				"text": "Updated At",
+				"fieldPos": 7,
+				"type": "DateTimePicker",
+				"columnLabel": "Dates"
+			},
+			{
+				"inputFormatter": "Input",
+				"editable": false,
+				"visible": true,
+				"name": "updatedBy",
+				"text": "Updated By",
+				"fieldPos": 8
+			}
+		],
+		"fieldsRun": [],
+		"defaultVariant": {
+			"id": "7c246d0d-32d8-4deb-a194-51051b19c8b9",
+			"colOrder": "key_a_to_z",
+			"rowOrder": "key_a_to_z",
+			"row": [],
+			"column": [],
+			"val": [],
+			"inclusions": {},
+			"exclusions": {}
+		}
+	},
+	"name": "neptune_af_connector_dburi_detail",
+	"description": "",
+	"group": "",
+	"type": "C",
+	"connectorid": "5136c2d8-8620-48ba-adfc-a270ca0c19c7",
+	"scriptSel": null,
+	"scriptRun": null,
+	"tableid": null,
+	"ver": "23.3.23.550",
+	"disabled": false,
+	"appType": "A",
+	"application": "planet9_adaptive_edit",
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
+	"roles": [],
+	"scriptSelObj": null,
+	"scriptRunObj": null,
+	"tableObj": null
+}

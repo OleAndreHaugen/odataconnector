@@ -1,0 +1,17 @@
+let binding = tabData.getBinding("rows");
+if (!binding) return;
+
+var filterArr = [];
+
+filterArr.push(
+    new sap.ui.model.Filter({
+        filters: [new sap.ui.model.Filter("name", "Contains", toolStartFilter.getValue()), new sap.ui.model.Filter("description", "Contains", toolStartFilter.getValue())],
+        and: false,
+    })
+);
+
+if (toolStartUser.getSelectedKey() === "Mine") {
+    filterArr.push(new sap.ui.model.Filter("updatedBy", "EQ", systemSettings.user.username));
+}
+
+binding.filter(filterArr);

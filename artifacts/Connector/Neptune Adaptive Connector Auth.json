@@ -8,10 +8,10 @@
 	},
 	"documentation": {},
 	"name": "Neptune Adaptive Connector Auth",
-	"description": null,
+	"description": "Neptune Extended Connectors",
 	"group": null,
 	"type": "T",
-	"ver": "23.2.16.736",
+	"ver": "23.3.23.524",
 	"disabled": false,
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
 }

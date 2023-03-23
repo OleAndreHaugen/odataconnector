@@ -9,6 +9,12 @@
 			"name": "typeorm",
 			"contextname": "typeorm",
 			"path": "typeorm"
+		},
+		{
+			"id": "264d7bbf-202a-49ac-9d9a-c0a6f7ee9de4",
+			"name": "hdb",
+			"contextname": "hdb",
+			"path": "C:\\Planet9\\customnpm/node_modules/hdb"
 		}
 	],
 	"entitySets": [
@@ -16,11 +22,16 @@
 			"id": "fcd4c787-3174-435e-9a02-3895b7d76cc2",
 			"name": "neptune_af_connector_auth",
 			"contextname": "neptune_af_connector_auth"
+		},
+		{
+			"id": "bb5d0142-b1a0-4f53-b3be-e6affbe1d014",
+			"name": "neptune_af_connector_dburi",
+			"contextname": "neptune_af_connector_dburi"
 		}
 	],
 	"apis": [],
 	"name": "Utils",
-	"ver": "23.2.24.128",
+	"ver": "23.3.23.624",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": true,

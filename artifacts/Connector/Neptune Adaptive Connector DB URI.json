@@ -1,0 +1,17 @@
+{
+	"id": "5136c2d8-8620-48ba-adfc-a270ca0c19c7",
+	"createdAt": "2023-03-23T04:23:39.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"settings": {
+		"tableid": "bb5d0142-b1a0-4f53-b3be-e6affbe1d014",
+		"hasDocumentation": false
+	},
+	"documentation": {},
+	"name": "Neptune Adaptive Connector DB URI",
+	"description": "Neptune Extended Connectors",
+	"group": null,
+	"type": "T",
+	"ver": "23.3.23.524",
+	"disabled": false,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

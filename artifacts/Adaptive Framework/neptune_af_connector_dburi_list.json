@@ -1,11 +1,11 @@
 {
-	"id": "5d2ac95a-0486-45bb-a88a-04f1bed585d8",
-	"createdAt": "2023-02-16T06:37:16.000Z",
+	"id": "00ea19e3-3e85-4916-89c0-e1d5168c3352",
+	"createdAt": "2023-03-23T04:34:44.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"settings": {
 		"properties": {
 			"report": {
-				"showIcon": true,
+				"showIcon": false,
 				"actionButtonLeft": false,
 				"iconButtonClose": "",
 				"textButtonClose": "Close",
@@ -24,27 +24,47 @@
 				"typeButtonMultiSelect": "Emphasized",
 				"iconButtonRun": "",
 				"textButtonRun": "Update",
-				"typeButtonRun": "Transparent",
-				"enableRun": true,
+				"typeButtonRun": "Emphasized",
+				"enableRun": false,
 				"enableCreate": true,
 				"enableClose": false,
-				"enableDelete": true,
+				"enableDelete": false,
 				"enableExport": false,
 				"enableImport": false,
 				"enableMultiSelect": false,
 				"enableVariant": false,
-				"hideHeader": false,
 				"autoRun": true,
 				"autoRunFocus": true,
 				"searchLabel": "Search",
 				"searchPlaceholder": "",
-				"title": "Local Authorization",
-				"subTitle": "For local proxy authentication",
-				"avatarBackgroundColor": "Accent7"
+				"title": "Connection String",
+				"_navigationItemPress": {
+					"destinationType": "F",
+					"openAs": "D",
+					"butType": "Accept",
+					"destinationTargetF": "8301a1c4-64f7-4557-9078-f24369158c5d",
+					"keyField": [],
+					"dialogHeight": "800px"
+				},
+				"_navigationCreate": {
+					"destinationType": "F",
+					"openAs": "D",
+					"butType": "Accept",
+					"destinationTargetF": "8301a1c4-64f7-4557-9078-f24369158c5d",
+					"keyField": [
+						{
+							"fieldName": "dbid",
+							"key": "dbid",
+							"value": ""
+						}
+					],
+					"dialogHeight": "800px"
+				}
 			},
 			"form": {
 				"enableCompact": false,
-				"headerExpanded": true
+				"headerExpanded": true,
+				"headerPreserveState": false
 			},
 			"table": {
 				"enablePagination": false,
@@ -52,7 +72,7 @@
 				"paginationRows": 25,
 				"showSeparators": "All",
 				"alternateRowColors": false,
-				"fixedLayout": false,
+				"fixedLayout": true,
 				"inset": false,
 				"enableCompact": false,
 				"enableAction1": false,
@@ -74,9 +94,27 @@
 		},
 		"fieldCatalog": [
 			{
-				"name": "role",
-				"label": "System Role",
+				"name": "dbid",
+				"label": "Connection ID",
 				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "role",
+				"label": "Role",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "host",
+				"label": "Host",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "port",
+				"label": "Port",
+				"type": "integer",
 				"usage": "BOTH"
 			},
 			{
@@ -116,8 +154,27 @@
 				"usage": "BOTH"
 			}
 		],
-		"fieldsSel": [],
+		"fieldsSel": [
+			{
+				"visible": false,
+				"name": "dbid",
+				"text": "Connection ID",
+				"fieldPos": 1,
+				"required": true
+			}
+		],
 		"fieldsRun": [
+			{
+				"buttonType": "Transparent",
+				"popinDisplay": "Block",
+				"enableFilter": false,
+				"enableSort": true,
+				"visible": false,
+				"name": "dbid",
+				"text": "Connection ID",
+				"fieldPos": 2,
+				"valueType": ""
+			},
 			{
 				"buttonType": "Transparent",
 				"popinDisplay": "Block",
@@ -125,15 +182,22 @@
 				"enableSort": true,
 				"visible": true,
 				"name": "role",
-				"text": "System Role",
-				"fieldPos": 1,
-				"type": "SingleSelectLookup",
-				"lookupTable": "neptune_af_connector_role",
-				"lookupFieldKey": "role",
-				"lookupFieldText": "Name",
-				"lookupShowOnlyText": true,
-				"editable": true,
-				"width": "150px"
+				"text": "Role",
+				"fieldPos": 3,
+				"valueType": "Lookup",
+				"valueLookup": {
+					"table": "neptune_af_connector_role",
+					"textField": "Name",
+					"keyField": [
+						{
+							"fieldName": "role",
+							"key": "role",
+							"value": ""
+						}
+					],
+					"hideKey": true,
+					"butType": "Accept"
+				}
 			},
 			{
 				"buttonType": "Transparent",
@@ -141,24 +205,19 @@
 				"enableFilter": false,
 				"enableSort": true,
 				"visible": true,
-				"name": "username",
-				"text": "Username",
-				"fieldPos": 2,
-				"type": "Input",
-				"editable": true
+				"name": "host",
+				"text": "Host",
+				"fieldPos": 4
 			},
 			{
 				"buttonType": "Transparent",
 				"popinDisplay": "Block",
 				"enableFilter": false,
-				"enableSort": false,
+				"enableSort": true,
 				"visible": true,
-				"name": "password",
-				"text": "Password",
-				"fieldPos": 3,
-				"type": "Input",
-				"editable": true,
-				"inputType": "Password"
+				"name": "port",
+				"text": "Port",
+				"fieldPos": 5
 			},
 			{
 				"buttonType": "Transparent",
@@ -168,9 +227,8 @@
 				"visible": true,
 				"name": "updatedAt",
 				"text": "Updated At",
-				"fieldPos": 4,
-				"formatter": "date00",
-				"width": "200px"
+				"fieldPos": 6,
+				"formatter": "date00"
 			},
 			{
 				"buttonType": "Transparent",
@@ -180,12 +238,11 @@
 				"visible": true,
 				"name": "updatedBy",
 				"text": "Updated By",
-				"fieldPos": 5,
-				"width": "200px"
+				"fieldPos": 7
 			}
 		],
 		"defaultVariant": {
-			"id": "2424d8d0-4e7c-466b-9fcb-02dfd9043b56",
+			"id": "6a9758d4-1041-4581-fc72-b33561969d8c",
 			"colOrder": "key_a_to_z",
 			"rowOrder": "key_a_to_z",
 			"row": [],
@@ -195,15 +252,15 @@
 			"exclusions": {}
 		}
 	},
-	"name": "NeptuneAdaptiveConnectorAuth",
+	"name": "neptune_af_connector_dburi_list",
 	"description": "",
 	"group": "",
 	"type": "C",
-	"connectorid": "35609f0f-fd34-4656-b371-6fe70b4245e5",
+	"connectorid": "5136c2d8-8620-48ba-adfc-a270ca0c19c7",
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.2.16.1127",
+	"ver": "23.3.23.552",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_list",

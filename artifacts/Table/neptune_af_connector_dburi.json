@@ -1,0 +1,63 @@
+{
+	"id": "bb5d0142-b1a0-4f53-b3be-e6affbe1d014",
+	"createdAt": "2023-03-23T04:18:52.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"fields": [
+		{
+			"id": "167583ce-4232-4052-e473-ad969c801f6c",
+			"fieldName": "dbid",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Connection ID"
+		},
+		{
+			"id": "40b9ebcc-9d9e-421e-8b3a-ab4f69d9eefd",
+			"fieldName": "role",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Role"
+		},
+		{
+			"id": "f71f0952-2db9-4647-db61-98b430c4d70f",
+			"fieldName": "host",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Host",
+			"isNullable": true
+		},
+		{
+			"id": "b9ad24b6-fd04-4ee5-f714-cf22092e26e5",
+			"fieldName": "port",
+			"fieldType": "integer",
+			"isUnique": false,
+			"description": "Port",
+			"isNullable": true
+		},
+		{
+			"id": "fd219c29-4b51-4774-ea51-2eb8cad15995",
+			"fieldName": "username",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Username",
+			"isNullable": true
+		},
+		{
+			"id": "14c53d71-cf9c-4e88-ac5b-c071d375b597",
+			"fieldName": "password",
+			"fieldType": "smalltext",
+			"isUnique": false,
+			"description": "Password",
+			"isNullable": true
+		}
+	],
+	"indices": [],
+	"foreignKeys": [],
+	"name": "neptune_af_connector_dburi",
+	"description": "Adaptive Framework Connector: DB Connection URI",
+	"ver": "23.3.23.532",
+	"enableAudit": false,
+	"includeDataInPackage": false,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
+	"rolesRead": [],
+	"rolesWrite": []
+}

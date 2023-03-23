@@ -1,5 +1,14 @@
 [
 	{
+		"id": "ef115242-2840-4e5e-b8cc-1cbf01f9b947",
+		"createdAt": "1679546495011",
+		"updatedAt": "1679546495011",
+		"createdBy": "ole-andre.haugen@neptune-software.com",
+		"updatedBy": "ole-andre.haugen@neptune-software.com",
+		"role": "DEFAULT",
+		"Name": "Default"
+	},
+	{
 		"id": "bf40ebc8-4ed3-4320-8aa0-e58a047d87be",
 		"createdAt": "1676529725354",
 		"updatedAt": "1676529725354",

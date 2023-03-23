@@ -1,0 +1,10 @@
+const binding = tabTables.getBinding("rows");
+
+const filter = new sap.ui.model.Filter({
+    filters: [
+        new sap.ui.model.Filter("TABLE_NAME", "Contains", this.getValue()),
+    ],
+    and: false,
+});
+
+binding.filter([filter]);
