@@ -2257,7 +2257,7 @@
 																				{
 																					"attribute": "placeholder",
 																					"grouping": "Properties",
-																					"value": "material",
+																					"value": "materials and not materials.xsodata",
 																					"script": "",
 																					"translation": []
 																				},
@@ -4421,7 +4421,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.4.3.1648",
+	"ver": "23.4.4.1239",
 	"application": "neptune_connector_odata",
 	"title": "OData Connector",
 	"description": "OData Connector",
