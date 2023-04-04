@@ -1938,6 +1938,108 @@
 																	"data": []
 																},
 																{
+																	"fieldNo": "387624fa-df6e-4316-974b-3c9ead9bbc93",
+																	"fieldName": "lblformDetailSource",
+																	"fieldParent": "9b86fdae-9d11-4b21-bfa9-dce8c526729c",
+																	"fieldType": "sap.m.Label",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "text",
+																			"grouping": "Properties",
+																			"value": "OData Source",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "required",
+																			"grouping": "Properties",
+																			"value": "true",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																},
+																{
+																	"fieldNo": "aa04e064-e51d-483f-ec3d-24c5172bc697",
+																	"fieldName": "informDetailSource",
+																	"fieldParent": "9b86fdae-9d11-4b21-bfa9-dce8c526729c",
+																	"fieldType": "sap.m.Select",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "selectedKey",
+																			"grouping": "Properties",
+																			"value": "{/config/source}",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "editable",
+																			"grouping": "Properties",
+																			"value": "{appControl>/enableEdit}",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": [
+																		{
+																			"fieldNo": "caa0bafa-f0ad-4c12-8275-31dc5fb5c946",
+																			"fieldName": "itemformDetailSourceSAP",
+																			"fieldParent": "aa04e064-e51d-483f-ec3d-24c5172bc697",
+																			"fieldType": "sap.ui.core.Item",
+																			"script": "",
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [
+																				{
+																					"attribute": "text",
+																					"grouping": "Properties",
+																					"value": "SAP OData",
+																					"script": "",
+																					"translation": []
+																				}
+																			],
+																			"data": []
+																		},
+																		{
+																			"fieldNo": "4ef4c7ba-8d78-43fb-9c53-e0ba594c785f",
+																			"fieldName": "itemformDetailSourceHANA",
+																			"fieldParent": "aa04e064-e51d-483f-ec3d-24c5172bc697",
+																			"fieldType": "sap.ui.core.Item",
+																			"script": "",
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [
+																				{
+																					"attribute": "text",
+																					"grouping": "Properties",
+																					"value": "SAP XS OData",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "key",
+																					"grouping": "Properties",
+																					"value": "xsodata",
+																					"script": "",
+																					"translation": []
+																				}
+																			],
+																			"data": []
+																		}
+																	]
+																},
+																{
 																	"fieldNo": "bb2d2c09-d501-4f64-f0ba-bcf805d97de2",
 																	"fieldName": "lblformDetailSystem",
 																	"fieldParent": "9b86fdae-9d11-4b21-bfa9-dce8c526729c",
@@ -2063,52 +2165,113 @@
 																	"data": []
 																},
 																{
-																	"fieldNo": "48f38840-20a2-44f2-e817-7887a169273b",
-																	"fieldName": "informDetailService",
+																	"fieldNo": "442b1ca2-9e45-4885-9c55-70b923ff9727",
+																	"fieldName": "boxformDetailService",
 																	"fieldParent": "9b86fdae-9d11-4b21-bfa9-dce8c526729c",
-																	"fieldType": "sap.m.Input",
+																	"fieldType": "sap.m.VBox",
 																	"script": "",
 																	"customComponent": false,
 																	"request": [],
 																	"response": [],
-																	"attributes": [
+																	"attributes": [],
+																	"data": [
 																		{
-																			"attribute": "valueHelpOnly",
-																			"grouping": "Properties",
-																			"value": "true",
+																			"fieldNo": "48f38840-20a2-44f2-e817-7887a169273b",
+																			"fieldName": "informDetailService",
+																			"fieldParent": "442b1ca2-9e45-4885-9c55-70b923ff9727",
+																			"fieldType": "sap.m.Input",
 																			"script": "",
-																			"translation": []
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [
+																				{
+																					"attribute": "visible",
+																					"grouping": "Properties",
+																					"value": "{= ${/config/source} === 'xsodata' ? false:true}",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "valueHelpOnly",
+																					"grouping": "Properties",
+																					"value": "true",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "value",
+																					"grouping": "Properties",
+																					"value": "{/config/service}",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "showValueHelp",
+																					"grouping": "Properties",
+																					"value": "true",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "editable",
+																					"grouping": "Properties",
+																					"value": "{appControl>/enableEdit}",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "valueHelpRequest",
+																					"grouping": "Events",
+																					"value": "controller.openServices();",
+																					"script": "controller.openServices();",
+																					"translation": []
+																				}
+																			],
+																			"data": []
 																		},
 																		{
-																			"attribute": "value",
-																			"grouping": "Properties",
-																			"value": "{/config/service}",
+																			"fieldNo": "c46707bf-c60a-4107-f7cf-19ddb3512912",
+																			"fieldName": "informDetailServiceXS",
+																			"fieldParent": "442b1ca2-9e45-4885-9c55-70b923ff9727",
+																			"fieldType": "sap.m.Input",
 																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "showValueHelp",
-																			"grouping": "Properties",
-																			"value": "true",
-																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "editable",
-																			"grouping": "Properties",
-																			"value": "{appControl>/enableEdit}",
-																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "valueHelpRequest",
-																			"grouping": "Events",
-																			"value": "controller.openServices();",
-																			"script": "controller.openServices();",
-																			"translation": []
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [
+																				{
+																					"attribute": "visible",
+																					"grouping": "Properties",
+																					"value": "{= ${/config/source} === 'xsodata' ? true:false}",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "value",
+																					"grouping": "Properties",
+																					"value": "{/config/service}",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "placeholder",
+																					"grouping": "Properties",
+																					"value": "material",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "editable",
+																					"grouping": "Properties",
+																					"value": "{appControl>/enableEdit}",
+																					"script": "",
+																					"translation": []
+																				}
+																			],
+																			"data": []
 																		}
-																	],
-																	"data": []
+																	]
 																},
 																{
 																	"fieldNo": "00d83acb-be34-499f-b05f-8b3b5539ea4f",
@@ -4258,7 +4421,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.5.1219",
+	"ver": "23.4.3.1648",
 	"application": "neptune_connector_odata",
 	"title": "OData Connector",
 	"description": "OData Connector",

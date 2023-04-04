@@ -39,6 +39,22 @@ for (i = 0; i < connector.config.fields.length; i++) {
             items: items
         });
 
+        // Joins
+        if (field.joinTable && field.joinField && field.joinFields) {
+
+            field.joinFields.forEach(function (joinField) {
+                if (joinField.sel) {
+                    fieldCatalog.push({
+                        name: field.joinTable + "." + joinField.name,
+                        label: joinField.label,
+                        type: joinField.type,
+                        usage: "BOTH"
+                    });
+                }
+            })
+
+        }
+
     }
 
 }

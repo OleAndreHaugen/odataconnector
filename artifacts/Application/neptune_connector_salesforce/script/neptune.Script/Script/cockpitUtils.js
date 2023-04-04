@@ -167,7 +167,7 @@ const cockpitUtils = {
         };
 
         // Check for changes
-        if (modelappControl.oData.editable && cockpitUtils.dataSaved !== modeloPageDetail.getJSON()) {
+        if (modelappControl.oData.enableEdit && cockpitUtils.dataSaved !== modeloPageDetail.getJSON()) {
             sap.n.Planet9.messageChange(processFunction);
         } else {
             processFunction();

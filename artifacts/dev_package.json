@@ -7,7 +7,7 @@
 	},
 	"name": "neptunesoftware-connector-af",
 	"description": "Adaptive Framework Connector",
-	"ver": "23.3.23.1134",
+	"ver": "23.4.4.1229",
 	"enableCICD": true,
 	"apps": [
 		{
@@ -361,8 +361,8 @@
 	"events": [],
 	"media_library": [
 		{
-			"id": "690c5450-41a9-4804-8d94-e89daf14a55c",
-			"updatedAt": "2023-02-27T09:12:00.000Z",
+			"id": "467ce73c-8bf5-43b6-ab83-d9db797021c1",
+			"updatedAt": "2023-02-24T12:23:39.000Z",
 			"name": "afconnector",
 			"parent": null,
 			"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"

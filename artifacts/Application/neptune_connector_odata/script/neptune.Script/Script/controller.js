@@ -133,9 +133,10 @@ const controller = {
 
         apiGetEntitySetFields({
             parameters: {
+                systemid: modeloPageDetail.oData.systemid,
                 service: modeloPageDetail.oData.config.service,
                 entitySet: modeloPageDetail.oData.config.entitySet,
-                systemid: modeloPageDetail.oData.systemid,
+                source: modeloPageDetail.oData.config.source,
             },
         }).then(function (res) {
             if (res.error) {

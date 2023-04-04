@@ -55,107 +55,201 @@ async function processList() {
 
     let sep = "";
     let fields = '';
+    let joins = '';
     let where = '';
-    let statement;
+    let statementExec;
+    let statementCount
 
-    // Where 
-    const bodyFields = Object.keys(req.body);
+    try {
 
-    bodyFields.forEach(function (fieldName) {
+        // Where 
+        const bodyFields = Object.keys(req.body);
 
-        const fieldValue = req.body[fieldName];
-        if (!fieldValue) return;
+        bodyFields.forEach(function (fieldName) {
 
-        const fieldSel = req.body._settings.fieldsSel.find((f) => f.name === fieldName);
-        if (!fieldSel) return;
+            const fieldValue = req.body[fieldName];
+            if (!fieldValue) return;
 
-        switch (fieldSel.type) {
+            const fieldSel = req.body._settings.fieldsSel.find((f) => f.name === fieldName);
+            if (!fieldSel) return;
 
-            case "CheckBox":
-            case "Switch":
-            case "SingleSelect":
-            case "SingleSelectLookup":
-            case "SingleSelectScript":
-                where += sep + `"${fieldName}" = '${fieldValue}'`;
-                break;
+            let fieldNameFormatted = `"${connector.config.table}"."${fieldName}"`;
+            if (fieldName.indexOf(".") > -1) fieldNameFormatted = formatJoinField(fieldName);
 
-            case "MultiSelect":
-            case "MultiSelectLookup":
-            case "MultiSelectScript":
-                where += sep + `"${fieldName}" IN (${fieldValue})`;
-                break;
+            switch (fieldSel.type) {
 
-            default:
-                where += sep + `"${fieldName}" LIKE '%${fieldValue}'`;
-                sep = " and ";
-                break;
+                case "CheckBox":
+                case "Switch":
+                case "SingleSelect":
+                case "SingleSelectLookup":
+                case "SingleSelectScript":
+                    where += sep + `${fieldNameFormatted} = '${fieldValue}'`;
+                    break;
 
-        }
+                case "MultiSelect":
+                case "MultiSelectLookup":
+                case "MultiSelectScript":
+                    where += sep + `${fieldNameFormatted} IN (${fieldValue})`;
+                    break;
 
-    });
+                default:
+                    if (fieldSel.selEqual) {
+                        where += sep + `${fieldNameFormatted} = '${fieldValue}'`;
+                    } else {
+                        where += sep + `${fieldNameFormatted} LIKE '%${fieldValue}%'`;
+                    }
+                    sep = " and ";
+                    break;
 
-    if (where) where = " where " + where;
+            }
 
-    // Count
-    const resCount = await globals.Utils.HANAExec(client, `select count(*) from "${connector.config.schema}"."${connector.config.table}" ${where}`);
-
-    if (resCount.error) {
-        result.data = resCount;
-        return complete();
-    }
-
-    // Selected Fields
-    sep = "";
-    if (req.body._settings.fieldsRun) {
-        req.body._settings.fieldsRun.forEach(function (field) {
-            fields += sep + '"' + field.name + '"';
-            sep = ",";
         });
-    } else {
-        return { error: "No fields to display in table" };
-    }
 
-    // SQL Statement
-    statement = `select ${fields} from "${connector.config.schema}"."${connector.config.table}" ${where}`;
+        if (where) where = "where " + where;
 
-    // Sorting
-    if (req.body._order) {
+        // Selected Fields
+        sep = "";
 
-        const orderField = Object.keys(req.body._order)[0];
+        if (req.body._settings.fieldsRun) {
+            req.body._settings.fieldsRun.forEach(function (field) {
 
-        if (orderField) {
-            let orderType = req.body._order[orderField].toLowerCase();
-            if (orderType === "asc") orderType = "";
+                const fieldMeta = selectedFields.find((f) => f.name === field.name);
 
-            statement += ` order by "${orderField}" ${orderType}`;
+                // Fields 
+                if (field.name.indexOf(".") === -1) {
+                    fields += sep + `"${connector.config.table}"."${field.name}"`;
+                    sep = ",";
+                } else {
+                    fields += sep + formatJoinField(field.name);
+                    sep = ",";
+                }
+
+                // Joins
+                if (fieldMeta && fieldMeta.joinTable && fieldMeta.joinFields) {
+
+                    let joinSep = "ON";
+                    let joinString = "";
+
+                    fieldMeta.joinFields.forEach(function (joinData) {
+                        if (joinData.joinField) {
+                            joinString += ` ${joinSep} "${connector.config.table}"."${joinData.joinField}" = "${fieldMeta.joinTable}"."${joinData.name}"`;
+                            joinSep = "AND"
+                        }
+
+                        if (joinData.joinValue) {
+                            joinString += ` ${joinSep} "${fieldMeta.joinTable}"."${joinData.name}" = '${joinData.joinValue}'`;
+                            joinSep = "AND"
+                        }
+                    });
+
+                    if (joinString) {
+                        joins += ` JOIN "${fieldMeta.joinTable}" AS ${fieldMeta.joinTable} ${joinString}`;
+                    }
+                }
+
+            });
+        } else {
+            return { error: "No fields to display in table" };
         }
 
-    }
+        // Count - Tricky with distinct and joins
+        let countExpression = "";
 
-    // Pagination
-    if (req.body._pagination) {
-        statement += ` limit ${req.body._pagination.take} offset ${req.body._pagination.skip}`
-    }
+        if (joins) {
+            let field = req.body._settings.fieldsRun[0];
 
-    // Query Table 
-    const resData = await globals.Utils.HANAExec(client, statement);
+            if (field.name.indexOf(".") === -1) {
+                countExpression += `count(distinct "${connector.config.table}"."${field.name}") as __COUNTER`;
+            } else {
+                countExpression += `count(distinct formatJoinField(field.name)) as __COUNTER`;
+            }
+        } else {
+            countExpression = "count(*) as __COUNTER"
+        }
 
-    if (resData.error) {
+        statementCount = `select ${countExpression} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
+
+        const resCount = await globals.Utils.HANAExec(client, statementCount);
+
+        if (resCount.error) {
+            result.data = resCount;
+            return complete();
+        }
+
+        // SQL Statement
+        statementExec = `select distinct ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
+
+        // Sorting
+        if (req.body._order) {
+
+            let orderField = Object.keys(req.body._order)[0];
+
+            if (orderField) {
+                let orderType = req.body._order[orderField].toLowerCase();
+                if (orderType === "asc") orderType = "";
+
+                if (orderField.indexOf(".") === -1) {
+                    statementExec += ` order by "${orderField}" ${orderType}`;
+                } else {
+                    orderField = formatJoinField(orderField);
+                    log.info(orderField);
+                    statementExec += ` order by ${orderField} ${orderType}`;
+                }
+            }
+
+        }
+
+        // Pagination
+        if (req.body._pagination) {
+            statementExec += ` limit ${req.body._pagination.take} offset ${req.body._pagination.skip}`
+        }
+
+        // Query Table 
+        const resData = await globals.Utils.HANAExec(client, statementExec);
+
+        if (resData.error) {
+            result.data = {
+                status: "ERROR",
+                message: resData.error
+            }
+            return complete();
+        } else {
+
+            // Format Result Data (JOIN Fields must be returned correct)
+            if (resData && resData.length) {
+                resData.forEach(function (row) {
+                    req.body._settings.fieldsRun.forEach(function (field) {
+                        if (field.name.indexOf(".") > -1) {
+                            const parts = field.name.split(".");
+                            if (row[parts[1]]) row[field.name] = row[parts[1]]
+                        }
+                    });
+                })
+            }
+
+            result.data = {
+                count: resCount[0]["__COUNTER"],
+                result: resData,
+                debug: {
+                    run: statementExec,
+                    count: statementCount,
+                }
+            }
+        }
+
+        complete();
+
+    } catch (e) {
         result.data = {
-            status: "ERROR",
-            message: resData.error
+            result: e,
+            debug: {
+                run: statementExec,
+                count: statementCount,
+                where
+            }
         }
-        return complete();
-    } else {
-        result.data = {
-            count: resCount[0]["COUNT(*)"],
-            result: resData,
-            debug: statement,
-            where: where
-        }
+        complete();
     }
-
-    complete();
 
 }
 
@@ -174,46 +268,109 @@ async function processSave() {
 
 async function processGet() {
 
-
     let sep = "";
-    let fields = '';
-    let where = '';
+    let fields = "";
+    let where = "";
+    let joins = "";
     let statement;
 
-    // Where 
-    req.body._keyField.forEach(function (keyField) {
-        where += sep + `"${keyField.fieldName}" = '${req.body[keyField.fieldName]}'`;
-        sep = " and ";
-    });
+    try {
 
-    if (where) where = " where " + where;
+        // Where 
+        req.body._keyField.forEach(function (keyField) {
+            let fieldNameFormatted = `"${connector.config.table}"."${keyField.fieldName}"`;
+            if (keyField.fieldName.indexOf(".") > -1) fieldNameFormatted = formatJoinField(keyField.fieldName);
 
-    // Selected Fields
-    sep = "";
-    if (req.body._settings.fieldsSel) {
-        req.body._settings.fieldsSel.forEach(function (field) {
-            fields += sep + '"' + field.name + '"';
-            sep = ",";
+            where += sep + `${fieldNameFormatted} = '${req.body[keyField.fieldName]}'`;
+            sep = " and ";
         });
-    }
 
-    // SQL Statement
-    statement = `select ${fields} from "${connector.config.schema}"."${connector.config.table}" ${where}`;
+        if (where) where = "where " + where;
 
-    // Query Table 
-    const resData = await globals.Utils.HANAExec(client, statement);
+        // Selected Fields
+        sep = "";
+        if (req.body._settings.fieldsSel) {
+            req.body._settings.fieldsSel.forEach(function (field) {
 
-    if (resData.error) {
-        result.data = {
-            status: "ERROR",
-            message: resData.error,
-            debug: statement
+                const fieldMeta = selectedFields.find((f) => f.name === field.name);
+
+                // Fields 
+                if (field.name.indexOf(".") === -1) {
+                    fields += sep + `"${connector.config.table}"."${field.name}"`;
+                    sep = ",";
+                } else {
+                    fields += sep + formatJoinField(field.name);
+                    sep = ",";
+                }
+
+                // Joins
+                if (fieldMeta && fieldMeta.joinTable && fieldMeta.joinFields) {
+
+                    let joinSep = "ON";
+                    let joinString = "";
+
+                    fieldMeta.joinFields.forEach(function (joinData) {
+                        if (joinData.joinField) {
+                            joinString += ` ${joinSep} "${connector.config.table}"."${joinData.joinField}" = "${fieldMeta.joinTable}"."${joinData.name}"`;
+                            joinSep = "AND"
+                        }
+
+                        if (joinData.joinValue) {
+                            joinString += ` ${joinSep} "${fieldMeta.joinTable}"."${joinData.name}" = '${joinData.joinValue}'`;
+                            joinSep = "AND"
+                        }
+                    });
+
+                    if (joinString) {
+                        joins += ` JOIN "${fieldMeta.joinTable}" AS ${fieldMeta.joinTable} ${joinString}`;
+                    }
+                }
+
+            });
         }
-    } else {
-        result.data = resData;
-    }
 
-    complete();
+        // SQL Statement
+        statement = `select distinct ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
+
+        // Query Table 
+        const resData = await globals.Utils.HANAExec(client, statement);
+
+        if (resData.error) {
+            result.data = {
+                status: "ERROR",
+                message: resData.error,
+                debug: statement
+            }
+        } else {
+
+            // Format Result Data (JOIN Fields must be returned correct)
+            if (resData && resData.length) {
+                resData.forEach(function (row) {
+                    req.body._settings.fieldsSel.forEach(function (field) {
+                        if (field.name.indexOf(".") > -1) {
+                            const parts = field.name.split(".");
+                            if (row[parts[1]]) row[field.name] = row[parts[1]]
+                        }
+                    });
+                })
+            }
+
+            result.data = resData;
+        }
+
+        complete();
+
+    } catch (e) {
+        result.data = {
+            result: e,
+            debug: {
+                run: statement,
+                joins,
+            }
+        }
+        complete();
+
+    }
 }
 
 async function processDelete() {
@@ -229,16 +386,17 @@ async function processDelete() {
     complete();
 }
 
+function formatJoinField(fieldName) {
+    let parts = fieldName.split(".");
+    return `"${parts[0]}"."${parts[1]}"`;
+}
+
 async function getFields() {
 
     connector.config.fields.forEach(async function (field) {
 
         if (field.sel) {
-            selectedFields.push({
-                name: field.name,
-                label: field.label,
-                type: field.type,
-            });
+            selectedFields.push(field);
         }
 
     })

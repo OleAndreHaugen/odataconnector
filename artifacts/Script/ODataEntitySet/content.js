@@ -2,7 +2,7 @@ const XMLParser = modules.xml2js;
 const Service = req.query.service;
 
 const SystemId = req.query.systemid;
-const SystemUrl = "/sap/opu/odata/sap/" + Service + "/$metadata";
+const SystemUrl = (req.query.source === "xsodata" ? "/xsodata/v0/" + Service + ".xsodata" : "/sap/opu/odata/sap/" + Service) + "/$metadata";
 
 const EntitySets = [];
 

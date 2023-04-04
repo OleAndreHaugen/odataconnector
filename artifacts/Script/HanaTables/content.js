@@ -17,14 +17,25 @@ try {
         return complete();
     }
 
-    const res = await globals.Utils.HANAExec(client, `select TABLE_NAME,CREATE_TIME from TABLES where schema_name = '${req.query.schema}'`);
+    const resTables = await globals.Utils.HANAExec(client, `select TABLE_NAME,CREATE_TIME from TABLES where schema_name = '${req.query.schema}'`);
+    const resViews = await globals.Utils.HANAExec(client, `select VIEW_NAME,CREATE_TIME from VIEWS where schema_name = '${req.query.schema}'`);
 
     if (res.error) {
         result.data = res;
         return complete();
     }
 
-    result.data = res.sort(globals.Utils.SortBy("TABLE_NAME"));
+    let tables = resTables;
+
+    resViews.forEach(function (view) {
+        tables.push({
+            TABLE_NAME: view.VIEW_NAME,
+            CREATE_TIME: view.CREATE_TIME,
+            IS_VIEW: true
+        })
+    })
+
+    result.data = tables.sort(globals.Utils.SortBy("TABLE_NAME"));
     complete();
 
 } catch (error) {

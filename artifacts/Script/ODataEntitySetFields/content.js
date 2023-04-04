@@ -3,7 +3,7 @@ const Service = req.query.service;
 const EntitySet = req.query.entitySet;
 
 const SystemId = req.query.systemid;
-const SystemUrl = "/sap/opu/odata/sap/" + Service + "/$metadata";
+const SystemUrl = (req.query.source === "xsodata" ? "/xsodata/v0/" + Service + ".xsodata" : "/sap/opu/odata/sap/" + Service) + "/$metadata";
 
 let fields = [];
 
@@ -40,7 +40,7 @@ try {
         const field = {
             type: property.Type.split(".")[1].toLowerCase(),
             name: property.Name,
-            label: property["sap:label"],
+            label: (property["sap:label"] ? property["sap:label"] : property.Name),
         }
 
         // Value Help

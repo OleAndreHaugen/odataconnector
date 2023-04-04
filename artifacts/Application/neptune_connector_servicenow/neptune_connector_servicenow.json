@@ -5013,7 +5013,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.3.22.1110",
+	"ver": "23.4.2.97",
 	"application": "neptune_connector_servicenow",
 	"title": "ServiceNow Connector",
 	"description": "ServiceNow Connector",

@@ -98,7 +98,7 @@ async function HANAConnect(dbid) {
 
         client.connect(function (err) {
             if (err) {
-                resolve({ error: err });
+                resolve({ error: "HANA DB Client is not connected" });
             } else {
                 resolve(client);
             }
@@ -124,7 +124,7 @@ async function HANAExec(client, statement) {
                 }
             });
         } catch (err) {
-            resolve({ error: err });
+            resolve({ error: "HANA DB Client is not connected" });
         }
 
     });

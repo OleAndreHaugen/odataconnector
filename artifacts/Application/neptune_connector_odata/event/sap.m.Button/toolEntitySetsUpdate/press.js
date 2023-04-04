@@ -1,7 +1,8 @@
 apiGetEntitySets({
     parameters: {
-        service: modeloPageDetail.oData.config.service,
         systemid: modeloPageDetail.oData.systemid,
+        service: modeloPageDetail.oData.config.service,
+        source: modeloPageDetail.oData.config.source,
     },
 }).then(function (res) {
     if (res.error) {

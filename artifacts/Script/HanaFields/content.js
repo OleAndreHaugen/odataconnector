@@ -24,7 +24,13 @@ try {
         return complete();
     }
 
-    const res = await globals.Utils.HANAExec(client, `select COLUMN_NAME,DATA_TYPE_NAME from table_columns where schema_name = '${req.query.schema}' and table_name = '${req.query.table}'`);
+    let res;
+
+    if (req.query.isview) {
+        res = await globals.Utils.HANAExec(client, `select COLUMN_NAME,DATA_TYPE_NAME from view_columns where schema_name = '${req.query.schema}' and view_name = '${req.query.table}'`);
+    } else {
+        res = await globals.Utils.HANAExec(client, `select COLUMN_NAME,DATA_TYPE_NAME from table_columns where schema_name = '${req.query.schema}' and table_name = '${req.query.table}'`);
+    }
 
     if (res.error) {
         result.data = res;
@@ -36,7 +42,7 @@ try {
         resFields.push({
             name: field.COLUMN_NAME,
             label: UpperCaseArray(field.COLUMN_NAME),
-            type: field.DATA_TYPE_NAME
+            type: field.DATA_TYPE_NAME,
         })
     }
 

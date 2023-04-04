@@ -147,12 +147,18 @@ const controller = {
                 dbid: modeloPageDetail.oData.systemid,
                 table: modeloPageDetail.oData.config.table,
                 schema: modeloPageDetail.oData.config.schema,
+                isview: modeloPageDetail.oData.config.isview,
             },
         }).then(function (res) {
             for (let i = 0; i < res.length; i++) {
                 const field = res[i];
                 const fieldSelected = ModelData.FindFirst(selected, "name", field.name);
-                if (fieldSelected) field.sel = true;
+                if (fieldSelected) {
+                    field.sel = true;
+                    field.joinTable = fieldSelected.joinTable;
+                    field.joinField = fieldSelected.joinField;
+                    field.joinFields = fieldSelected.joinFields;
+                }
             }
 
             modeloPageDetail.oData.config.fields = res;

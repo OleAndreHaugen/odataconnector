@@ -9,8 +9,9 @@ const connector = await entities.neptune_af_connector.findOne({
 
 if (!connector) return complete();
 
-const Service = connector.config.service;
 const SystemId = connector.systemid;
+const Service = (connector.config.source === "xsodata" ? connector.config.service + ".xsodata" : connector.config.service);
+const BaseUrl = (connector.config.source === "xsodata" ? "/xsodata/v0/" : "/sap/opu/odata/sap/");
 
 // Process Method
 switch (req.query.method) {
@@ -157,7 +158,7 @@ async function processValueListRun() {
         }
     }
 
-    let SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + req.body._entitySet + "?$inlinecount=allpages&$format=json&$top=100";
+    let SystemUrl = BaseUrl + Service + "/" + req.body._entitySet + "?$inlinecount=allpages&$format=json&$top=100";
 
     try {
 
@@ -220,9 +221,10 @@ async function processListAndGet() {
 
     let sep = "";
     let whereSep = "";
+    let keysSep = "";
     let multiFilter = "";
 
-    let SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet + "?$inlinecount=allpages&$format=json";
+    let SystemUrl = BaseUrl + Service + "/" + connector.config.entitySet + "_xsodatakey_?$inlinecount=allpages&$format=json";
 
     let opts = {
         parameters: {
@@ -231,6 +233,7 @@ async function processListAndGet() {
             "$orderby": "",
             "$select": "",
             "$filter": "",
+            "$keys": "",
         }
     }
 
@@ -247,10 +250,19 @@ async function processListAndGet() {
                 });
             }
 
-            // API Query - Filter
-            if (req.body.__metadata && req.body.__metadata.id) {
-                const parts = req.body.__metadata.id.split("/");
-                SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + parts[parts.length - 1] + "?$format=json";
+            // API Query - Filter From Adaptive Designer
+            if (req.body._keyField) {
+                req.body._keyField.forEach(function (keyField) {
+                    opts.parameters.$keys += keysSep + `${keyField.fieldName}='${req.body[keyField.fieldName]}'`;
+                    keysSep = ","
+                });
+                SystemUrl = BaseUrl + Service + "/" + connector.config.entitySet + "(" + opts.parameters.$keys + ")?$format=json";
+            } else {
+                // API Query - Filter Metadata 
+                if (req.body.__metadata && req.body.__metadata.uri) {
+                    const parts = req.body.__metadata.uri.split("/");
+                    SystemUrl = BaseUrl + Service + "/" + parts[parts.length - 1] + "?$format=json";
+                }
             }
 
         } else {
@@ -276,68 +288,74 @@ async function processListAndGet() {
                     const fieldSel = req.body._settings.fieldsSel.find((f) => f.name === fieldName);
                     if (!fieldSel) return;
 
-                    switch (fieldSel.type) {
+                    if (fieldSel.type === "RecordKeyOData") {
+                        opts.parameters.$keys += keysSep + `${fieldName}='${fieldValue}'`;
+                        keysSep = ",";
+                    } else {
 
-                        case "CheckBox":
-                        case "Switch":
-                            opts.parameters.$filter += whereSep + " " + fieldName + " = " + fieldValue;
-                            break;
+                        switch (fieldSel.type) {
 
-                        case "DateRange":
-                            opts.parameters.$filter += whereSep + " " + fieldName + " >= " + fieldValue;
-                            whereSep = " and ";
-                            opts.parameters.$filter += whereSep + " " + fieldName + " <= " + req.body[fieldName + "_end"];
-                            break;
-
-                        case "SingleSelect":
-                        case "SingleSelectLookup":
-                        case "SingleSelectScript":
-                            if (fieldMeta.type === "datetime") {
+                            case "CheckBox":
+                            case "Switch":
                                 opts.parameters.$filter += whereSep + " " + fieldName + " = " + fieldValue;
-                            } else {
-                                opts.parameters.$filter += whereSep + " " + fieldName + " = '" + fieldValue + "'";
-                            }
-                            break;
+                                break;
 
-                        case "MultiSelect":
-                        case "MultiSelectLookup":
-                        case "MultiSelectScript":
-                        case "ValueHelpOData":
-                            multiFilter = "";
-                            sep = "";
+                            case "DateRange":
+                                opts.parameters.$filter += whereSep + " " + fieldName + " >= " + fieldValue;
+                                whereSep = " and ";
+                                opts.parameters.$filter += whereSep + " " + fieldName + " <= " + req.body[fieldName + "_end"];
+                                break;
 
-                            fieldValue.forEach(function (value) {
-                                multiFilter += sep + fieldName + " eq '" + value + "'";
-                                sep = " or ";
-                            });
+                            case "SingleSelect":
+                            case "SingleSelectLookup":
+                            case "SingleSelectScript":
+                                if (fieldMeta.type === "datetime") {
+                                    opts.parameters.$filter += whereSep + " " + fieldName + " = " + fieldValue;
+                                } else {
+                                    opts.parameters.$filter += whereSep + " " + fieldName + " = '" + fieldValue + "'";
+                                }
+                                break;
 
-                            opts.parameters.$filter += whereSep + "(" + multiFilter + ")";
-                            break;
+                            case "MultiSelect":
+                            case "MultiSelectLookup":
+                            case "MultiSelectScript":
+                            case "ValueHelpOData":
+                                multiFilter = "";
+                                sep = "";
 
-                        case "ValueHelpOData":
-                            multiFilter = "";
-                            sep = "";
+                                fieldValue.forEach(function (value) {
+                                    multiFilter += sep + fieldName + " eq '" + value + "'";
+                                    sep = " or ";
+                                });
 
-                            fieldValue.forEach(function (value) {
-                                multiFilter += sep + "substringof(" + fieldName + "," + "'" + value + "')";
-                                sep = " or ";
-                            });
+                                opts.parameters.$filter += whereSep + "(" + multiFilter + ")";
+                                break;
 
-                            opts.parameters.$filter += whereSep + multiFilter;
-                            break;
+                            case "ValueHelpOData":
+                                multiFilter = "";
+                                sep = "";
 
-                        default:
+                                fieldValue.forEach(function (value) {
+                                    multiFilter += sep + `substringof('${value}',${fieldName})`;
+                                    sep = " or ";
+                                });
 
-                            if (fieldSel.selEqual) {
-                                opts.parameters.$filter += whereSep + fieldName + " eq " + "'" + fieldValue + "'";
-                            } else {
-                                opts.parameters.$filter += whereSep + "substringof(" + fieldName + "," + "'" + fieldValue + "')";
-                            }
-                            break;
+                                opts.parameters.$filter += whereSep + multiFilter;
+                                break;
+
+                            default:
+                                if (fieldSel.selEqual) {
+                                    opts.parameters.$filter += whereSep + `${fieldName} eq'${fieldValue}'`;
+                                } else {
+                                    opts.parameters.$filter += whereSep + `substringof('${fieldValue}',${fieldName})`;
+                                }
+                                break;
+
+                        }
+
+                        whereSep = " and ";
 
                     }
-
-                    whereSep = " and ";
 
                 }
 
@@ -363,6 +381,11 @@ async function processListAndGet() {
 
         }
 
+        // ODATA Keys
+        if (opts.parameters.$keys) SystemUrl = SystemUrl.replace("_xsodatakey_", `(${opts.parameters.$keys})`);
+        SystemUrl = SystemUrl.replace("_xsodatakey_", "");
+
+        // Filter
         if (opts.parameters.$filter) SystemUrl += "&$filter=" + opts.parameters.$filter;
         if (opts.parameters.$top) SystemUrl += "&$top=" + opts.parameters.$top;
         if (opts.parameters.$skip) SystemUrl += "&$skip=" + opts.parameters.$skip;
@@ -385,10 +408,18 @@ async function processListAndGet() {
         if (req.query.method === "Get") {
 
             if (res.message) {
+
+
+                let errorMessage = res.message;
+
+                if (res.data && res.data.error && res.data.error.message) {
+                    errorMessage = res.data.error.message.value
+                }
+
                 result.data = {
                     status: "ERROR",
                     message: {
-                        text: res.message
+                        text: errorMessage
                     },
                     debug: {
                         opts,
@@ -402,10 +433,18 @@ async function processListAndGet() {
         } else {
 
             if (res.message) {
+
+                let errorMessage = res.message;
+
+                if (res.data && res.data.error && res.data.error.message) {
+                    errorMessage = res.data.error.message.value
+                }
+
                 result.data = {
                     status: "ERROR",
+                    data: res,
                     message: {
-                        text: res.message
+                        text: errorMessage
                     },
                     debug: {
                         opts,
@@ -432,7 +471,8 @@ async function processListAndGet() {
             error: error,
             debug: {
                 req: req.body,
-                opts: opts
+                opts: opts,
+                url: SystemUrl
             }
 
         }
@@ -472,7 +512,7 @@ async function processSave() {
     try {
 
         // GET X-CSRF-TOKEN
-        let SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + entitySet + "?$format=json";
+        let SystemUrl = BaseUrl + Service + "/" + entitySet + "?$format=json";
 
         // if (opts.parameters.$select) SystemUrl += "&$select=" + opts.parameters.$select;
 
@@ -493,7 +533,7 @@ async function processSave() {
         // Need both Cookie + x-csrf-token in SAVE Request
 
         // SAVE
-        SystemUrl = "/sap/opu/odata/sap/" + Service + "/" + connector.config.entitySet;
+        SystemUrl = BaseUrl + Service + "/" + connector.config.entitySet;
 
         resSave = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json", opts);
 

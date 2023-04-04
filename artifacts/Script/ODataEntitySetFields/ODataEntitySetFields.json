@@ -20,7 +20,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "ODataEntitySetFields",
-	"ver": "23.2.23.1633",
+	"ver": "23.4.3.1647",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
