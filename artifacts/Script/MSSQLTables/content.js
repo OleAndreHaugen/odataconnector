@@ -9,8 +9,7 @@ if (!req.query.schema_id) {
 }
 
 try {
-    const queryTable = 
-    `select tab.name,
+    const queryTable = `select tab.name,
     tab.object_id,
     tab.modify_date,
     prop.value as description
@@ -26,8 +25,7 @@ try {
         return complete();
     }
 
-    const queryView = 
-    `select tab.name,
+    const queryView = `select tab.name,
     tab.object_id,
     tab.modify_date,
     prop.value as description

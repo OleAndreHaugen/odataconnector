@@ -3171,10 +3171,16 @@
 													"fieldType": "sap.ui.table.Column",
 													"script": "",
 													"customComponent": false,
-													"disabled": true,
 													"request": [],
 													"response": [],
 													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "120px",
+															"script": "",
+															"translation": []
+														},
 														{
 															"attribute": "label",
 															"grouping": "Properties",
@@ -3198,7 +3204,6 @@
 															"fieldType": "sap.m.Text",
 															"script": "",
 															"customComponent": false,
-															"disabled": true,
 															"request": [],
 															"response": [],
 															"attributes": [
@@ -3405,7 +3410,7 @@
 																		{
 																			"attribute": "icon",
 																			"grouping": "Properties",
-																			"value": "sap-icon://key-user-settings",
+																			"value": "sap-icon://settings",
 																			"script": "",
 																			"translation": []
 																		},
@@ -3414,104 +3419,6 @@
 																			"grouping": "Events",
 																			"value": "Anonymous Function",
 																			"script": "file://event/sap.m.Button/butOpenJoinFields/press.js",
-																			"language": "javascript",
-																			"translation": []
-																		}
-																	],
-																	"data": []
-																}
-															]
-														}
-													]
-												},
-												{
-													"fieldNo": "6bffe506-4f4d-4ff5-fd13-51b788a23975",
-													"fieldName": "coltabFieldsJoinDelete",
-													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
-													"fieldType": "sap.ui.table.Column",
-													"script": "",
-													"customComponent": false,
-													"request": [],
-													"response": [],
-													"attributes": [
-														{
-															"attribute": "width",
-															"grouping": "Properties",
-															"value": "60px",
-															"script": "",
-															"translation": []
-														},
-														{
-															"attribute": "hAlign",
-															"grouping": "Properties",
-															"value": "Center",
-															"script": "",
-															"translation": []
-														}
-													],
-													"data": [
-														{
-															"fieldNo": "fe6ae4e2-1f97-4b65-fc9e-7eb043bdadbe",
-															"fieldName": "boxJoinDelete",
-															"fieldParent": "6bffe506-4f4d-4ff5-fd13-51b788a23975",
-															"fieldType": "sap.m.VBox",
-															"script": "",
-															"customComponent": false,
-															"request": [],
-															"response": [],
-															"attributes": [
-																{
-																	"attribute": "enableCompactMode",
-																	"grouping": "Properties",
-																	"value": "true",
-																	"script": "",
-																	"translation": []
-																}
-															],
-															"data": [
-																{
-																	"fieldNo": "c1e7db4b-ba27-46ea-fbc6-e381cdfba9cb",
-																	"fieldName": "butOpenJoinDelete",
-																	"fieldParent": "fe6ae4e2-1f97-4b65-fc9e-7eb043bdadbe",
-																	"fieldType": "sap.m.Button",
-																	"script": "",
-																	"customComponent": false,
-																	"request": [],
-																	"response": [],
-																	"attributes": [
-																		{
-																			"attribute": "visible",
-																			"grouping": "Properties",
-																			"value": "{= ${joinTable} ? true:false}",
-																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "type",
-																			"grouping": "Properties",
-																			"value": "Reject",
-																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "icon",
-																			"grouping": "Properties",
-																			"value": "sap-icon://delete",
-																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "enabled",
-																			"grouping": "Properties",
-																			"value": "{appControl>/enableEdit}",
-																			"script": "",
-																			"translation": []
-																		},
-																		{
-																			"attribute": "press",
-																			"grouping": "Events",
-																			"value": "Anonymous Function",
-																			"script": "file://event/sap.m.Button/butOpenJoinDelete/press.js",
 																			"language": "javascript",
 																			"translation": []
 																		}
@@ -3623,6 +3530,55 @@
 					"attributes": [],
 					"data": [
 						{
+							"fieldNo": "c1e7db4b-ba27-46ea-fbc6-e381cdfba9cb",
+							"fieldName": "diaJoinFieldsClear",
+							"fieldParent": "d62c1c7e-da1b-426d-e178-73a78781e887",
+							"fieldType": "sap.m.Button",
+							"script": "",
+							"customComponent": false,
+							"request": [],
+							"response": [],
+							"attributes": [
+								{
+									"attribute": "type",
+									"grouping": "Properties",
+									"value": "Reject",
+									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "text",
+									"grouping": "Properties",
+									"value": "Clear",
+									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "enabled",
+									"grouping": "Properties",
+									"value": "{appControl>/enableEdit}",
+									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "enableCompactMode",
+									"grouping": "Properties",
+									"value": "true",
+									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "press",
+									"grouping": "Events",
+									"value": "Anonymous Function",
+									"script": "file://event/sap.m.Button/diaJoinFieldsClear/press.js",
+									"language": "javascript",
+									"translation": []
+								}
+							],
+							"data": []
+						},
+						{
 							"fieldNo": "30c84824-f66c-4832-bc9e-9b8dc1f2ade9",
 							"fieldName": "diaJoinFieldsClose",
 							"fieldParent": "d62c1c7e-da1b-426d-e178-73a78781e887",
@@ -3636,6 +3592,13 @@
 									"attribute": "text",
 									"grouping": "Properties",
 									"value": "OK",
+									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "enableCompactMode",
+									"grouping": "Properties",
+									"value": "true",
 									"script": "",
 									"translation": []
 								},
@@ -3707,6 +3670,13 @@
 									"attribute": "endButton",
 									"grouping": "Associations",
 									"value": "diaJoinFieldsClose",
+									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "beginButton",
+									"grouping": "Associations",
+									"value": "diaJoinFieldsClear",
 									"script": "",
 									"translation": []
 								}
@@ -5270,7 +5240,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.5.14.1424",
+	"ver": "23.5.14.2036",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",

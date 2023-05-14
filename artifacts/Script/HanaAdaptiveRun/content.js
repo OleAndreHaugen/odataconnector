@@ -1,7 +1,7 @@
 // Get Connector
 const connector = await entities.neptune_af_connector.findOne({
     select: ["config", "systemid"],
-    where: { id: req.body._connector.settings.startParam }
+    where: { id: req.body._connector.settings.startParam },
 });
 
 if (!connector) return complete();
@@ -19,10 +19,8 @@ if (client.error) {
 await getFields();
 
 try {
-
     // Process Method
     switch (req.query.method) {
-
         case "Delete":
             processDelete();
             break;
@@ -39,34 +37,28 @@ try {
             processList();
             break;
     }
-
 } catch (e) {
-
     result.data = {
         status: "ERROR",
-        message: e
-    }
+        message: e,
+    };
 
     complete();
-
 }
 
 async function processList() {
-
     let sep = "";
-    let fields = '';
-    let joins = '';
-    let where = '';
+    let fields = "";
+    let joins = "";
+    let where = "";
     let statementExec;
-    let statementCount
+    let statementCount;
 
     try {
-
-        // Where 
+        // Where
         const bodyFields = Object.keys(req.body);
 
         bodyFields.forEach(function (fieldName) {
-
             const fieldValue = req.body[fieldName];
             if (!fieldValue) return;
 
@@ -77,7 +69,6 @@ async function processList() {
             if (fieldName.indexOf(".") > -1) fieldNameFormatted = formatJoinField(fieldName);
 
             switch (fieldSel.type) {
-
                 case "CheckBox":
                 case "Switch":
                 case "SingleSelect":
@@ -100,9 +91,7 @@ async function processList() {
                     }
                     sep = " and ";
                     break;
-
             }
-
         });
 
         if (where) where = "where " + where;
@@ -112,10 +101,9 @@ async function processList() {
 
         if (req.body._settings.fieldsRun) {
             req.body._settings.fieldsRun.forEach(function (field) {
-
                 const fieldMeta = selectedFields.find((f) => f.name === field.name);
 
-                // Fields 
+                // Fields
                 if (field.name.indexOf(".") === -1) {
                     fields += sep + `"${connector.config.table}"."${field.name}"`;
                     sep = ",";
@@ -126,19 +114,18 @@ async function processList() {
 
                 // Joins
                 if (fieldMeta && fieldMeta.joinTable && fieldMeta.joinFields) {
-
                     let joinSep = "ON";
                     let joinString = "";
 
                     fieldMeta.joinFields.forEach(function (joinData) {
                         if (joinData.joinField) {
                             joinString += ` ${joinSep} "${connector.config.table}"."${joinData.joinField}" = "${fieldMeta.joinTable}"."${joinData.name}"`;
-                            joinSep = "AND"
+                            joinSep = "AND";
                         }
 
                         if (joinData.joinValue) {
                             joinString += ` ${joinSep} "${fieldMeta.joinTable}"."${joinData.name}" = '${joinData.joinValue}'`;
-                            joinSep = "AND"
+                            joinSep = "AND";
                         }
                     });
 
@@ -146,7 +133,6 @@ async function processList() {
                         joins += ` JOIN "${fieldMeta.joinTable}" AS ${fieldMeta.joinTable} ${joinString}`;
                     }
                 }
-
             });
         } else {
             return { error: "No fields to display in table" };
@@ -164,7 +150,7 @@ async function processList() {
                 countExpression += `count(distinct formatJoinField(field.name)) as __COUNTER`;
             }
         } else {
-            countExpression = "count(*) as __COUNTER"
+            countExpression = "count(*) as __COUNTER";
         }
 
         statementCount = `select ${countExpression} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
@@ -176,12 +162,14 @@ async function processList() {
             return complete();
         }
 
+        // All if no fields are specified
+        if (!fields) fields = "*";
+
         // SQL Statement
         statementExec = `select distinct ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
 
         // Sorting
         if (req.body._order) {
-
             let orderField = Object.keys(req.body._order)[0];
 
             if (orderField) {
@@ -196,35 +184,33 @@ async function processList() {
                     statementExec += ` order by ${orderField} ${orderType}`;
                 }
             }
-
         }
 
         // Pagination
         if (req.body._pagination) {
-            statementExec += ` limit ${req.body._pagination.take} offset ${req.body._pagination.skip}`
+            statementExec += ` limit ${req.body._pagination.take} offset ${req.body._pagination.skip}`;
         }
 
-        // Query Table 
+        // Query Table
         const resData = await globals.Utils.HANAExec(client, statementExec);
 
         if (resData.error) {
             result.data = {
                 status: "ERROR",
-                message: resData.error
-            }
+                message: resData.error,
+            };
             return complete();
         } else {
-
             // Format Result Data (JOIN Fields must be returned correct)
             if (resData && resData.length) {
                 resData.forEach(function (row) {
                     req.body._settings.fieldsRun.forEach(function (field) {
                         if (field.name.indexOf(".") > -1) {
                             const parts = field.name.split(".");
-                            if (row[parts[1]]) row[field.name] = row[parts[1]]
+                            if (row[parts[1]]) row[field.name] = row[parts[1]];
                         }
                     });
-                })
+                });
             }
 
             result.data = {
@@ -233,41 +219,37 @@ async function processList() {
                 debug: {
                     run: statementExec,
                     count: statementCount,
-                }
-            }
+                },
+            };
         }
 
         complete();
-
     } catch (e) {
         result.data = {
             result: e,
             debug: {
                 run: statementExec,
                 count: statementCount,
-                where
-            }
-        }
+                where,
+            },
+        };
         complete();
     }
-
 }
 
 async function processSave() {
-
     result.data = {
         status: "ERROR",
         message: {
             type: "error",
-            text: "Save not supported."
-        }
-    }
+            text: "Save not supported.",
+        },
+    };
 
     complete();
 }
 
 async function processGet() {
-
     let sep = "";
     let fields = "";
     let where = "";
@@ -275,11 +257,11 @@ async function processGet() {
     let statement;
 
     try {
-
-        // Where 
+        // Where
         req.body._keyField.forEach(function (keyField) {
             let fieldNameFormatted = `"${connector.config.table}"."${keyField.fieldName}"`;
-            if (keyField.fieldName.indexOf(".") > -1) fieldNameFormatted = formatJoinField(keyField.fieldName);
+            if (keyField.fieldName.indexOf(".") > -1)
+                fieldNameFormatted = formatJoinField(keyField.fieldName);
 
             where += sep + `${fieldNameFormatted} = '${req.body[keyField.fieldName]}'`;
             sep = " and ";
@@ -291,10 +273,9 @@ async function processGet() {
         sep = "";
         if (req.body._settings.fieldsSel) {
             req.body._settings.fieldsSel.forEach(function (field) {
-
                 const fieldMeta = selectedFields.find((f) => f.name === field.name);
 
-                // Fields 
+                // Fields
                 if (field.name.indexOf(".") === -1) {
                     fields += sep + `"${connector.config.table}"."${field.name}"`;
                     sep = ",";
@@ -305,19 +286,18 @@ async function processGet() {
 
                 // Joins
                 if (fieldMeta && fieldMeta.joinTable && fieldMeta.joinFields) {
-
                     let joinSep = "ON";
                     let joinString = "";
 
                     fieldMeta.joinFields.forEach(function (joinData) {
                         if (joinData.joinField) {
                             joinString += ` ${joinSep} "${connector.config.table}"."${joinData.joinField}" = "${fieldMeta.joinTable}"."${joinData.name}"`;
-                            joinSep = "AND"
+                            joinSep = "AND";
                         }
 
                         if (joinData.joinValue) {
                             joinString += ` ${joinSep} "${fieldMeta.joinTable}"."${joinData.name}" = '${joinData.joinValue}'`;
-                            joinSep = "AND"
+                            joinSep = "AND";
                         }
                     });
 
@@ -325,63 +305,58 @@ async function processGet() {
                         joins += ` JOIN "${fieldMeta.joinTable}" AS ${fieldMeta.joinTable} ${joinString}`;
                     }
                 }
-
             });
         }
 
         // SQL Statement
         statement = `select distinct ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
 
-        // Query Table 
+        // Query Table
         const resData = await globals.Utils.HANAExec(client, statement);
 
         if (resData.error) {
             result.data = {
                 status: "ERROR",
                 message: resData.error,
-                debug: statement
-            }
+                debug: statement,
+            };
         } else {
-
             // Format Result Data (JOIN Fields must be returned correct)
             if (resData && resData.length) {
                 resData.forEach(function (row) {
                     req.body._settings.fieldsSel.forEach(function (field) {
                         if (field.name.indexOf(".") > -1) {
                             const parts = field.name.split(".");
-                            if (row[parts[1]]) row[field.name] = row[parts[1]]
+                            if (row[parts[1]]) row[field.name] = row[parts[1]];
                         }
                     });
-                })
+                });
             }
 
             result.data = resData;
         }
 
         complete();
-
     } catch (e) {
         result.data = {
             result: e,
             debug: {
                 run: statement,
                 joins,
-            }
-        }
+            },
+        };
         complete();
-
     }
 }
 
 async function processDelete() {
-
     result.data = {
         status: "ERROR",
         message: {
             type: "error",
-            text: "Delete not supported."
-        }
-    }
+            text: "Delete not supported.",
+        },
+    };
 
     complete();
 }
@@ -392,13 +367,9 @@ function formatJoinField(fieldName) {
 }
 
 async function getFields() {
-
     connector.config.fields.forEach(async function (field) {
-
         if (field.sel) {
             selectedFields.push(field);
         }
-
-    })
-
+    });
 }

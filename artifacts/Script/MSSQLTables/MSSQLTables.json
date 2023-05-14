@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "MSSQLTables",
-	"ver": "23.5.14.1318",
+	"ver": "23.5.14.1910",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

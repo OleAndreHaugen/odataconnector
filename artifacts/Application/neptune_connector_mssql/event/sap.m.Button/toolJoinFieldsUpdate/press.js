@@ -1,7 +1,7 @@
 apiGetFields({
     parameters: {
         dbid: modeloPageDetail.oData.systemid,
-        table_object_id: controller.fieldOpenData.joinTable_object_id,
+        table: controller.fieldOpenData.joinTable,
         isview: controller.fieldOpenData.joinIsView,
     },
 }).then(function (res) {

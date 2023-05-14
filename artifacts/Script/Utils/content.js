@@ -186,6 +186,7 @@ async function MSSQLExec(dbid, query) {
                 resolve({ error: "MS SQL Server is not connected", mssqlError: e });
             }
         }
+
     });
 }
 

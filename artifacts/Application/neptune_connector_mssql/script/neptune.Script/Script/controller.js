@@ -150,7 +150,7 @@ const controller = {
         apiGetFields({
             parameters: {
                 dbid: modeloPageDetail.oData.systemid,
-                table_object_id: modeloPageDetail.oData.config.table_object_id,
+                table: modeloPageDetail.oData.config.table,
                 isview: modeloPageDetail.oData.config.isview,
             },
         }).then(function (res) {

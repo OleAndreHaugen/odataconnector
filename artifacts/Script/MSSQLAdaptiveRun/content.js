@@ -59,7 +59,10 @@ async function processList() {
             if (!fieldSel) return;
 
             let fieldNameFormatted = `"${connector.config.table}"."${fieldName}"`;
-            if (fieldName.indexOf(".") > -1) fieldNameFormatted = formatJoinField(fieldName);
+
+            if (fieldName.indexOf(".") > -1) {
+                fieldNameFormatted = formatJoinField(fieldName);
+            }
 
             switch (fieldSel.type) {
                 case "CheckBox":
@@ -88,8 +91,6 @@ async function processList() {
         });
 
         if (where) where = "where " + where;
-
-        console.log(where);
 
         // Selected Fields
         sep = "";
@@ -133,22 +134,8 @@ async function processList() {
             return { error: "No fields to display in table" };
         }
 
-        // Count - Tricky with distinct and joins
-        let countExpression = "";
-
-        if (joins) {
-            let field = req.body._settings.fieldsRun[0];
-
-            if (field.name.indexOf(".") === -1) {
-                countExpression += `count(distinct "${connector.config.table}"."${field.name}") as __COUNTER`;
-            } else {
-                countExpression += `count(distinct formatJoinField(field.name)) as __COUNTER`;
-            }
-        } else {
-            countExpression = "count(*) as __COUNTER";
-        }
-
-        statementCount = `select ${countExpression} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
+        // Count
+        statementCount = `select count(*) as __COUNTER from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
 
         const resCount = await globals.Utils.MSSQLExec(connector.systemid, statementCount);
 
@@ -156,6 +143,9 @@ async function processList() {
             result.data = resCount;
             return complete();
         }
+
+        // All if no fields are specified
+        if (!fields) fields = "*";
 
         // SQL Statement
         statementExec = `select ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
@@ -183,8 +173,6 @@ async function processList() {
             statementExec += ` offset ${req.body._pagination.skip} rows fetch next ${req.body._pagination.take} rows only`;
         }
 
-        console.log(statementExec);
-
         // Query Table
         const resData = await globals.Utils.MSSQLExec(connector.systemid, statementExec);
 
@@ -195,18 +183,6 @@ async function processList() {
             };
             return complete();
         } else {
-            // Format Result Data (JOIN Fields must be returned correct)
-            // if (resData && resData.recordset && resData.recordset.length) {
-            //     resData.recordset.forEach(function (row) {
-            //         req.body._settings.fieldsRun.forEach(function (field) {
-            //             if (field.name.indexOf(".") > -1) {
-            //                 const parts = field.name.split(".");
-            //                 if (row[parts[1]]) row[field.name] = row[parts[1]];
-            //             }
-            //         });
-            //     });
-            // }
-
             result.data = {
                 count: resCount.recordset[0]["__COUNTER"],
                 result: resData.recordset,
@@ -232,13 +208,68 @@ async function processList() {
 }
 
 async function processSave() {
-    result.data = {
-        status: "ERROR",
-        message: {
-            type: "error",
-            text: "Save not supported.",
-        },
-    };
+    const bodyFields = Object.keys(req.body);
+
+    let where = "";
+    let sep = "";
+    let fields = "";
+    let values = "";
+    let statement = "";
+
+    // Find Unique Row ID
+    connector.config.fields.forEach(async function (field) {
+        if (field.is_identity && req.body[field.name]) {
+            where += `${sep} ${field.name} = '${req.body[field.name]}'`;
+            sep = " and ";
+        }
+    });
+
+    sep = "";
+
+    // Insert vs Update
+    if (!where) {
+        bodyFields.forEach(function (fieldName) {
+            const fieldValue = req.body[fieldName];
+            if (!fieldValue) return;
+
+            const fieldSel = req.body._settings.fieldsSel.find((f) => f.name === fieldName);
+            if (!fieldSel) return;
+
+            fields += sep + fieldSel.name;
+            values += `${sep}'${fieldValue}'`;
+            sep = ",";
+        });
+
+        statement = `INSERT INTO "${connector.config.schema}"."${connector.config.table}" (${fields}) VALUES (${values})`;
+    } else {
+        bodyFields.forEach(function (fieldName) {
+            const fieldValue = req.body[fieldName];
+            if (!fieldValue) return;
+
+            const fieldSel = req.body._settings.fieldsSel.find((f) => f.name === fieldName);
+            if (!fieldSel) return;
+
+            const fieldMeta = connector.config.fields.find((f) => f.name === fieldName);
+            if (fieldMeta.is_identity) return;
+
+            fields += `${sep}${fieldSel.name} = '${fieldValue}'`;
+            sep = ",";
+        });
+
+        statement = `UPDATE "${connector.config.schema}"."${connector.config.table}" SET ${fields} WHERE ${where}`;
+    }
+
+    const res = await globals.Utils.MSSQLExec(connector.systemid, statement);
+
+    if (res.error) {
+        result.data = {
+            status: "ERROR",
+            message: res.error,
+            debug: statement,
+        };
+    } else {
+        result.data = "OK";
+    }
 
     complete();
 }
@@ -254,8 +285,10 @@ async function processGet() {
         // Where
         req.body._keyField.forEach(function (keyField) {
             let fieldNameFormatted = `"${connector.config.table}"."${keyField.fieldName}"`;
-            if (keyField.fieldName.indexOf(".") > -1)
+
+            if (keyField.fieldName.indexOf(".") > -1) {
                 fieldNameFormatted = formatJoinField(keyField.fieldName);
+            }
 
             where += sep + `${fieldNameFormatted} = '${req.body[keyField.fieldName]}'`;
             sep = " and ";
@@ -273,7 +306,6 @@ async function processGet() {
                 if (field.name.indexOf(".") === -1) {
                     fields += sep + `"${connector.config.table}"."${field.name}"`;
                     sep = ",";
-                    console.log("Inside herre");
                 } else {
                     fields += sep + formatJoinField(field.name, true);
                     sep = ",";
@@ -304,7 +336,7 @@ async function processGet() {
         }
 
         // SQL Statement
-        statement = `select distinct ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
+        statement = `select top 1 ${fields} from "${connector.config.schema}"."${connector.config.table}" as ${connector.config.table} ${joins} ${where}`;
 
         // Query Table
         const resData = await globals.Utils.MSSQLExec(connector.systemid, statement);
@@ -316,19 +348,7 @@ async function processGet() {
                 debug: statement,
             };
         } else {
-            // Format Result Data (JOIN Fields must be returned correct)
-            // if (resData && resData.length) {
-            //     resData.forEach(function (row) {
-            //         req.body._settings.fieldsSel.forEach(function (field) {
-            //             if (field.name.indexOf(".") > -1) {
-            //                 const parts = field.name.split(".");
-            //                 if (row[parts[1]]) row[field.name] = row[parts[1]];
-            //             }
-            //         });
-            //     });
-            // }
-
-            result.data = resData;
+            result.data = resData.recordset[0];
         }
 
         complete();
@@ -345,13 +365,43 @@ async function processGet() {
 }
 
 async function processDelete() {
-    result.data = {
-        status: "ERROR",
-        message: {
-            type: "error",
-            text: "Delete not supported.",
-        },
-    };
+    let where = "";
+    let sep = "";
+
+    // Find Unique Row ID
+    connector.config.fields.forEach(async function (field) {
+        if (field.is_identity && req.body.data[field.name]) {
+            where += `${sep} ${field.name} = '${req.body.data[field.name]}'`;
+            sep = " and ";
+        }
+    });
+
+    if (!where) {
+        result.data = {
+            status: "ERROR",
+            message: {
+                type: "error",
+                text: "No field with is_identity found. Delete not possible",
+            },
+        };
+        return;
+    }
+
+    // SQL Statement
+    statement = `delete from "${connector.config.schema}"."${connector.config.table}" where ${where}`;
+
+    // Query Table
+    const res = await globals.Utils.MSSQLExec(connector.systemid, statement);
+
+    if (res.error) {
+        result.data = {
+            status: "ERROR",
+            message: res.error,
+            debug: statement,
+        };
+    } else {
+        result.data = "OK";
+    }
 
     complete();
 }

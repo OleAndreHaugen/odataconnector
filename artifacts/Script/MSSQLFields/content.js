@@ -3,20 +3,23 @@ if (!req.query.dbid) {
     return complete();
 }
 
-if (!req.query.table_object_id) {
+if (!req.query.table) {
     result.data = { error: "Please select database table" };
     return complete();
 }
 
 try {
-    const query =
-    `select col.name,
+    const query = `select col.name,
     col.object_id,
-    col.system_type_id,
+    typ.name as type,
+    col.max_length,
+    col.is_identity,
     prop.value as description
     from sys.columns as col    
+    left join sys.tables as tab on tab.object_id = col.object_id
     left join sys.extended_properties as prop on prop.major_id = col.object_id and prop.minor_id = col.column_id and prop.name = 'MS_Description'
-    where object_id = '${req.query.table_object_id}'
+    left join sys.types as typ on typ.system_type_id = col.system_type_id
+    where tab.name = '${req.query.table}'
     order by name`;
 
     const res = await globals.Utils.MSSQLExec(req.query.dbid, query);
