@@ -13,3 +13,5 @@ We currently support connectors to:
 - Salesforce
 - ServiceNow
 - Neptune DXP - Open Edition - System Tables
+- HANA Database
+- MS SQL Server
