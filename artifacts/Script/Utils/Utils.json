@@ -15,6 +15,12 @@
 			"name": "hdb",
 			"contextname": "hdb",
 			"path": "C:\\Planet9\\customnpm/node_modules/hdb"
+		},
+		{
+			"id": "e44be02d-3c08-4515-b6d8-a1912913aafb",
+			"name": "mssql",
+			"contextname": "mssql",
+			"path": "C:\\Planet9\\customnpm/node_modules/mssql"
 		}
 	],
 	"entitySets": [
@@ -31,7 +37,7 @@
 	],
 	"apis": [],
 	"name": "Utils",
-	"ver": "23.3.26.1330",
+	"ver": "23.5.14.1255",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": true,

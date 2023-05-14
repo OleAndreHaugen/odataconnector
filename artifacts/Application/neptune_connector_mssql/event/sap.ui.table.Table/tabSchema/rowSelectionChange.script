@@ -1,0 +1,9 @@
+const context = this.getContextByIndex(this.getSelectedIndex());
+
+if (context) {
+    const data = context.getObject();
+    modeloPageDetail.oData.config.schema = data.name;
+    modeloPageDetail.oData.config.schema_id = data.schema_id;
+    modeloPageDetail.refresh();
+    diaSchema.close();
+}

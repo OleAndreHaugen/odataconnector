@@ -1,8 +1,10 @@
 async function RequestHandler(path, systemid, format, opts) {
-
     // Get system information
     const manager = modules.typeorm.getConnection().manager;
-    const system = await manager.findOne('systems', { select: ["url", "id"], where: { id: systemid } });
+    const system = await manager.findOne("systems", {
+        select: ["url", "id"],
+        where: { id: systemid },
+    });
 
     if (!system) return { error: "Remote System not registered in system" };
 
@@ -12,21 +14,25 @@ async function RequestHandler(path, systemid, format, opts) {
     // Get local proxy auth - Default
     if (!auth) auth = await entities.neptune_af_connector_auth.findOne({ role: "DEFAULT" });
 
-    // Any Auth ? 
+    // Any Auth ?
     if (!auth) return { error: "Local API Proxy Auth not registered in settings" };
 
     let data = auth.username + ":" + auth.password;
     let buff = new Buffer(data);
-    let basic = buff.toString('base64');
+    let basic = buff.toString("base64");
 
     // URL
-    const url = "http://127.0.0.1:8080/proxy/remote/" + encodeURIComponent(system.url + path) + "/" + system.id;
+    const url =
+        "http://127.0.0.1:8080/proxy/remote/" +
+        encodeURIComponent(system.url + path) +
+        "/" +
+        system.id;
 
     let options = {
-        method: 'GET',
+        method: "GET",
         headers: {
-            Authorization: "Basic " + basic
-        }
+            Authorization: "Basic " + basic,
+        },
     };
 
     if (opts && opts.body) options.body = opts.body;
@@ -42,8 +48,8 @@ async function RequestHandler(path, systemid, format, opts) {
 
     let responseData = {
         headers: response.headers,
-        data: null
-    }
+        data: null,
+    };
 
     if (response.status !== 200) {
         responseData.message = response.status + ": " + response.statusText;
@@ -63,36 +69,42 @@ async function RequestHandler(path, systemid, format, opts) {
     }
 
     return responseData;
-
 }
 
 async function HANAConnect(dbid) {
-
     return new Promise(async function (resolve, reject) {
-
         const HDB = modules.hdb;
 
         // Check if HDB is installed
-        if (!HDB) return resolve({ error: "Missing NPM module HDB. Please install from NPM Modules" });
+        if (!HDB)
+            return resolve({ error: "Missing NPM module HDB. Please install from NPM Modules" });
 
         // Get database connection - Role
-        let dburi = await entities.neptune_af_connector_dburi.findOne({ dbid: dbid, role: p9.system.role });
+        let dburi = await entities.neptune_af_connector_dburi.findOne({
+            dbid: dbid,
+            role: p9.system.role,
+        });
 
         // Get database connection - Default
-        if (!dburi) dburi = await entities.neptune_af_connector_dburi.findOne({ dbid: dbid, role: "DEFAULT" });
+        if (!dburi)
+            dburi = await entities.neptune_af_connector_dburi.findOne({
+                dbid: dbid,
+                role: "DEFAULT",
+            });
 
-        // Any DB ? 
-        if (!dburi) return resolve({ error: "Database connection string not registered in settings" });
+        // Any DB ?
+        if (!dburi)
+            return resolve({ error: "Database connection string not registered in settings" });
 
         // Create Client
         const client = HDB.createClient({
             host: dburi.host,
             port: dburi.port,
             user: dburi.username,
-            password: dburi.password
+            password: dburi.password,
         });
 
-        client.on('error', function (err) {
+        client.on("error", function (err) {
             resolve({ error: err });
         });
 
@@ -103,17 +115,12 @@ async function HANAConnect(dbid) {
                 resolve(client);
             }
         });
-
     });
-
 }
 
 async function HANAExec(client, statement) {
-
     return new Promise(async function (resolve, reject) {
-
         try {
-
             if (!client.exec) return resolve({ error: "HANA DB Client is not connected" });
 
             client.exec(statement, function (err, res) {
@@ -126,24 +133,74 @@ async function HANAExec(client, statement) {
         } catch (err) {
             resolve({ error: "HANA DB Client is not connected" });
         }
-
     });
+}
 
+async function MSSQLExec(dbid, query) {
+    return new Promise(async function (resolve, reject) {
+        const SQL = modules.mssql;
+
+        // Check if SQL is installed
+        if (!SQL)
+            return resolve({ error: "Missing NPM module MSSQL. Please install from NPM Modules" });
+
+        // Get database connection - Role
+        let dburi = await entities.neptune_af_connector_dburi.findOne({
+            dbid: dbid,
+            role: p9.system.role,
+        });
+
+        // Get database connection - Default
+        if (!dburi)
+            dburi = await entities.neptune_af_connector_dburi.findOne({
+                dbid: dbid,
+                role: "DEFAULT",
+            });
+
+        // Any DB ?
+        if (!dburi)
+            return resolve({ error: "Database connection string not registered in settings" });
+
+        // Connection String
+        const options = {
+            user: dburi.username,
+            password: dburi.password,
+            database: dburi.database,
+            server: dburi.host,
+            port: dburi.port,
+            options: {
+                trustServerCertificate: true,
+            },
+        };
+
+        // Connect to DB
+        await SQL.connect(options);
+
+        try {
+            const result = await SQL.query(query);
+            resolve(result);
+        } catch (e) {
+            if (e?.originalError?.info?.message) {
+                resolve({ error: e.originalError.info.message, mssqlError: e });
+            } else {
+                resolve({ error: "MS SQL Server is not connected", mssqlError: e });
+            }
+        }
+    });
 }
 
 function SortBy(property) {
     return function (a, b) {
-        if (a[property] > b[property])
-            return 1;
-        else if (a[property] < b[property])
-            return -1;
+        if (a[property] > b[property]) return 1;
+        else if (a[property] < b[property]) return -1;
         return 0;
-    }
+    };
 }
 
 complete({
     RequestHandler,
     HANAConnect,
     HANAExec,
-    SortBy
-})
+    MSSQLExec,
+    SortBy,
+});

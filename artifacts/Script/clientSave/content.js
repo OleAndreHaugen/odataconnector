@@ -5,8 +5,8 @@ let connectorScriptRun;
 switch (req.body.type) {
     case "odata":
         connectorName = "OData: ";
-        connectorScriptSel = '82c9459e-bc38-4df9-98d3-080bcda58b22';
-        connectorScriptRun = '4a64df7b-bce9-482c-92f4-b0a8054ea75b';
+        connectorScriptSel = "82c9459e-bc38-4df9-98d3-080bcda58b22";
+        connectorScriptRun = "4a64df7b-bce9-482c-92f4-b0a8054ea75b";
         break;
 
     case "salesforce":
@@ -33,10 +33,15 @@ switch (req.body.type) {
         connectorScriptRun = "dde08a65-ec1d-429d-9c67-e178e4b7a15d";
         break;
 
+    case "mssql":
+        connectorName = "MS SQL Server: ";
+        connectorScriptSel = "f998fbcc-6bbd-4610-a196-d1d60abbd1a3";
+        connectorScriptRun = "0321987c-1ecf-4757-908f-9c5540fbc0c6";
+        break;
+
     default:
         break;
 }
-
 
 // Typeorm connection
 const manager = modules.typeorm.getConnection().manager;
@@ -45,7 +50,7 @@ const manager = modules.typeorm.getConnection().manager;
 const customConnector = await entities.neptune_af_connector.save(req.body);
 
 // Find Existing Connecors in the System
-const systemConnectors = await manager.find('connector', { where: { type: "S", disabled: false } });
+const systemConnectors = await manager.find("connector", { where: { type: "S", disabled: false } });
 
 let foundConnector = {};
 
@@ -57,17 +62,16 @@ for (i = 0; i < systemConnectors.length; i++) {
 }
 
 // Get Setup Script (ID)
-const scriptSel = await manager.findOne('jsscript', {
+const scriptSel = await manager.findOne("jsscript", {
     where: { id: connectorScriptSel },
-    select: ["id"]
+    select: ["id"],
 });
 
 // Get Run Script (ID)
-const scriptRun = await manager.findOne('jsscript', {
+const scriptRun = await manager.findOne("jsscript", {
     where: { id: connectorScriptRun },
-    select: ["id"]
+    select: ["id"],
 });
-
 
 // Auto Create Connector
 if (scriptSel && scriptRun) {
@@ -80,8 +84,8 @@ if (scriptSel && scriptRun) {
             scriptSel: scriptSel.id,
             scriptRun: scriptRun.id,
             startParam: customConnector.id,
-            hasDocumentation: false
-        }
+            hasDocumentation: false,
+        };
     }
 
     foundConnector.name = connectorName + customConnector.name;
@@ -90,8 +94,7 @@ if (scriptSel && scriptRun) {
     foundConnector.changedBy = req.user.username;
     foundConnector.ver = new Date();
 
-    await manager.save('connector', foundConnector);
-
+    await manager.save("connector", foundConnector);
 }
 
 result.data = customConnector;

@@ -44,7 +44,7 @@
 					"butType": "Accept",
 					"destinationTargetF": "8301a1c4-64f7-4557-9078-f24369158c5d",
 					"keyField": [],
-					"dialogHeight": "800px"
+					"dialogHeight": "860px"
 				},
 				"_navigationCreate": {
 					"destinationType": "F",
@@ -58,7 +58,7 @@
 							"value": ""
 						}
 					],
-					"dialogHeight": "800px"
+					"dialogHeight": "840px"
 				}
 			},
 			"form": {
@@ -260,7 +260,7 @@
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.3.23.552",
+	"ver": "23.5.14.119",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_list",

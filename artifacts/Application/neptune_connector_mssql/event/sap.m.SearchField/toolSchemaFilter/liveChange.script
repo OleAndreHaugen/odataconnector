@@ -1,0 +1,7 @@
+const binding = tabSchema.getBinding("rows");
+
+const filter = new sap.ui.model.Filter({
+    filters: [new sap.ui.model.Filter("name", "Contains", this.getValue())],
+    and: false,
+});
+binding.filter([filter]);

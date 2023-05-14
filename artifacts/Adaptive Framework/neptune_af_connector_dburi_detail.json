@@ -69,6 +69,12 @@
 				"usage": "BOTH"
 			},
 			{
+				"name": "database",
+				"label": "Database Name",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
 				"name": "host",
 				"label": "Host",
 				"type": "smalltext",
@@ -178,12 +184,20 @@
 				"inputType": "Password"
 			},
 			{
+				"inputFormatter": "",
+				"editable": true,
+				"visible": true,
+				"name": "database",
+				"text": "Database",
+				"fieldPos": 7
+			},
+			{
 				"inputFormatter": "Input",
 				"editable": false,
 				"visible": true,
 				"name": "updatedAt",
 				"text": "Updated At",
-				"fieldPos": 7,
+				"fieldPos": 8,
 				"type": "DateTimePicker",
 				"columnLabel": "Dates"
 			},
@@ -193,7 +207,7 @@
 				"visible": true,
 				"name": "updatedBy",
 				"text": "Updated By",
-				"fieldPos": 8
+				"fieldPos": 9
 			}
 		],
 		"fieldsRun": [],
@@ -216,7 +230,7 @@
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.3.23.550",
+	"ver": "23.5.14.117",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_edit",

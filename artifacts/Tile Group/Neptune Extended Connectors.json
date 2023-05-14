@@ -10,7 +10,8 @@
 		"2abccfae-f20f-4e40-8db0-0b26520095ea",
 		"4d5fc771-5a19-4d4b-9de9-59d129beee04",
 		"3b3d79a9-9f3f-427e-87e0-a97d6859b418",
-		"79035bcf-ec79-4b5e-a036-97884af90db3"
+		"79035bcf-ec79-4b5e-a036-97884af90db3",
+		"104f23dc-fa97-4814-b15f-cb5e168c57e0"
 	],
 	"tilegroupsOrder": [],
 	"configMessage": {
@@ -35,7 +36,7 @@
 	"enableShadeCalc": false,
 	"numTiles": null,
 	"enableMessage": false,
-	"ver": "23.3.23.539",
+	"ver": "23.5.14.1058",
 	"headColor": null,
 	"headTxtClr": null,
 	"subheadTxtClr": null,
@@ -117,6 +118,12 @@
 			"name": "Adaptive Framework Connector: Salesforce Connector ",
 			"title": "Salesforce Connector",
 			"ver": "23.2.24.1334"
+		},
+		{
+			"id": "104f23dc-fa97-4814-b15f-cb5e168c57e0",
+			"name": "Adaptive Framework Connector: MS SQL Server",
+			"title": "MS SQL Server",
+			"ver": "23.5.14.1058"
 		}
 	],
 	"tilegroups": []

@@ -11,6 +11,12 @@
 	"enableCICD": true,
 	"apps": [
 		{
+			"id": "edb95cc5-7ce8-461b-bd02-ba55ff2da83e",
+			"application": "neptune_connector_mssql",
+			"title": "MS SQL Server",
+			"description": "MS SQL Server"
+		},
+		{
 			"id": "ac8e4bdd-91e5-4e1f-b614-8aade405b2f8",
 			"application": "neptune_connector_odata",
 			"title": "OData Connector",
@@ -85,6 +91,11 @@
 			"description": null
 		},
 		{
+			"id": "f998fbcc-6bbd-4610-a196-d1d60abbd1a3",
+			"name": "MSSQLAdaptiveSetup",
+			"description": null
+		},
+		{
 			"id": "f87d1fe0-a811-41d1-8511-aaa6cb66f0fd",
 			"name": "Planet9Entity",
 			"description": null
@@ -145,6 +156,16 @@
 			"description": null
 		},
 		{
+			"id": "910cde3b-8798-49d9-b0fc-18030b86f5a3",
+			"name": "MSSQLSchema",
+			"description": null
+		},
+		{
+			"id": "864bb8b9-208f-404b-9403-6a06dda9b03c",
+			"name": "MSSQLFields",
+			"description": null
+		},
+		{
 			"id": "82c9459e-bc38-4df9-98d3-080bcda58b22",
 			"name": "ODataAdaptiveSetup",
 			"description": "OData Setup Script"
@@ -195,6 +216,11 @@
 			"description": null
 		},
 		{
+			"id": "2b32bb3f-1672-4c55-8581-f433af2de1a2",
+			"name": "MSSQLTables",
+			"description": null
+		},
+		{
 			"id": "2a0e920e-225d-43f6-879a-962216222afe",
 			"name": "ServiceNowAdaptiveRun",
 			"description": null
@@ -217,6 +243,11 @@
 		{
 			"id": "08579743-0006-48bb-85d6-8f1de21fe0ba",
 			"name": "clientDelete",
+			"description": null
+		},
+		{
+			"id": "0321987c-1ecf-4757-908f-9c5540fbc0c6",
+			"name": "MSSQLAdaptiveRun",
 			"description": null
 		}
 	],
@@ -317,6 +348,11 @@
 			"id": "1c426bb7-102f-4e35-bb50-adb157229021",
 			"description": "Connect Adaptive Framework to Salesforce ",
 			"name": "Adaptive Framework Connector: Salesforce Connector "
+		},
+		{
+			"id": "104f23dc-fa97-4814-b15f-cb5e168c57e0",
+			"description": "Connect Adaptive Framework to MS SQL Server",
+			"name": "Adaptive Framework Connector: MS SQL Server"
 		}
 	],
 	"category": [
