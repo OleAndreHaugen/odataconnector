@@ -54,7 +54,7 @@ const systemConnectors = await manager.find("connector", { where: { type: "S", d
 
 let foundConnector = {};
 
-for (i = 0; i < systemConnectors.length; i++) {
+for (let i = 0; i < systemConnectors.length; i++) {
     const systemConnector = systemConnectors[i];
     if (systemConnector.settings && systemConnector.settings.startParam === customConnector.id) {
         foundConnector = systemConnector;

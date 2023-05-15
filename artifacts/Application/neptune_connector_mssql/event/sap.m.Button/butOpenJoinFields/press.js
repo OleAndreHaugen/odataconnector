@@ -9,4 +9,6 @@ if (data.joinFields && data.joinFields.length) {
     toolJoinFieldsUpdate.firePress();
 }
 
+if (data.valueList) modeldiaJoinFields.setData(data.valueList);
+
 diaJoinFields.open();

@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "HanaAdaptiveSetup",
-	"ver": "23.4.2.833",
+	"ver": "23.5.15.921",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

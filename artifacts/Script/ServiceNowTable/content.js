@@ -42,7 +42,7 @@ try {
     console.log("XML :", elements.length)
     console.log("JSON :", res.data.result.length)
 
-    for (i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
 
         let element = elements[i];
 

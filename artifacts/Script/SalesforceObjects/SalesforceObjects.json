@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "SalesforceObjects",
-	"ver": "23.2.24.1239",
+	"ver": "23.5.15.923",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

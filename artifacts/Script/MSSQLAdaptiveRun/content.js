@@ -92,14 +92,14 @@ async function processList() {
 
         if (where) where = "where " + where;
 
+        console.log(where)
+
         // Selected Fields
         sep = "";
 
         if (req.body._settings.fieldsRun) {
+            // Fields from FieldCatalog
             req.body._settings.fieldsRun.forEach(function (field) {
-                const fieldMeta = selectedFields.find((f) => f.name === field.name);
-
-                // Fields
                 if (field.name.indexOf(".") === -1) {
                     fields += sep + `"${connector.config.table}"."${field.name}"`;
                     sep = ",";
@@ -107,8 +107,10 @@ async function processList() {
                     fields += sep + formatJoinField(field.name, true);
                     sep = ",";
                 }
+            });
 
-                // Joins
+            // Joins
+            selectedFields.forEach(function (fieldMeta) {
                 if (fieldMeta && fieldMeta.joinTable && fieldMeta.joinFields) {
                     let joinSep = "ON";
                     let joinString = "";
@@ -283,16 +285,25 @@ async function processGet() {
 
     try {
         // Where
-        req.body._keyField.forEach(function (keyField) {
-            let fieldNameFormatted = `"${connector.config.table}"."${keyField.fieldName}"`;
+        if (req.body._keyField) {
+            req.body._keyField.forEach(function (keyField) {
+                let fieldNameFormatted = `"${connector.config.table}"."${keyField.fieldName}"`;
 
-            if (keyField.fieldName.indexOf(".") > -1) {
-                fieldNameFormatted = formatJoinField(keyField.fieldName);
-            }
+                if (keyField.fieldName.indexOf(".") > -1) {
+                    fieldNameFormatted = formatJoinField(keyField.fieldName);
+                }
 
-            where += sep + `${fieldNameFormatted} = '${req.body[keyField.fieldName]}'`;
-            sep = " and ";
-        });
+                where += sep + `${fieldNameFormatted} = '${req.body[keyField.fieldName]}'`;
+                sep = " and ";
+            });
+        } else {
+            result.data = {
+                message: {
+                    text: "No field mapping is defined in ItemPress Event",
+                },
+            };
+            return complete();
+        }
 
         if (where) where = "where " + where;
 
@@ -300,9 +311,6 @@ async function processGet() {
         sep = "";
         if (req.body._settings.fieldsSel) {
             req.body._settings.fieldsSel.forEach(function (field) {
-                const fieldMeta = selectedFields.find((f) => f.name === field.name);
-
-                // Fields
                 if (field.name.indexOf(".") === -1) {
                     fields += sep + `"${connector.config.table}"."${field.name}"`;
                     sep = ",";
@@ -310,8 +318,10 @@ async function processGet() {
                     fields += sep + formatJoinField(field.name, true);
                     sep = ",";
                 }
+            });
 
-                // Joins
+            // Joins
+            selectedFields.forEach(function (fieldMeta) {
                 if (fieldMeta && fieldMeta.joinTable && fieldMeta.joinFields) {
                     let joinSep = "ON";
                     let joinString = "";
@@ -418,8 +428,15 @@ function formatJoinField(fieldName, inFieldList) {
 
 async function getFields() {
     connector.config.fields.forEach(async function (field) {
-        if (field.sel) {
-            selectedFields.push(field);
-        }
+        if (field.sel) selectedFields.push(field);
+
+        // if (field.joinTable && field.joinFields) {
+        //     console.log(field);
+        //     field.joinFields.forEach(async function (joinField) {
+        //         if (joinField.sel) {
+        //             selectedFields.push(joinField);
+        //         }
+        //     });
+        // }
     });
 }

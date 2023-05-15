@@ -1,15 +1,14 @@
 let fieldCatalog = [];
-let columns = [];
 
 // Get Connector
 const connector = await entities.neptune_af_connector.findOne({
-    select: ["config"],
+    select: ["config", "systemid"],
     where: { id: req.body._connector.settings.startParam },
 });
 
 if (!connector) return complete();
 
-for (i = 0; i < connector.config.fields.length; i++) {
+for (let i = 0; i < connector.config.fields.length; i++) {
     const field = connector.config.fields[i];
 
     if (field.sel) {
@@ -19,8 +18,41 @@ for (i = 0; i < connector.config.fields.length; i++) {
 
         // Type
         switch (field.type) {
+            case "datetime":
+                type = "timestamp";
+                break;
+
+            case "int":
+                type = "integer";
+                break;
+
             default:
                 break;
+        }
+
+        // ValueList
+        if (
+            field.valueList &&
+            field.valueList.enable &&
+            field.valueList.fieldKey &&
+            field.valueList.fieldLabel &&
+            field.joinTable
+        ) {
+            const statement = `select ${field.valueList.fieldKey},${field.valueList.fieldLabel} from "${connector.config.schema}"."${field.joinTable}"`;
+            const res = await globals.Utils.MSSQLExec(connector.systemid, statement);
+
+            if (!res.error && res.recordset && res.recordset.length) {
+                res.recordset.forEach(function (row) {
+                    items.push({
+                        key: row[field.valueList.fieldKey],
+                        text: field.valueList.showKey
+                            ? row[field.valueList.fieldKey] +
+                              " - " +
+                              row[field.valueList.fieldLabel]
+                            : row[field.valueList.fieldLabel],
+                    });
+                });
+            }
         }
 
         fieldCatalog.push({

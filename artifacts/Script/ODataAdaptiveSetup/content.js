@@ -7,7 +7,7 @@ const connector = await entities.neptune_af_connector.findOne({
 
 if (!connector) return complete();
 
-for (i = 0; i < connector.config.fields.length; i++) {
+for (let i = 0; i < connector.config.fields.length; i++) {
 
     const field = connector.config.fields[i];
 

@@ -37,7 +37,7 @@ try {
         return complete();
     }
 
-    for (i = 0; i < res.length; i++) {
+    for (let i = 0; i < res.length; i++) {
         const field = res[i];
         resFields.push({
             name: field.COLUMN_NAME,

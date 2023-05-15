@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "MSSQLAdaptiveRun",
-	"ver": "23.5.14.2029",
+	"ver": "23.5.15.1017",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

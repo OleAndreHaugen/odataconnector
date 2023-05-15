@@ -18,7 +18,7 @@ try {
         return complete();
     }
 
-    for (i = 0; i < res.data.sobjects.length; i++) {
+    for (let i = 0; i < res.data.sobjects.length; i++) {
 
         const sobject = res.data.sobjects[i];
 

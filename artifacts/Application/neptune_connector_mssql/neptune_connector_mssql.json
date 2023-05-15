@@ -3620,6 +3620,9 @@
 							"fieldType": "sap.m.Dialog",
 							"script": "",
 							"customComponent": false,
+							"bindingValue": "Generic Object",
+							"bindingType": "u",
+							"bindingSource": "P9",
 							"request": [],
 							"response": [],
 							"attributes": [
@@ -3705,7 +3708,7 @@
 										{
 											"attribute": "visibleRowCount",
 											"grouping": "Properties",
-											"value": "21",
+											"value": "20",
 											"script": "",
 											"translation": []
 										},
@@ -4149,7 +4152,7 @@
 										},
 										{
 											"fieldNo": "a72c2360-0c1f-4103-d6b5-082e871bcf1a",
-											"fieldName": "coltabFieldsdescription1",
+											"fieldName": "coltabJoinDescription",
 											"fieldParent": "ea354c43-f3b3-4866-9b12-5aca9352d643",
 											"fieldType": "sap.ui.table.Column",
 											"script": "",
@@ -4175,7 +4178,7 @@
 											"data": [
 												{
 													"fieldNo": "a4b59a97-fe68-4c60-fa13-65b42450b40f",
-													"fieldName": "txttabFieldsdescription1",
+													"fieldName": "txttabJoinDescription",
 													"fieldParent": "a72c2360-0c1f-4103-d6b5-082e871bcf1a",
 													"fieldType": "sap.m.Text",
 													"script": "",
@@ -4376,6 +4379,236 @@
 													]
 												}
 											]
+										}
+									]
+								},
+								{
+									"fieldNo": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+									"fieldName": "toolValueList",
+									"fieldParent": "5ef7b7c9-cdc3-4aa2-98ac-d3db4ce4600a",
+									"fieldType": "sap.m.Toolbar",
+									"script": "",
+									"customComponent": false,
+									"request": [],
+									"response": [],
+									"attributes": [
+										{
+											"attribute": "enableCompactMode",
+											"grouping": "Properties",
+											"value": "true",
+											"script": "",
+											"translation": []
+										},
+										{
+											"attribute": "position",
+											"grouping": "Parent",
+											"value": "HeaderToolbar",
+											"script": "",
+											"translation": []
+										}
+									],
+									"data": [
+										{
+											"fieldNo": "b147cf0f-4acd-47e7-d935-d93059f093dc",
+											"fieldName": "toolValueListEnable",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.CheckBox",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "text",
+													"grouping": "Properties",
+													"value": "Enable Value List",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "selected",
+													"grouping": "Properties",
+													"value": "{/enable}",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "editable",
+													"grouping": "Properties",
+													"value": "{appControl>/enableEdit}",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": []
+										},
+										{
+											"fieldNo": "789dba26-2fad-4743-8554-7f3e0c787f81",
+											"fieldName": "ToolbarSeparator",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.ToolbarSeparator",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [],
+											"data": []
+										},
+										{
+											"fieldNo": "307a4a43-22a7-49c1-bd56-a24e500178fa",
+											"fieldName": "toolValueListShowKey",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.CheckBox",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "text",
+													"grouping": "Properties",
+													"value": "Show Key",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "selected",
+													"grouping": "Properties",
+													"value": "{/showKey}",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "editable",
+													"grouping": "Properties",
+													"value": "{appControl>/enableEdit}",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": []
+										},
+										{
+											"fieldNo": "cadf16da-4e4f-4b24-f619-240bc7717f39",
+											"fieldName": "toolValueListeSpacer",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.ToolbarSpacer",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [],
+											"data": []
+										},
+										{
+											"fieldNo": "030e6031-fe6a-40f0-d791-bcd4add08885",
+											"fieldName": "toolValueListKeyLabel",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.Label",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "text",
+													"grouping": "Properties",
+													"value": "Key",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": []
+										},
+										{
+											"fieldNo": "dcff9c1a-dd1f-41ce-fbb1-1a7bc0f52589",
+											"fieldName": "toolValueListKey",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.ComboBox",
+											"script": "",
+											"customComponent": false,
+											"bindingType": "h",
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "width",
+													"grouping": "Properties",
+													"value": "200px",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "selectedKey",
+													"grouping": "Properties",
+													"value": "{/fieldKey}",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "editable",
+													"grouping": "Properties",
+													"value": "{appControl>/enableEdit}",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": []
+										},
+										{
+											"fieldNo": "2977a804-9ede-4558-c03b-17bb4f918619",
+											"fieldName": "toolValueListLabelLabel",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.Label",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "text",
+													"grouping": "Properties",
+													"value": "Label",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": []
+										},
+										{
+											"fieldNo": "397716b5-7f34-4859-bec7-867f6960630a",
+											"fieldName": "toolValueListLabel",
+											"fieldParent": "6bbcbb8a-7a16-4df0-9e97-b27a94333079",
+											"fieldType": "sap.m.ComboBox",
+											"script": "",
+											"customComponent": false,
+											"bindingType": "h",
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "width",
+													"grouping": "Properties",
+													"value": "200px",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "selectedKey",
+													"grouping": "Properties",
+													"value": "{/fieldLabel}",
+													"script": "",
+													"translation": []
+												},
+												{
+													"attribute": "editable",
+													"grouping": "Properties",
+													"value": "{appControl>/enableEdit}",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": []
 										}
 									]
 								}
@@ -5240,7 +5473,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.5.14.2036",
+	"ver": "23.5.15.1010",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",

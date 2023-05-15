@@ -26,7 +26,7 @@
 	],
 	"apis": [],
 	"name": "ODataAdaptiveSetup",
-	"ver": "23.2.13.2156",
+	"ver": "23.5.15.922",
 	"description": "OData Setup Script",
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

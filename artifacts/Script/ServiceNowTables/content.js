@@ -18,7 +18,7 @@ try {
         return complete();
     }
 
-    for (i = 0; i < res.data.result.length; i++) {
+    for (let i = 0; i < res.data.result.length; i++) {
         const table = res.data.result[i];
         tables.push(table);
     }

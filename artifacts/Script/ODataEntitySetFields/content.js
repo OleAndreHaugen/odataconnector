@@ -33,7 +33,7 @@ try {
     const entityType = entityTypes.find(entityTypes => entityTypes.Name === entityTypeName[entityTypeName.length - 1]);
 
     // Fields
-    for (iProp = 0; iProp < entityType.Property.length; iProp++) {
+    for (let iProp = 0; iProp < entityType.Property.length; iProp++) {
 
         const property = entityType.Property[iProp];
 

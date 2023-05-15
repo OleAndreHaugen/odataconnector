@@ -24,7 +24,7 @@ metadata.ownColumns.forEach(function (column, i) {
 
 });
 
-for (i = 0; i < connector.config.fields.length; i++) {
+for (let i = 0; i < connector.config.fields.length; i++) {
 
     const field = connector.config.fields[i];
 
