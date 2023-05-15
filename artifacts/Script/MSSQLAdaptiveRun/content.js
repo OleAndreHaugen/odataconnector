@@ -92,8 +92,6 @@ async function processList() {
 
         if (where) where = "where " + where;
 
-        console.log(where)
-
         // Selected Fields
         sep = "";
 
@@ -429,14 +427,5 @@ function formatJoinField(fieldName, inFieldList) {
 async function getFields() {
     connector.config.fields.forEach(async function (field) {
         if (field.sel) selectedFields.push(field);
-
-        // if (field.joinTable && field.joinFields) {
-        //     console.log(field);
-        //     field.joinFields.forEach(async function (joinField) {
-        //         if (joinField.sel) {
-        //             selectedFields.push(joinField);
-        //         }
-        //     });
-        // }
     });
 }
