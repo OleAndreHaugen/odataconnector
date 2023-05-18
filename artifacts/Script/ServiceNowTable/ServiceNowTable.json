@@ -20,7 +20,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "ServiceNowTable",
-	"ver": "23.5.15.923",
+	"ver": "23.5.17.846",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

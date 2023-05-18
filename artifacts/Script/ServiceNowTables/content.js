@@ -18,6 +18,11 @@ try {
         return complete();
     }
 
+    if (res.message) {
+        result.data = { error: res.message };
+        return complete();
+    }
+    
     for (let i = 0; i < res.data.result.length; i++) {
         const table = res.data.result[i];
         tables.push(table);

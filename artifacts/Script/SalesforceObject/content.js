@@ -8,7 +8,6 @@ if (!SystemId) {
 }
 
 try {
-
     const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json");
 
     if (res.error) {
@@ -16,9 +15,13 @@ try {
         return complete();
     }
 
+    if (res.message) {
+        result.data = { error: res.message };
+        return complete();
+    }
+
     result.data = res.data;
     complete();
-
 } catch (error) {
     log.error("Error in request: ", error);
     return fail();

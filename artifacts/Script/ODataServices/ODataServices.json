@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "ODataServices",
-	"ver": "23.5.15.922",
+	"ver": "23.5.17.837",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

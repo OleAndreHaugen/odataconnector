@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "ServiceNowItems",
-	"ver": "23.3.3.1655",
+	"ver": "23.5.17.847",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

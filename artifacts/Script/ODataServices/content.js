@@ -10,7 +10,6 @@ if (!SystemId) {
 }
 
 try {
-
     const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "json");
 
     if (res.error) {
@@ -18,21 +17,23 @@ try {
         return complete();
     }
 
-    for (let i = 0; i < res.data.d.results.length; i++) {
+    if (res.message) {
+        result.data = { error: res.message };
+        return complete();
+    }
 
+    for (let i = 0; i < res.data.d.results.length; i++) {
         const service = res.data.d.results[i];
 
         services.push({
             title: service.Title,
             description: service.Description,
             author: service.Author,
-        })
-
+        });
     }
 
     result.data = services;
     complete();
-
 } catch (error) {
     log.error("Error in request: ", error);
     return fail();

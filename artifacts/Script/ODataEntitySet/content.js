@@ -30,8 +30,13 @@ try {
 
     const res = await globals.Utils.RequestHandler(SystemUrl, SystemId, "xml");
 
+    if (res.error) {
+        result.data = res;
+        return complete();
+    }
+
     if (res.message) {
-        result.data = { error: res.message + ` (${Service})` };
+        result.data = { error: res.message };
         return complete();
     }
 
