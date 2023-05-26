@@ -57,7 +57,7 @@ for (let i = 0; i < connector.config.fields.length; i++) {
 
         fieldCatalog.push({
             name: field.name,
-            label: field.description,
+            label: field.label || field.description,
             type: type,
             usage: usage,
             items: items,
@@ -79,5 +79,5 @@ for (let i = 0; i < connector.config.fields.length; i++) {
     }
 }
 
-result.data = fieldCatalog.sort(globals.Utils.SortBy("name"));
+result.data = fieldCatalog;
 complete();

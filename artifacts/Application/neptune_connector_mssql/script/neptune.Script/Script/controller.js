@@ -141,12 +141,6 @@ const controller = {
     },
 
     updateFields: async function () {
-        let selected = [];
-
-        if (modeloPageDetail.oData && modeloPageDetail.oData.config && modeloPageDetail.oData.config.fields) {
-            selected = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
-        }
-
         apiGetFields({
             parameters: {
                 dbid: modeloPageDetail.oData.systemid,
@@ -158,18 +152,29 @@ const controller = {
                 sap.m.MessageToast.show(res.error);
                 return;
             }
+
+            // Updated Fields
             for (let i = 0; i < res.length; i++) {
-                const field = res[i];
-                const fieldSelected = ModelData.FindFirst(selected, "name", field.name);
-                if (fieldSelected) {
-                    field.sel = true;
-                    field.joinTable = fieldSelected.joinTable;
-                    field.joinField = fieldSelected.joinField;
-                    field.joinFields = fieldSelected.joinFields;
+                const fieldDB = res[i];
+                const fieldExist = ModelData.FindFirst(modeloPageDetail.oData.config.fields, "name", fieldDB.name);
+
+                if (fieldExist) {
+                    fieldExist.name = fieldDB.name;
+                    fieldExist.description = fieldDB.description;
+                    if (fieldDB.is_identity) fieldExist.is_identity = fieldDB.is_identity;
+                } else {
+                    ModelData.Add(modeloPageDetail.oData.config.fields, fieldDB);
                 }
             }
 
-            modeloPageDetail.oData.config.fields = res;
+            // Deleted Fields
+            for (let i = 0; i < modeloPageDetail.oData.config.fields.length; i++) {
+                const fieldExist = modeloPageDetail.oData.config.fields[i];
+                const fieldDB = ModelData.FindFirst(res, "name", fieldExist.name);
+                if (!fieldDB) fieldExist.deleteme = true;
+            }
+
+            ModelData.Delete(modeloPageDetail.oData.config.fields, "deleteme", true);
             modeloPageDetail.refresh(true);
         });
     },

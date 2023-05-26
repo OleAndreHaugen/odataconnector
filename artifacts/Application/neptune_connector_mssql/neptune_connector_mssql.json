@@ -2768,6 +2768,55 @@
 											],
 											"data": [
 												{
+													"fieldNo": "80a44658-c94c-4cdd-a0b3-148e5a0cea30",
+													"fieldName": "sortFields",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.core.dnd.DragDropInfo",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "dropPosition",
+															"grouping": "Properties",
+															"value": "Between",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "targetAggregation",
+															"grouping": "Properties",
+															"value": "rows",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "drop",
+															"grouping": "Events",
+															"value": "Anonymous Function",
+															"script": "file://event/sap.ui.core.dnd.DragDropInfo/sortFields/drop.js",
+															"language": "javascript",
+															"translation": []
+														},
+														{
+															"attribute": "enabled",
+															"grouping": "Properties",
+															"value": "{appControl>/enableEdit}",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "sourceAggregation",
+															"grouping": "Properties",
+															"value": "rows",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": []
+												},
+												{
 													"fieldNo": "b5a28c7e-8af6-492f-c55c-205cd1c3b955",
 													"fieldName": "toolFields",
 													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
@@ -2965,6 +3014,61 @@
 													]
 												},
 												{
+													"fieldNo": "b9ddc358-441c-48d2-e3cf-73f6bc65449b",
+													"fieldName": "coltabFieldsDnD",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.table.Column",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "50px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "hAlign",
+															"grouping": "Properties",
+															"value": "Center",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "35b72641-3c25-4aca-a392-15c3341d705b",
+															"fieldName": "IconFieldsDnD",
+															"fieldParent": "b9ddc358-441c-48d2-e3cf-73f6bc65449b",
+															"fieldType": "sap.ui.core.Icon",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "styleClass",
+																	"grouping": "Properties",
+																	"value": "nepIconDnD",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "src",
+																	"grouping": "Properties",
+																	"value": "sap-icon://menu2",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": []
+														}
+													]
+												},
+												{
 													"fieldNo": "7b4dd425-6f8d-4ba9-942a-d47d09b54d26",
 													"fieldName": "coltabFieldsSel",
 													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
@@ -2985,13 +3089,6 @@
 															"attribute": "label",
 															"grouping": "Properties",
 															"value": "Use",
-															"script": "",
-															"translation": []
-														},
-														{
-															"attribute": "sortProperty",
-															"grouping": "Properties",
-															"value": "sel",
 															"script": "",
 															"translation": []
 														}
@@ -3072,13 +3169,6 @@
 															"translation": []
 														},
 														{
-															"attribute": "sortProperty",
-															"grouping": "Properties",
-															"value": "name",
-															"script": "",
-															"translation": []
-														},
-														{
 															"attribute": "sortOrder",
 															"grouping": "Properties",
 															"value": "Ascending",
@@ -3132,13 +3222,6 @@
 															"value": "Description",
 															"script": "",
 															"translation": []
-														},
-														{
-															"attribute": "sortProperty",
-															"grouping": "Properties",
-															"value": "description",
-															"script": "",
-															"translation": []
 														}
 													],
 													"data": [
@@ -3165,6 +3248,96 @@
 													]
 												},
 												{
+													"fieldNo": "da81cc0a-a5c7-4f31-e23f-600caa1482b0",
+													"fieldName": "coltabFieldsLabel",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.table.Column",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "label",
+															"grouping": "Properties",
+															"value": "Label",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "b0fd23cc-fb4d-489a-8a1e-648e4f1fe47a",
+															"fieldName": "boxLabel",
+															"fieldParent": "da81cc0a-a5c7-4f31-e23f-600caa1482b0",
+															"fieldType": "sap.m.HBox",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "width",
+																	"grouping": "Properties",
+																	"value": "100%",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "enableCompactMode",
+																	"grouping": "Properties",
+																	"value": "true",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": [
+																{
+																	"fieldNo": "56813cf3-6e74-4425-8b75-7e34de456b1b",
+																	"fieldName": "txttabFieldslabel",
+																	"fieldParent": "b0fd23cc-fb4d-489a-8a1e-648e4f1fe47a",
+																	"fieldType": "sap.m.Input",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "width",
+																			"grouping": "Properties",
+																			"value": "100%",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "value",
+																			"grouping": "Properties",
+																			"value": "{label}",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "enableCompactMode",
+																			"grouping": "Properties",
+																			"value": "true",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "editable",
+																			"grouping": "Properties",
+																			"value": "{appControl>/enableEdit}",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																}
+															]
+														}
+													]
+												},
+												{
 													"fieldNo": "4b1c0eec-3ee3-4532-db23-c6aaee7d45c7",
 													"fieldName": "coltabFieldstype",
 													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
@@ -3185,13 +3358,6 @@
 															"attribute": "label",
 															"grouping": "Properties",
 															"value": "Type",
-															"script": "",
-															"translation": []
-														},
-														{
-															"attribute": "sortProperty",
-															"grouping": "Properties",
-															"value": "type",
 															"script": "",
 															"translation": []
 														}
@@ -3227,6 +3393,89 @@
 													]
 												},
 												{
+													"fieldNo": "9e58d788-2d13-4f88-e09d-5703dc5b2144",
+													"fieldName": "coltabFieldsKey",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.table.Column",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "80px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "label",
+															"grouping": "Properties",
+															"value": "Key",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "hAlign",
+															"grouping": "Properties",
+															"value": "Center",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "e21b5da7-9ca9-4653-a274-645c327d04fa",
+															"fieldName": "boxKey",
+															"fieldParent": "9e58d788-2d13-4f88-e09d-5703dc5b2144",
+															"fieldType": "sap.m.HBox",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "enableCompactMode",
+																	"grouping": "Properties",
+																	"value": "true",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": [
+																{
+																	"fieldNo": "a5fcd3ff-3e33-4fda-d865-d12a35d60cd7",
+																	"fieldName": "txttabFieldkey",
+																	"fieldParent": "e21b5da7-9ca9-4653-a274-645c327d04fa",
+																	"fieldType": "sap.m.Switch",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "state",
+																			"grouping": "Properties",
+																			"value": "{is_identity}",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "enabled",
+																			"grouping": "Properties",
+																			"value": "{appControl>/enableEdit}",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																}
+															]
+														}
+													]
+												},
+												{
 													"fieldNo": "ac79ecee-00af-4145-b3be-ba9e29a665b2",
 													"fieldName": "coltabFieldsJoinTable",
 													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
@@ -3240,13 +3489,6 @@
 															"attribute": "label",
 															"grouping": "Properties",
 															"value": "Join Table",
-															"script": "",
-															"translation": []
-														},
-														{
-															"attribute": "sortProperty",
-															"grouping": "Properties",
-															"value": "joinTable",
 															"script": "",
 															"translation": []
 														}
@@ -5473,13 +5715,13 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.5.15.1010",
+	"ver": "23.5.26.822",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",
 	"enableFileStorage": false,
 	"enableManifest": false,
-	"enableStylesheet": true,
+	"enableStylesheet": false,
 	"enableObfuscate": false,
 	"onlyRunLaunchpad": false,
 	"disabled": false,
@@ -5497,8 +5739,8 @@
 	"ui5_language": null,
 	"ui5_url": "",
 	"cus_theme": "",
-	"css": "file:///css.css",
-	"compiledCss": "file://script/undefined/undefined.script",
+	"css": "",
+	"compiledCss": "",
 	"header": "<link rel=\"stylesheet\" href=\"/public/css/neptune.css\" type=\"text/css\" charset=\"utf-8\">",
 	"manifest": "",
 	"globalScript": null,

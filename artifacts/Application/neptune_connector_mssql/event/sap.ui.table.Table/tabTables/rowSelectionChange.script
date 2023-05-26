@@ -5,9 +5,9 @@ if (context) {
 
     if (controller.tableOpenBy === "Setup") {
         modeloPageDetail.oData.config.table = data.name;
-        modeloPageDetail.oData.config.creatable = false;
-        modeloPageDetail.oData.config.updatable = false;
-        modeloPageDetail.oData.config.deletable = false;
+        modeloPageDetail.oData.config.creatable = true;
+        modeloPageDetail.oData.config.updatable = true;
+        modeloPageDetail.oData.config.deletable = true;
 
         if (data.IS_VIEW) {
             modeloPageDetail.oData.config.isview = true;
