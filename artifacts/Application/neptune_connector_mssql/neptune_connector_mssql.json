@@ -5715,7 +5715,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.5.26.822",
+	"ver": "23.5.31.1021",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",

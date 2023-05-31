@@ -23,7 +23,9 @@ const controller = {
             name: "",
             description: "",
             metadata: {},
-            config: {},
+            config: {
+                fields: [],
+            },
             type: controller.type,
         });
 
@@ -99,6 +101,8 @@ const controller = {
             toolFieldsFilter.fireLiveChange();
 
             oApp.to(oPageDetail);
+
+            tabDetailFields.setCount(modeloPageDetail.oData.config.fields.length);
 
             cockpitUtils.toggleEdit(editable);
             cockpitUtils.dataSaved = modeloPageDetail.getJSON();
