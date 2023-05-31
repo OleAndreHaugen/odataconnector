@@ -29,6 +29,8 @@ const controller = {
             type: controller.type,
         });
 
+        tabDetailFields.setCount(0);
+
         tabDetail.setSelectedItem(tabDetailInfo);
         cockpitUtils.toggleCreate();
         cockpitUtils.dataSaved = modeloPageDetail.getJSON();
@@ -102,7 +104,11 @@ const controller = {
 
             oApp.to(oPageDetail);
 
-            tabDetailFields.setCount(modeloPageDetail.oData.config.fields.length);
+            if (modeloPageDetail.oData.config.fields && modeloPageDetail.oData.config.fields.length) {
+                tabDetailFields.setCount(modeloPageDetail.oData.config.fields.length);
+            } else {
+                tabDetailFields.setCount(0);
+            }
 
             cockpitUtils.toggleEdit(editable);
             cockpitUtils.dataSaved = modeloPageDetail.getJSON();
