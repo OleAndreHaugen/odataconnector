@@ -18,7 +18,7 @@ try {
     from sys.columns as col    
     left join sys.tables as tab on tab.object_id = col.object_id
     left join sys.extended_properties as prop on prop.major_id = col.object_id and prop.minor_id = col.column_id and prop.name = 'MS_Description'
-    left join sys.types as typ on typ.system_type_id = col.system_type_id
+    left join sys.types as typ on typ.system_type_id = col.system_type_id and typ.user_type_id = col.user_type_id
     where tab.name = '${req.query.table}'
     order by name`;
 
