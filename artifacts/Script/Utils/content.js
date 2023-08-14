@@ -161,32 +161,31 @@ async function MSSQLExec(dbid, query) {
         if (!dburi)
             return resolve({ error: "Database connection string not registered in settings" });
 
-        // Connection String
-        const options = {
-            user: dburi.username,
-            password: dburi.password,
-            database: dburi.database,
-            server: dburi.host,
-            port: dburi.port,
-            options: {
-                trustServerCertificate: true,
-            },
-        };
-
-        // Connect to DB
-        await SQL.connect(options);
-
         try {
+            // Connection String
+            const options = {
+                user: dburi.username,
+                password: dburi.password,
+                database: dburi.database,
+                server: dburi.host,
+                port: dburi.port,
+                options: {
+                    trustServerCertificate: true,
+                },
+            };
+
+            // Connect to DB
+            await SQL.connect(options);
+
             const result = await SQL.query(query);
             resolve(result);
         } catch (e) {
             if (e?.originalError?.info?.message) {
                 resolve({ error: e.originalError.info.message, mssqlError: e });
-            } else {                
+            } else {
                 resolve({ error: "MS SQL Server is not connected", mssqlError: e });
             }
         }
-
     });
 }
 
