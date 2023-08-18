@@ -57,6 +57,12 @@
 				"usage": "BOTH"
 			},
 			{
+				"name": "connectionstring",
+				"label": "Connection String",
+				"type": "mediumtext",
+				"usage": "BOTH"
+			},
+			{
 				"name": "createdAt",
 				"label": "Created At",
 				"type": "timestamp",
@@ -143,13 +149,13 @@
 				"required": true
 			},
 			{
-				"inputFormatter": "Input",
+				"inputFormatter": "",
 				"editable": true,
 				"visible": true,
 				"name": "host",
 				"text": "Host",
 				"fieldPos": 3,
-				"required": true
+				"required": false
 			},
 			{
 				"inputFormatter": "",
@@ -158,20 +164,20 @@
 				"name": "port",
 				"text": "Port",
 				"fieldPos": 4,
-				"required": true,
+				"required": false,
 				"type": "Input",
 				"stepInputMax": "99999",
 				"stepInputMin": "1",
 				"inputType": "Number"
 			},
 			{
-				"inputFormatter": "Input",
+				"inputFormatter": "",
 				"editable": true,
 				"visible": true,
 				"name": "username",
 				"text": "Username",
 				"fieldPos": 5,
-				"required": true
+				"required": false
 			},
 			{
 				"inputFormatter": "",
@@ -180,7 +186,7 @@
 				"name": "password",
 				"text": "Password",
 				"fieldPos": 6,
-				"required": true,
+				"required": false,
 				"inputType": "Password"
 			},
 			{
@@ -192,12 +198,24 @@
 				"fieldPos": 7
 			},
 			{
+				"inputFormatter": "",
+				"editable": true,
+				"visible": true,
+				"name": "connectionstring",
+				"text": "Connection String",
+				"fieldPos": 8,
+				"columnLabel": "Custom",
+				"type": "TextArea",
+				"textAreaRows": "3",
+				"placeholder": "If set, this will be the preferred connection options"
+			},
+			{
 				"inputFormatter": "Input",
 				"editable": false,
 				"visible": true,
 				"name": "updatedAt",
 				"text": "Updated At",
-				"fieldPos": 8,
+				"fieldPos": 9,
 				"type": "DateTimePicker",
 				"columnLabel": "Dates"
 			},
@@ -207,7 +225,7 @@
 				"visible": true,
 				"name": "updatedBy",
 				"text": "Updated By",
-				"fieldPos": 9
+				"fieldPos": 10
 			}
 		],
 		"fieldsRun": [],
@@ -230,7 +248,7 @@
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.5.14.117",
+	"ver": "23.8.18.108",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_edit",

@@ -59,7 +59,8 @@
 						}
 					],
 					"dialogHeight": "840px"
-				}
+				},
+				"hideHeader": false
 			},
 			"form": {
 				"enableCompact": false,
@@ -89,7 +90,8 @@
 				"action4Text": "",
 				"action4Type": "Transparent",
 				"action5Text": "",
-				"action5Type": "Transparent"
+				"action5Type": "Transparent",
+				"enableAutoPopin": false
 			}
 		},
 		"fieldCatalog": [
@@ -100,8 +102,26 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "role",
-				"label": "Role",
+				"name": "connectionstring",
+				"label": "Connection String",
+				"type": "mediumtext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "createdAt",
+				"label": "Created At",
+				"type": "timestamp",
+				"usage": "BOTH"
+			},
+			{
+				"name": "createdBy",
+				"label": "Created By",
+				"type": "text",
+				"usage": "BOTH"
+			},
+			{
+				"name": "database",
+				"label": "Database Name",
 				"type": "smalltext",
 				"usage": "BOTH"
 			},
@@ -112,20 +132,20 @@
 				"usage": "BOTH"
 			},
 			{
+				"name": "password",
+				"label": "Password",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
 				"name": "port",
 				"label": "Port",
 				"type": "integer",
 				"usage": "BOTH"
 			},
 			{
-				"name": "username",
-				"label": "Username",
-				"type": "smalltext",
-				"usage": "BOTH"
-			},
-			{
-				"name": "password",
-				"label": "Password",
+				"name": "role",
+				"label": "Role",
 				"type": "smalltext",
 				"usage": "BOTH"
 			},
@@ -136,21 +156,15 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "createdAt",
-				"label": "Created At",
-				"type": "timestamp",
-				"usage": "BOTH"
-			},
-			{
 				"name": "updatedBy",
 				"label": "Updated By",
 				"type": "text",
 				"usage": "BOTH"
 			},
 			{
-				"name": "createdBy",
-				"label": "Created By",
-				"type": "text",
+				"name": "username",
+				"label": "Username",
+				"type": "smalltext",
 				"usage": "BOTH"
 			}
 		],
@@ -221,13 +235,23 @@
 			},
 			{
 				"buttonType": "Transparent",
+				"popinDisplay": "Inline",
+				"enableFilter": true,
+				"enableSort": true,
+				"visible": true,
+				"name": "connectionstring",
+				"text": "Connection String",
+				"fieldPos": 6
+			},
+			{
+				"buttonType": "Transparent",
 				"popinDisplay": "Block",
 				"enableFilter": false,
 				"enableSort": true,
 				"visible": true,
 				"name": "updatedAt",
 				"text": "Updated At",
-				"fieldPos": 6,
+				"fieldPos": 7,
 				"formatter": "date00"
 			},
 			{
@@ -238,7 +262,7 @@
 				"visible": true,
 				"name": "updatedBy",
 				"text": "Updated By",
-				"fieldPos": 7
+				"fieldPos": 8
 			}
 		],
 		"defaultVariant": {
@@ -260,7 +284,7 @@
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.5.14.119",
+	"ver": "23.8.18.102",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_list",

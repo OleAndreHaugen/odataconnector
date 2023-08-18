@@ -56,13 +56,21 @@
 			"isUnique": false,
 			"description": "Database Name",
 			"isNullable": true
+		},
+		{
+			"id": "4dcf1cda-6f46-49df-fc36-1bb7522053c2",
+			"fieldName": "connectionstring",
+			"fieldType": "mediumtext",
+			"isUnique": false,
+			"description": "Connection String",
+			"isNullable": true
 		}
 	],
 	"indices": [],
 	"foreignKeys": [],
 	"name": "neptune_af_connector_dburi",
 	"description": "Adaptive Framework Connector: DB Connection URI",
-	"ver": "23.5.14.117",
+	"ver": "23.8.18.959",
 	"enableAudit": false,
 	"includeDataInPackage": false,
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",

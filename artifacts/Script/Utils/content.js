@@ -141,8 +141,9 @@ async function MSSQLExec(dbid, query) {
         const SQL = modules.mssql;
 
         // Check if SQL is installed
-        if (!SQL)
+        if (!SQL) {
             return resolve({ error: "Missing NPM module MSSQL. Please install from NPM Modules" });
+        }
 
         // Get database connection - Role
         let dburi = await entities.neptune_af_connector_dburi.findOne({
@@ -151,28 +152,35 @@ async function MSSQLExec(dbid, query) {
         });
 
         // Get database connection - Default
-        if (!dburi)
+        if (!dburi) {
             dburi = await entities.neptune_af_connector_dburi.findOne({
                 dbid: dbid,
                 role: "DEFAULT",
             });
+        }
 
         // Any DB ?
         if (!dburi)
             return resolve({ error: "Database connection string not registered in settings" });
 
         try {
+            let options;
+
             // Connection String
-            const options = {
-                user: dburi.username,
-                password: dburi.password,
-                database: dburi.database,
-                server: dburi.host,
-                port: dburi.port,
-                options: {
-                    trustServerCertificate: true,
-                },
-            };
+            if (dburi.connectionstring) {
+                options = dburi.connectionstring;
+            } else {
+                options = {
+                    user: dburi.username,
+                    password: dburi.password,
+                    database: dburi.database,
+                    server: dburi.host,
+                    port: dburi.port,
+                    options: {
+                        trustServerCertificate: true,
+                    },
+                };
+            }
 
             // Connect to DB
             await SQL.connect(options);
@@ -182,6 +190,20 @@ async function MSSQLExec(dbid, query) {
         } catch (e) {
             if (e?.originalError?.info?.message) {
                 resolve({ error: e.originalError.info.message, mssqlError: e });
+            } else if (e?.code) {
+                let errorMessage = "";
+
+                switch (e.code) {
+                    case "ELOGIN":
+                        errorMessage = "Login failed. Please check username/password and database";
+                        break;
+
+                    default:
+                        errorMessage = e.code;
+                        break;
+                }
+
+                resolve({ error: errorMessage, mssqlError: e });
             } else {
                 resolve({ error: "MS SQL Server is not connected", mssqlError: e });
             }
