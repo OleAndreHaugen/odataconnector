@@ -19,7 +19,7 @@
 	],
 	"apis": [],
 	"name": "MSSQLAdaptiveSetup",
-	"ver": "23.5.26.912",
+	"ver": "23.8.18.1111",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

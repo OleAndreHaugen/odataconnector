@@ -23,6 +23,7 @@ for (let i = 0; i < connector.config.fields.length; i++) {
                 break;
 
             case "int":
+            case "decimal":
                 type = "integer";
                 break;
 

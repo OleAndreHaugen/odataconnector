@@ -1,3 +1,5 @@
+let connectionPools = {};
+
 async function RequestHandler(path, systemid, format, opts) {
     // Get system information
     const manager = modules.typeorm.getConnection().manager;
@@ -183,9 +185,13 @@ async function MSSQLExec(dbid, query) {
             }
 
             // Connect to DB
-            await SQL.connect(options);
+            if (!connectionPools[dburi.database]) {
+                const pool = new SQL.ConnectionPool(options);
+                connectionPools[dburi.database] = await pool.connect();
+            }
 
-            const result = await SQL.query(query);
+            const result = await connectionPools[dburi.database].query(query);
+
             resolve(result);
         } catch (e) {
             if (e?.originalError?.info?.message) {

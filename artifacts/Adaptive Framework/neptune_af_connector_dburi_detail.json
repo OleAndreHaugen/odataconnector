@@ -152,10 +152,21 @@
 				"inputFormatter": "",
 				"editable": true,
 				"visible": true,
+				"name": "database",
+				"text": "Database",
+				"fieldPos": 3,
+				"required": true,
+				"description": "Set the database name for this connection"
+			},
+			{
+				"inputFormatter": "",
+				"editable": true,
+				"visible": true,
 				"name": "host",
 				"text": "Host",
-				"fieldPos": 3,
-				"required": false
+				"fieldPos": 4,
+				"required": false,
+				"columnLabel": "Connect: Schema"
 			},
 			{
 				"inputFormatter": "",
@@ -163,7 +174,7 @@
 				"visible": true,
 				"name": "port",
 				"text": "Port",
-				"fieldPos": 4,
+				"fieldPos": 5,
 				"required": false,
 				"type": "Input",
 				"stepInputMax": "99999",
@@ -176,7 +187,7 @@
 				"visible": true,
 				"name": "username",
 				"text": "Username",
-				"fieldPos": 5,
+				"fieldPos": 6,
 				"required": false
 			},
 			{
@@ -185,17 +196,9 @@
 				"visible": true,
 				"name": "password",
 				"text": "Password",
-				"fieldPos": 6,
+				"fieldPos": 7,
 				"required": false,
 				"inputType": "Password"
-			},
-			{
-				"inputFormatter": "",
-				"editable": true,
-				"visible": true,
-				"name": "database",
-				"text": "Database",
-				"fieldPos": 7
 			},
 			{
 				"inputFormatter": "",
@@ -204,10 +207,11 @@
 				"name": "connectionstring",
 				"text": "Connection String",
 				"fieldPos": 8,
-				"columnLabel": "Custom",
+				"columnLabel": "Connect: Connection String",
 				"type": "TextArea",
 				"textAreaRows": "3",
-				"placeholder": "If set, this will be the preferred connection options"
+				"placeholder": "",
+				"description": "Connection string will be used if set"
 			},
 			{
 				"inputFormatter": "Input",
@@ -248,7 +252,7 @@
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.8.18.108",
+	"ver": "23.8.19.927",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_edit",

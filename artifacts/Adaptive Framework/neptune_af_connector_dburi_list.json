@@ -40,7 +40,7 @@
 				"title": "Connection String",
 				"_navigationItemPress": {
 					"destinationType": "F",
-					"openAs": "D",
+					"openAs": "P",
 					"butType": "Accept",
 					"destinationTargetF": "8301a1c4-64f7-4557-9078-f24369158c5d",
 					"keyField": [],
@@ -48,7 +48,7 @@
 				},
 				"_navigationCreate": {
 					"destinationType": "F",
-					"openAs": "D",
+					"openAs": "P",
 					"butType": "Accept",
 					"destinationTargetF": "8301a1c4-64f7-4557-9078-f24369158c5d",
 					"keyField": [
@@ -102,26 +102,8 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "connectionstring",
-				"label": "Connection String",
-				"type": "mediumtext",
-				"usage": "BOTH"
-			},
-			{
-				"name": "createdAt",
-				"label": "Created At",
-				"type": "timestamp",
-				"usage": "BOTH"
-			},
-			{
-				"name": "createdBy",
-				"label": "Created By",
-				"type": "text",
-				"usage": "BOTH"
-			},
-			{
-				"name": "database",
-				"label": "Database Name",
+				"name": "role",
+				"label": "Role",
 				"type": "smalltext",
 				"usage": "BOTH"
 			},
@@ -132,26 +114,44 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "password",
-				"label": "Password",
-				"type": "smalltext",
-				"usage": "BOTH"
-			},
-			{
 				"name": "port",
 				"label": "Port",
 				"type": "integer",
 				"usage": "BOTH"
 			},
 			{
-				"name": "role",
-				"label": "Role",
+				"name": "username",
+				"label": "Username",
 				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "password",
+				"label": "Password",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "database",
+				"label": "Database Name",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "connectionstring",
+				"label": "Connection String",
+				"type": "mediumtext",
 				"usage": "BOTH"
 			},
 			{
 				"name": "updatedAt",
 				"label": "Updated At",
+				"type": "timestamp",
+				"usage": "BOTH"
+			},
+			{
+				"name": "createdAt",
+				"label": "Created At",
 				"type": "timestamp",
 				"usage": "BOTH"
 			},
@@ -162,9 +162,9 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "username",
-				"label": "Username",
-				"type": "smalltext",
+				"name": "createdBy",
+				"label": "Created By",
+				"type": "text",
 				"usage": "BOTH"
 			}
 		],
@@ -215,33 +215,13 @@
 			},
 			{
 				"buttonType": "Transparent",
-				"popinDisplay": "Block",
-				"enableFilter": false,
-				"enableSort": true,
-				"visible": true,
-				"name": "host",
-				"text": "Host",
-				"fieldPos": 4
-			},
-			{
-				"buttonType": "Transparent",
-				"popinDisplay": "Block",
-				"enableFilter": false,
-				"enableSort": true,
-				"visible": true,
-				"name": "port",
-				"text": "Port",
-				"fieldPos": 5
-			},
-			{
-				"buttonType": "Transparent",
 				"popinDisplay": "Inline",
 				"enableFilter": true,
 				"enableSort": true,
 				"visible": true,
-				"name": "connectionstring",
-				"text": "Connection String",
-				"fieldPos": 6
+				"name": "database",
+				"text": "Database Name",
+				"fieldPos": 4
 			},
 			{
 				"buttonType": "Transparent",
@@ -251,7 +231,7 @@
 				"visible": true,
 				"name": "updatedAt",
 				"text": "Updated At",
-				"fieldPos": 7,
+				"fieldPos": 5,
 				"formatter": "date00"
 			},
 			{
@@ -262,7 +242,7 @@
 				"visible": true,
 				"name": "updatedBy",
 				"text": "Updated By",
-				"fieldPos": 8
+				"fieldPos": 6
 			}
 		],
 		"defaultVariant": {
@@ -284,7 +264,7 @@
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.8.18.102",
+	"ver": "23.8.19.928",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_list",
