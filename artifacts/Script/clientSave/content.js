@@ -44,7 +44,7 @@ switch (req.body.type) {
 }
 
 // Typeorm connection
-const manager = modules.typeorm.getConnection().manager;
+const manager = p9.manager ? p9.manager : modules.typeorm.getConnection().manager;
 
 // Save Custom Connector
 const customConnector = await entities.neptune_af_connector.save(req.body);

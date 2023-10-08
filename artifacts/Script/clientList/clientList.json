@@ -25,7 +25,7 @@
 	],
 	"apis": [],
 	"name": "clientList",
-	"ver": "23.3.23.62",
+	"ver": "23.10.8.855",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

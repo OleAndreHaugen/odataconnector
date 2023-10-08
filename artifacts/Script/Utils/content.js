@@ -2,7 +2,7 @@ let connectionPools = {};
 
 async function RequestHandler(path, systemid, format, opts) {
     // Get system information
-    const manager = modules.typeorm.getConnection().manager;
+    const manager = p9.manager ? p9.manager : modules.typeorm.getConnection().manager;
     const system = await manager.findOne("systems", {
         select: ["url", "id"],
         where: { id: systemid },

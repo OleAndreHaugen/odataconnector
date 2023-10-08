@@ -14,37 +14,55 @@
 			"id": "edb95cc5-7ce8-461b-bd02-ba55ff2da83e",
 			"application": "neptune_connector_mssql",
 			"title": "MS SQL Server",
-			"description": "MS SQL Server"
+			"description": "MS SQL Server",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		},
 		{
 			"id": "ac8e4bdd-91e5-4e1f-b614-8aade405b2f8",
 			"application": "neptune_connector_odata",
 			"title": "OData Connector",
-			"description": "OData Connector"
+			"description": "OData Connector",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		},
 		{
 			"id": "9208d78b-029a-4f51-9d34-b8d1832bde86",
 			"application": "neptune_connector_servicenow",
 			"title": "ServiceNow Connector",
-			"description": "ServiceNow Connector"
+			"description": "ServiceNow Connector",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		},
 		{
 			"id": "8c319344-c115-40d9-b298-74ddf727693b",
 			"application": "neptune_connector_salesforce",
 			"title": "Saleforce Connector",
-			"description": "Saleforce Connector"
+			"description": "Saleforce Connector",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		},
 		{
 			"id": "5cbaca0f-d849-425b-8780-b0642303ddfa",
 			"application": "neptune_connector_planet9",
 			"title": "Open Edition Connector",
-			"description": "Open Edition Connector"
+			"description": "Open Edition Connector",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		},
 		{
 			"id": "14931031-0f92-4cfa-837c-1f9837f37490",
 			"application": "neptune_connector_hanadb",
 			"title": "HANA DB Connector",
-			"description": "HANA DB Connector"
+			"description": "HANA DB Connector",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		}
 	],
 	"api": [

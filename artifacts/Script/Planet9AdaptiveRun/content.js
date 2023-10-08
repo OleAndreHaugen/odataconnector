@@ -3,18 +3,16 @@ const { In, Like } = operators;
 // Get Connector
 const connector = await entities.neptune_af_connector.findOne({
     select: ["config"],
-    where: { id: req.body._connector.settings.startParam }
+    where: { id: req.body._connector.settings.startParam },
 });
 
 if (!connector) return complete();
 
-const manager = modules.typeorm.getConnection().manager;
+const manager = p9.manager ? p9.manager : modules.typeorm.getConnection().manager;
 
 try {
-
     // Process Method
     switch (req.query.method) {
-
         case "Delete":
             processDelete();
             break;
@@ -31,48 +29,41 @@ try {
             processList();
             break;
     }
-
 } catch (e) {
-
     result.data = {
         status: "ERROR",
-        message: e
-    }
+        message: e,
+    };
 
     complete();
-
 }
 
-
 async function processDelete() {
-
     result.data = {
         status: "ERROR",
         message: {
             type: "error",
-            text: "Delete not supported. Please use Cockpit"
-        }
-    }
+            text: "Delete not supported. Please use Cockpit",
+        },
+    };
 
     complete();
 }
 
 async function processGet() {
-
     let options = {
         select: ["id"],
-        where: {}
-    }
+        where: {},
+    };
 
-
-    //  Fields Selection 
+    //  Fields Selection
     if (req.body._settings.fieldsSel) {
         req.body._settings.fieldsSel.forEach(function (field) {
             options.select.push(field.name);
         });
     }
 
-    // Where 
+    // Where
     if (req.body._keyField) {
         req.body._keyField.forEach(function (keyField) {
             options.where[keyField.fieldName] = req.body[keyField.fieldName];
@@ -81,26 +72,23 @@ async function processGet() {
 
     if (req.body["id"]) options.where["id"] = req.body["id"];
 
-    // Query Table 
+    // Query Table
     const data = await manager.find(connector.config.table, options);
 
     result.data = data;
     complete();
-
 }
 
 async function processList() {
-
     let options = {
         select: ["id"],
-        where: {}
-    }
+        where: {},
+    };
 
-    // Where 
+    // Where
     const bodyFields = Object.keys(req.body);
 
     bodyFields.forEach(function (fieldName) {
-
         if (fieldName.substr(0, 1) === "_") return;
 
         const fieldValue = req.body[fieldName];
@@ -110,7 +98,6 @@ async function processList() {
         if (!fieldSel) return;
 
         switch (fieldSel.type) {
-
             case "CheckBox":
             case "Switch":
             case "SingleSelect":
@@ -128,9 +115,7 @@ async function processList() {
             default:
                 options.where[fieldName] = Like("%" + fieldValue + "%");
                 break;
-
         }
-
     });
 
     // Count
@@ -156,54 +141,46 @@ async function processList() {
 
     // options.relations = ['roles'];
 
-    // Query Table 
+    // Query Table
     const data = await manager.find(connector.config.table, options);
 
     result.data = {
         count: dataCount,
         result: data,
-        debug: options
-    }
+        debug: options,
+    };
 
     complete();
-
 }
 
 async function processSave() {
-
     let options = {
-        where: {}
-    }
+        where: {},
+    };
 
     if (req.body["id"]) {
-
         options.where["id"] = req.body["id"];
 
         // Get Existing Record
         let dataRec = await manager.findOne(connector.config.table, options);
 
-        // Merge Data from Form 
+        // Merge Data from Form
         req.body._settings.fieldsSel.forEach(function (field) {
             if (field.editable) dataRec[field.name] = req.body[field.name];
         });
 
-        // Query Table 
+        // Query Table
         const dataSaved = await manager.save(connector.config.table, dataRec);
         result.data = dataSaved;
-
     } else {
-
         result.data = {
             status: "ERROR",
             message: {
                 type: "error",
-                text: "Create not supported. Please use Cockpit"
-            }
-        }
-
+                text: "Create not supported. Please use Cockpit",
+            },
+        };
     }
 
     complete();
-
 }
-
