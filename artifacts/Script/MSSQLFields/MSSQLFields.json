@@ -13,7 +13,7 @@
 	"entitySets": [],
 	"apis": [],
 	"name": "MSSQLFields",
-	"ver": "23.6.13.935",
+	"ver": "23.10.21.1426",
 	"description": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

@@ -9,7 +9,7 @@ if (!req.query.table) {
 }
 
 try {
-    const query = `select col.name,
+    let query = `select col.name,
     col.object_id,
     typ.name as type,
     col.max_length,
@@ -22,7 +22,30 @@ try {
     where tab.name = '${req.query.table}'
     order by name`;
 
-    const res = await globals.Utils.MSSQLExec(req.query.dbid, query);
+    let res = await globals.Utils.MSSQLExec(req.query.dbid, query);
+
+    if (res.error) {
+        result.data = res;
+        return complete();
+    }
+
+    if (!res.recordset.length) {
+        console.log("Inside here");
+        query = `select col.name,
+    col.object_id,
+    typ.name as type,
+    col.max_length,
+    col.is_identity,
+    prop.value as description
+    from sys.columns as col    
+    left join sys.views as tab on tab.object_id = col.object_id
+    left join sys.extended_properties as prop on prop.major_id = col.object_id and prop.minor_id = col.column_id and prop.name = 'MS_Description'
+    left join sys.types as typ on typ.system_type_id = col.system_type_id and typ.user_type_id = col.user_type_id
+    where tab.name = '${req.query.table}'
+    order by name`;
+
+        res = await globals.Utils.MSSQLExec(req.query.dbid, query);
+    }
 
     if (res.error) {
         result.data = res;
