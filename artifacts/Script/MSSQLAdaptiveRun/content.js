@@ -296,8 +296,7 @@ async function processSave() {
                         break;
                 }
 
-                fields += sep + field.name;
-                values += `${sep}'${value}'`;
+                fields += `${sep}${field.name} = '${value}'`;
                 sep = ",";
             }
         });
