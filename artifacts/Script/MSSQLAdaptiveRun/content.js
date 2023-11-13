@@ -235,9 +235,33 @@ async function processSave() {
             const fieldSel = req.body._settings.fieldsSel.find((f) => f.name === fieldName);
             if (!fieldSel) return;
 
+            const fieldMeta = connector.config.fields.find((f) => f.name === fieldName);
+            if (fieldMeta.autoFill) return;
+
             fields += sep + fieldSel.name;
             values += `${sep}'${fieldValue}'`;
             sep = ",";
+        });
+
+        // Autofill
+        connector.config.fields.forEach(function (field) {
+            if (field.autoFill) {
+                let value = "";
+
+                switch (field.autoFill) {
+                    case "at":
+                        value = new Date().toISOString();
+                        break;
+
+                    case "by":
+                        value = req.user.username;
+                        break;
+                }
+
+                fields += sep + field.name;
+                values += `${sep}'${value}'`;
+                sep = ",";
+            }
         });
 
         statement = `INSERT INTO "${connector.config.schema}"."${connector.config.table}" (${fields}) VALUES (${values})`;
@@ -251,9 +275,31 @@ async function processSave() {
 
             const fieldMeta = connector.config.fields.find((f) => f.name === fieldName);
             if (fieldMeta.is_identity) return;
+            if (fieldMeta.autoFill) return;
 
             fields += `${sep}${fieldSel.name} = '${fieldValue}'`;
             sep = ",";
+        });
+
+        // Autofill
+        connector.config.fields.forEach(function (field) {
+            if (field.autoFill) {
+                let value = "";
+
+                switch (field.autoFill) {
+                    case "at":
+                        value = new Date().toISOString();
+                        break;
+
+                    case "by":
+                        value = req.user.username;
+                        break;
+                }
+
+                fields += sep + field.name;
+                values += `${sep}'${value}'`;
+                sep = ",";
+            }
         });
 
         statement = `UPDATE "${connector.config.schema}"."${connector.config.table}" SET ${fields} WHERE ${where}`;

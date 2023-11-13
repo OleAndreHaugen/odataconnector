@@ -3393,6 +3393,177 @@
 													]
 												},
 												{
+													"fieldNo": "78b613af-d2fb-49b1-dc2d-aee5e10436ef",
+													"fieldName": "coltabFieldsCreate",
+													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
+													"fieldType": "sap.ui.table.Column",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "width",
+															"grouping": "Properties",
+															"value": "150px",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "label",
+															"grouping": "Properties",
+															"value": "Autofill at Save",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "6d0d4d04-ad44-4929-8d1a-ac076889db87",
+															"fieldName": "boxAutoFill",
+															"fieldParent": "78b613af-d2fb-49b1-dc2d-aee5e10436ef",
+															"fieldType": "sap.m.HBox",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "width",
+																	"grouping": "Properties",
+																	"value": "100%",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "renderType",
+																	"grouping": "Properties",
+																	"value": "Bare",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "enableCompactMode",
+																	"grouping": "Properties",
+																	"value": "true",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": [
+																{
+																	"fieldNo": "44f2aaeb-9cac-4e4b-d046-d7fcefbb0c77",
+																	"fieldName": "txttabFieldsAutoCreate",
+																	"fieldParent": "6d0d4d04-ad44-4929-8d1a-ac076889db87",
+																	"fieldType": "sap.m.Select",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "width",
+																			"grouping": "Properties",
+																			"value": "100%",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "selectedKey",
+																			"grouping": "Properties",
+																			"value": "{autoFill}",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "enableCompactMode",
+																			"grouping": "Properties",
+																			"value": "true",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "editable",
+																			"grouping": "Properties",
+																			"value": "{appControl>/enableEdit}",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": [
+																		{
+																			"fieldNo": "bee54c15-225c-4ac7-b492-53ecf9214d0e",
+																			"fieldName": "ItemAutoEmpty",
+																			"fieldParent": "44f2aaeb-9cac-4e4b-d046-d7fcefbb0c77",
+																			"fieldType": "sap.ui.core.Item",
+																			"script": "",
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [],
+																			"data": []
+																		},
+																		{
+																			"fieldNo": "18e214d5-ea0d-4656-9193-30df54c32f82",
+																			"fieldName": "ItemAutoCreatedAt",
+																			"fieldParent": "44f2aaeb-9cac-4e4b-d046-d7fcefbb0c77",
+																			"fieldType": "sap.ui.core.Item",
+																			"script": "",
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [
+																				{
+																					"attribute": "text",
+																					"grouping": "Properties",
+																					"value": "Current Date",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "key",
+																					"grouping": "Properties",
+																					"value": "at",
+																					"script": "",
+																					"translation": []
+																				}
+																			],
+																			"data": []
+																		},
+																		{
+																			"fieldNo": "94a5e572-0f65-4ee1-9ac6-15a3163c0d31",
+																			"fieldName": "ItemAutoCreatedBy",
+																			"fieldParent": "44f2aaeb-9cac-4e4b-d046-d7fcefbb0c77",
+																			"fieldType": "sap.ui.core.Item",
+																			"script": "",
+																			"customComponent": false,
+																			"request": [],
+																			"response": [],
+																			"attributes": [
+																				{
+																					"attribute": "text",
+																					"grouping": "Properties",
+																					"value": "Current User",
+																					"script": "",
+																					"translation": []
+																				},
+																				{
+																					"attribute": "key",
+																					"grouping": "Properties",
+																					"value": "by",
+																					"script": "",
+																					"translation": []
+																				}
+																			],
+																			"data": []
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
 													"fieldNo": "9e58d788-2d13-4f88-e09d-5703dc5b2144",
 													"fieldName": "coltabFieldsKey",
 													"fieldParent": "96ed159c-a534-49bc-e583-474d99ba6383",
@@ -5715,7 +5886,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.5.31.1432",
+	"ver": "23.11.13.735",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",
