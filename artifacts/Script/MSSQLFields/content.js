@@ -30,7 +30,6 @@ try {
     }
 
     if (!res.recordset.length) {
-        console.log("Inside here");
         query = `select col.name,
     col.object_id,
     typ.name as type,

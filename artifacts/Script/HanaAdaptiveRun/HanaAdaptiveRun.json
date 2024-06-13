@@ -21,6 +21,7 @@
 	"name": "HanaAdaptiveRun",
 	"ver": "23.5.14.2029",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

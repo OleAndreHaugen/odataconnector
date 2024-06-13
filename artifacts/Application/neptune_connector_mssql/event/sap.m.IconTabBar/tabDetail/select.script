@@ -1,0 +1,8 @@
+const key = oEvent.getParameter("selectedKey");
+
+if (key === "query") {
+    controller.buildQuery();
+    oPageDetail.setShowFooter(true);
+} else {
+    oPageDetail.setShowFooter(false);
+}

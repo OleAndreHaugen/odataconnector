@@ -9,6 +9,8 @@
 	"description": "Adaptive Framework Connector",
 	"ver": "23.5.14.2053",
 	"enableCICD": true,
+	"excludeTemplateFiles": false,
+	"roles": [],
 	"apps": [
 		{
 			"id": "edb95cc5-7ce8-461b-bd02-ba55ff2da83e",
@@ -252,6 +254,11 @@
 			"id": "1509c7e7-5115-4022-8fab-b2c4a6aca1ec",
 			"name": "HanaAdaptiveSetup",
 			"description": null
+		},
+		{
+			"id": "101c5ddb-17c2-428e-84a4-35c421c0512d",
+			"name": "MSSQLQuery",
+			"description": ""
 		},
 		{
 			"id": "0e07b97e-8836-4ac0-86af-4bd3fa0907a0",

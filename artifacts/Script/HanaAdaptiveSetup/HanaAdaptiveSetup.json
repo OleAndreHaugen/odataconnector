@@ -21,6 +21,7 @@
 	"name": "HanaAdaptiveSetup",
 	"ver": "23.5.15.921",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

@@ -61,7 +61,7 @@ async function RequestHandler(path, systemid, format, opts) {
         return responseData;
     }
 
-    if (contentType.indexOf("text/plain") > -1) {
+    if (contentType.indexOf("text/") > -1) {
         responseData.data = await response.text();
         responseData.message += " - " + responseData.data;
     } else if (format === "xml") {

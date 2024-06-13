@@ -188,6 +188,88 @@ const controller = {
             modeloPageDetail.refresh(true);
         });
     },
+
+    buildQuery: function () {
+        formQueryFilter.removeAllContent();
+        tabQuery.removeAllColumns();
+        controller.fields = [];
+
+        modeltabQuery.setData();
+        modelpanQueryFilter.setData({});
+        panQueryTable.setHeaderText("Result (0)");
+
+        const columListItem = new sap.m.ColumnListItem();
+        let sortColumns = [];
+
+        modeloPageDetail.oData.config.fields.forEach(function (field) {
+            if (field.sel) {
+                const label = new sap.m.Label({ text: field.label ? field.label : field.name });
+                const input = new sap.m.SearchField({
+                    value: "{/" + field.name + "}",
+                    search: function (oEvent) {
+                        toolQueryRun.firePress();
+                    },
+                });
+
+                formQueryFilter.addContent(label);
+                formQueryFilter.addContent(input);
+
+                const column = new sap.m.Column();
+                column.setHeader(new sap.m.Label({ text: field.label ? field.label : field.name }));
+
+                tabQuery.addColumn(column);
+
+                columListItem.addCell(new sap.m.Text({ text: "{" + field.name + "}" }));
+
+                sortColumns.push({ column: column, field: field.name });
+            }
+        });
+
+        tabQuery.bindAggregation("items", { path: "/", template: columListItem, templateShareable: false });
+
+        Pagination[tabQuery.sId] = null;
+
+        // Enable Pagination
+        Pagination.init({
+            table: tabQuery,
+            list: controller.runQuery,
+            parentBar: oDetailFooter,
+            sortColumns: sortColumns,
+            sortField: modeloPageDetail.oData.config.fields[0].name,
+            sortOrder: "ASC",
+        });
+    },
+
+    runQuery: function () {
+        const fields = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
+
+        const options = {
+            data: {
+                filter: modelpanQueryFilter.oData,
+                fields: fields,
+                _pagination: {
+                    take: Pagination[tabQuery.sId].take,
+                    skip: Pagination[tabQuery.sId].index * Pagination[tabQuery.sId].take,
+                },
+                sortField: Pagination[tabQuery.sId].sortField,
+                sortOrder: Pagination[tabQuery.sId].sortOrder,
+            },
+            parameters: {
+                id: modeloPageDetail.oData.id,
+            },
+        };
+
+        apiQuery(options).then(function (res) {
+            if (res.message) {
+                sap.m.MessageToast.show(req.message);
+            }
+
+            modeltabQuery.setData(res.result);
+            panQueryTable.setHeaderText("Result (" + res.count + ")");
+
+            Pagination.handle(res, tabQuery.sId);
+        });
+    },
 };
 
 controller.init();

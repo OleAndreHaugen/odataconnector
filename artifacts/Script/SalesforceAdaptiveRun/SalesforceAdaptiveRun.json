@@ -21,6 +21,7 @@
 	"name": "SalesforceAdaptiveRun",
 	"ver": "23.2.28.818",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

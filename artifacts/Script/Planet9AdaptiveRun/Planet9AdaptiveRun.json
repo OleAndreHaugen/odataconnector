@@ -22,6 +22,7 @@
 	"name": "Planet9AdaptiveRun",
 	"ver": "23.10.8.855",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

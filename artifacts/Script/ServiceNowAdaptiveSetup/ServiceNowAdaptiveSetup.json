@@ -21,6 +21,7 @@
 	"name": "ServiceNowAdaptiveSetup",
 	"ver": "23.5.15.923",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

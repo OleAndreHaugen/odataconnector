@@ -15,6 +15,7 @@
 	"name": "HanaSchema",
 	"ver": "23.3.23.1121",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

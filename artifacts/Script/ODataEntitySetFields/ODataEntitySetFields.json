@@ -22,6 +22,7 @@
 	"name": "ODataEntitySetFields",
 	"ver": "23.5.17.838",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

@@ -28,6 +28,7 @@
 	"name": "Planet9AdaptiveSetup",
 	"ver": "23.5.15.922",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

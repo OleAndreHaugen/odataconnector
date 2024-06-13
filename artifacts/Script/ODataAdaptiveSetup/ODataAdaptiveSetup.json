@@ -28,6 +28,7 @@
 	"name": "ODataAdaptiveSetup",
 	"ver": "23.5.15.922",
 	"description": "OData Setup Script",
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

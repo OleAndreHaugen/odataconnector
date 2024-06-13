@@ -1,6 +1,6 @@
 {
-	"id": "f87d1fe0-a811-41d1-8511-aaa6cb66f0fd",
-	"createdAt": "2023-02-26T08:37:45.000Z",
+	"id": "101c5ddb-17c2-428e-84a4-35c421c0512d",
+	"createdAt": "2023-05-14T11:09:28.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"globalScripts": [
 		{
@@ -9,19 +9,18 @@
 			"contextname": "Utils"
 		}
 	],
-	"externalModules": [
+	"externalModules": [],
+	"entitySets": [
 		{
-			"id": "c1e44158-f85b-48c3-85df-cd3bb1f6c7f4",
-			"name": "typeorm",
-			"contextname": "typeorm",
-			"path": "typeorm"
+			"id": "a572b86e-4f36-422c-8043-90eae252246d",
+			"name": "neptune_af_connector",
+			"contextname": "neptune_af_connector"
 		}
 	],
-	"entitySets": [],
 	"apis": [],
-	"name": "Planet9Entity",
-	"ver": "23.2.26.1451",
-	"description": null,
+	"name": "MSSQLQuery",
+	"ver": "24.06.13.1633",
+	"description": "",
 	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,

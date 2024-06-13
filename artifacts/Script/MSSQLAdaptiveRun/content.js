@@ -140,7 +140,12 @@ async function processList() {
         const resCount = await globals.Utils.MSSQLExec(connector.systemid, statementCount);
 
         if (resCount.error) {
-            result.data = resCount;
+            result.data = {
+                resCount,
+                debug: {
+                    count: statementCount,
+                },
+            };
             return complete();
         }
 
@@ -162,7 +167,6 @@ async function processList() {
                     statementExec += ` order by "${orderField}" ${orderType}`;
                 } else {
                     orderField = formatJoinField(orderField);
-                    log.info(orderField);
                     statementExec += ` order by ${orderField} ${orderType}`;
                 }
             }

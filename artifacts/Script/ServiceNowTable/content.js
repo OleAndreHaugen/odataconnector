@@ -50,9 +50,6 @@ try {
         return complete();
     }
 
-    console.log("XML :", elements.length);
-    console.log("JSON :", res.data.result.length);
-
     for (let i = 0; i < elements.length; i++) {
         let element = elements[i];
 

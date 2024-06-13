@@ -1140,6 +1140,13 @@
 							"value": "sapUiNoContentPadding",
 							"script": "",
 							"translation": []
+						},
+						{
+							"attribute": "showFooter",
+							"grouping": "Properties",
+							"value": "false",
+							"script": "",
+							"translation": []
 						}
 					],
 					"data": [
@@ -1606,6 +1613,13 @@
 									"grouping": "Properties",
 									"value": "false",
 									"script": "",
+									"translation": []
+								},
+								{
+									"attribute": "select",
+									"grouping": "Events",
+									"value": "Anonymous Function",
+									"script": "file://event/sap.m.IconTabBar/tabDetail/select.script",
 									"translation": []
 								}
 							],
@@ -3845,8 +3859,354 @@
 											]
 										}
 									]
+								},
+								{
+									"fieldNo": "0d270c2e-9e61-49b5-d847-4dbd002f144a",
+									"fieldName": "tabDetailQuery",
+									"fieldParent": "44e81455-bb72-4451-b650-4dac2ed64d7c",
+									"fieldType": "sap.m.IconTabFilter",
+									"script": "",
+									"customComponent": false,
+									"request": [],
+									"response": [],
+									"attributes": [
+										{
+											"attribute": "text",
+											"grouping": "Properties",
+											"value": "Query",
+											"script": "",
+											"translation": []
+										},
+										{
+											"attribute": "key",
+											"grouping": "Properties",
+											"value": "query",
+											"script": "",
+											"translation": []
+										}
+									],
+									"data": [
+										{
+											"fieldNo": "a51acf16-da3d-4c7e-b0b4-87e423762a88",
+											"fieldName": "panQueryOuter",
+											"fieldParent": "0d270c2e-9e61-49b5-d847-4dbd002f144a",
+											"fieldType": "sap.m.Panel",
+											"script": "",
+											"customComponent": false,
+											"request": [],
+											"response": [],
+											"attributes": [
+												{
+													"attribute": "backgroundDesign",
+													"grouping": "Properties",
+													"value": "Transparent",
+													"script": "",
+													"translation": []
+												}
+											],
+											"data": [
+												{
+													"fieldNo": "68e516c0-a896-4720-b350-8916c37c2caa",
+													"fieldName": "panQueryFilter",
+													"fieldParent": "a51acf16-da3d-4c7e-b0b4-87e423762a88",
+													"fieldType": "sap.m.Panel",
+													"script": "",
+													"customComponent": false,
+													"bindingValue": "Generic Object",
+													"bindingType": "u",
+													"bindingSource": "P9",
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "backgroundDesign",
+															"grouping": "Properties",
+															"value": "Solid",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "headerText",
+															"grouping": "Properties",
+															"value": "Filter",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "styleClassPadding",
+															"grouping": "Properties",
+															"value": "sapUiNoContentPadding",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "expandable",
+															"grouping": "Properties",
+															"value": "true",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "expanded",
+															"grouping": "Properties",
+															"value": "true",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "96ba469c-d6b4-4323-ef78-08b759d4b582",
+															"fieldName": "toolQuery",
+															"fieldParent": "68e516c0-a896-4720-b350-8916c37c2caa",
+															"fieldType": "sap.m.Toolbar",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "position",
+																	"grouping": "Parent",
+																	"value": "HeaderToolbar",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": [
+																{
+																	"fieldNo": "0fbd876e-8902-4159-8dd4-80f18c2916d8",
+																	"fieldName": "toolQueryTitle",
+																	"fieldParent": "96ba469c-d6b4-4323-ef78-08b759d4b582",
+																	"fieldType": "sap.m.Title",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "text",
+																			"grouping": "Properties",
+																			"value": "Filter",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "styleClassMargin",
+																			"grouping": "Properties",
+																			"value": "sapUiTinyMarginBegin",
+																			"script": "",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																},
+																{
+																	"fieldNo": "c4d677af-be33-4f9b-ee6b-41637f2db07f",
+																	"fieldName": "toolQueryCounter",
+																	"fieldParent": "96ba469c-d6b4-4323-ef78-08b759d4b582",
+																	"fieldType": "sap.m.ObjectNumber",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [],
+																	"data": []
+																},
+																{
+																	"fieldNo": "e74f7afe-3c3c-4e9d-eb2e-7b3cce80881c",
+																	"fieldName": "toolQuerySpacer",
+																	"fieldParent": "96ba469c-d6b4-4323-ef78-08b759d4b582",
+																	"fieldType": "sap.m.ToolbarSpacer",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [],
+																	"data": []
+																},
+																{
+																	"fieldNo": "b7ee0d33-f44d-4ccc-890f-fd4a580ebe63",
+																	"fieldName": "toolQueryRun",
+																	"fieldParent": "96ba469c-d6b4-4323-ef78-08b759d4b582",
+																	"fieldType": "sap.m.Button",
+																	"script": "",
+																	"customComponent": false,
+																	"request": [],
+																	"response": [],
+																	"attributes": [
+																		{
+																			"attribute": "text",
+																			"grouping": "Properties",
+																			"value": "Run",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "type",
+																			"grouping": "Properties",
+																			"value": "Emphasized",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "enableCompactMode",
+																			"grouping": "Properties",
+																			"value": "true",
+																			"script": "",
+																			"translation": []
+																		},
+																		{
+																			"attribute": "press",
+																			"grouping": "Events",
+																			"value": "controller.runQuery();",
+																			"script": "controller.runQuery();",
+																			"translation": []
+																		}
+																	],
+																	"data": []
+																}
+															]
+														},
+														{
+															"fieldNo": "2a595681-8c71-4127-957b-766892d94295",
+															"fieldName": "formQueryFilter",
+															"fieldParent": "68e516c0-a896-4720-b350-8916c37c2caa",
+															"fieldType": "sap.ui.layout.form.SimpleForm",
+															"script": "",
+															"customComponent": false,
+															"request": [],
+															"response": [],
+															"attributes": [
+																{
+																	"attribute": "layout",
+																	"grouping": "Properties",
+																	"value": "ColumnLayout",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "columnsXL",
+																	"grouping": "Properties",
+																	"value": "4",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "columnsL",
+																	"grouping": "Properties",
+																	"value": "3",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "columnsM",
+																	"grouping": "Properties",
+																	"value": "2",
+																	"script": "",
+																	"translation": []
+																},
+																{
+																	"attribute": "backgroundDesign",
+																	"grouping": "Properties",
+																	"value": "Transparent",
+																	"script": "",
+																	"translation": []
+																}
+															],
+															"data": []
+														}
+													]
+												},
+												{
+													"fieldNo": "f6e54157-4722-4056-dfc2-f38c48a91bae",
+													"fieldName": "panQueryTable",
+													"fieldParent": "a51acf16-da3d-4c7e-b0b4-87e423762a88",
+													"fieldType": "sap.m.Panel",
+													"script": "",
+													"customComponent": false,
+													"request": [],
+													"response": [],
+													"attributes": [
+														{
+															"attribute": "backgroundDesign",
+															"grouping": "Properties",
+															"value": "Solid",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "headerText",
+															"grouping": "Properties",
+															"value": "Result (0)",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "height",
+															"grouping": "Properties",
+															"value": "100%",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "styleClassMargin",
+															"grouping": "Properties",
+															"value": "sapUiSmallMarginTop",
+															"script": "",
+															"translation": []
+														},
+														{
+															"attribute": "styleClassPadding",
+															"grouping": "Properties",
+															"value": "sapUiNoContentPadding",
+															"script": "",
+															"translation": []
+														}
+													],
+													"data": [
+														{
+															"fieldNo": "63e75e23-42bc-4d19-dfb4-785746f30a23",
+															"fieldName": "tabQuery",
+															"fieldParent": "f6e54157-4722-4056-dfc2-f38c48a91bae",
+															"fieldType": "sap.m.Table",
+															"script": "",
+															"customComponent": false,
+															"bindingValue": "Generic Array",
+															"bindingType": "h",
+															"bindingSource": "P9",
+															"request": [],
+															"response": [],
+															"attributes": [],
+															"data": []
+														}
+													]
+												}
+											]
+										}
+									]
 								}
 							]
+						},
+						{
+							"fieldNo": "48c7d4c9-933d-4afe-b586-137c110c0f91",
+							"fieldName": "oDetailFooter",
+							"fieldParent": "4da68d4b-460d-4031-8291-b015af3198f8",
+							"fieldType": "sap.m.Bar",
+							"script": "",
+							"customComponent": false,
+							"request": [],
+							"response": [],
+							"attributes": [
+								{
+									"attribute": "position",
+									"grouping": "Parent",
+									"value": "setFooter",
+									"script": "",
+									"translation": []
+								}
+							],
+							"data": []
 						}
 					]
 				}
@@ -3855,6 +4215,18 @@
 		{
 			"fieldNo": 99999,
 			"data": [
+				{
+					"fieldNo": "ffd21f89-f98c-4ee9-b4a4-aaf595277f6c",
+					"fieldName": "pagination",
+					"fieldParent": 99999,
+					"fieldType": "neptune_connector_pagination",
+					"script": "",
+					"customComponent": true,
+					"request": [],
+					"response": [],
+					"attributes": [],
+					"data": []
+				},
 				{
 					"fieldNo": "c57c9805-784c-4f2d-9aea-70dee241ef14",
 					"fieldName": "Data",
@@ -5784,6 +6156,20 @@
 							"data": []
 						},
 						{
+							"fieldNo": "c47fc16b-600a-4dcd-d96c-a0313c3b0c71",
+							"fieldName": "Query",
+							"fieldParent": "645e1404-f591-4943-9901-7b55d8c19315",
+							"fieldType": "neptune.restapi",
+							"script": "",
+							"customComponent": false,
+							"restSource": "786a81ca-5973-45fa-b311-c348916d230a",
+							"restOperation": "5ccc92ae-cd7d-49bc-ff9a-7d15932096c3",
+							"request": [],
+							"response": [],
+							"attributes": [],
+							"data": []
+						},
+						{
 							"fieldNo": "aa036162-d0d2-454c-d2d7-42c7ac4ecce1",
 							"fieldName": "Get",
 							"fieldParent": "645e1404-f591-4943-9901-7b55d8c19315",
@@ -5886,7 +6272,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "23.11.13.735",
+	"ver": "24.06.13.1643",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",
@@ -5931,7 +6317,7 @@
 		{
 			"id": "786a81ca-5973-45fa-b311-c348916d230a",
 			"name": "Neptune Adaptive Framework Connector",
-			"ver": "23.5.14.1057"
+			"ver": "24.06.12.0940"
 		}
 	],
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"

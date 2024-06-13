@@ -22,6 +22,7 @@
 	"name": "ODataEntitySet",
 	"ver": "23.5.17.839",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

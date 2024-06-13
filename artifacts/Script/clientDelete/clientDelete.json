@@ -15,6 +15,7 @@
 	"name": "clientDelete",
 	"ver": "23.2.11.815",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

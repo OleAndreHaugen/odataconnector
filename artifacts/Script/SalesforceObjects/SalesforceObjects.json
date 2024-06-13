@@ -15,6 +15,7 @@
 	"name": "SalesforceObjects",
 	"ver": "23.5.17.845",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

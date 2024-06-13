@@ -21,6 +21,7 @@
 	"name": "MSSQLAdaptiveSetup",
 	"ver": "23.8.18.1111",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

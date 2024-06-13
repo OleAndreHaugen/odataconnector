@@ -21,6 +21,7 @@
 	"name": "ServiceNowAdaptiveRun",
 	"ver": "23.3.3.1446",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,

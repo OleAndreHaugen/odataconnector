@@ -20,6 +20,7 @@
 	"name": "HanaTables",
 	"ver": "23.4.4.1429",
 	"description": null,
+	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
 	"transpiledContent": null,
