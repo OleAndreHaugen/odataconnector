@@ -1,0 +1,12 @@
+.nepMTableSortCell,
+.nepMTableSortCell .sapMLabel {
+  cursor: pointer;
+}
+
+.nepMTableSortCell .sapMColumnHeader .sapMText {
+  cursor: pointer;
+}
+
+.connectorToolbar.sapMTB.sapMTBStandard {
+  border-bottom: none;
+}
