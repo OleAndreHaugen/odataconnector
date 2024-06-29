@@ -1,0 +1,5 @@
+if (typeof configpackage === "undefined" || configpackage === null || configpackage === "") {
+    return;
+}
+const formattedText = sap.n.Planet9.getPackageName(configpackage);
+return formattedText ?? configpackage;

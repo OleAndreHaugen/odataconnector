@@ -18,7 +18,6 @@
 	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": false,
-	"transpiledContent": null,
 	"lastRunSuccessful": true,
 	"isTypescript": false,
 	"language": "javascript",

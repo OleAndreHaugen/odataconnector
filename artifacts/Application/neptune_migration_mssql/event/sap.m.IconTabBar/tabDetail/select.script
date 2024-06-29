@@ -1,0 +1,7 @@
+const key = oEvent.getParameter("selectedKey");
+
+if (key === "migration") {
+    if (!modeltabTables.oData?.length) {
+        controller.getTables();
+    }
+}

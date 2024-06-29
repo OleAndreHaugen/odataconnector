@@ -9,6 +9,8 @@ apiGetTables({
     function (res) {
         diaTables.setBusy(false);
 
+        controller.selectedSystem = modeloPageDetail.oData.systemid;
+
         if (res.error) {
             sap.m.MessageToast.show(res.error);
         } else {

@@ -4112,6 +4112,13 @@
 																	"value": "Transparent",
 																	"script": "",
 																	"translation": []
+																},
+																{
+																	"attribute": "editable",
+																	"grouping": "Properties",
+																	"value": "true",
+																	"script": "",
+																	"translation": []
 																}
 															],
 															"data": []
@@ -6272,7 +6279,7 @@
 		}
 	],
 	"componentInterface": [],
-	"ver": "24.06.13.1643",
+	"ver": "24.06.25.1632",
 	"application": "neptune_connector_mssql",
 	"title": "MS SQL Server",
 	"description": "MS SQL Server",
@@ -6317,7 +6324,7 @@
 		{
 			"id": "786a81ca-5973-45fa-b311-c348916d230a",
 			"name": "Neptune Adaptive Framework Connector",
-			"ver": "24.06.12.0940"
+			"ver": "24.06.28.0654"
 		}
 	],
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"

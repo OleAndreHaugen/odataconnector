@@ -1,0 +1,11 @@
+if (typeof systemid === "undefined" || systemid === null || systemid === "") {
+    return;
+}
+
+var db = ModelData.FindFirst(modelappData.oData.db, "id", systemid);
+
+if (db) {
+    return db.name;
+} else {
+    return systemid;
+}

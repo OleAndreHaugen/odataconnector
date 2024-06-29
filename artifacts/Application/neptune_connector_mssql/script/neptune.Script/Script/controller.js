@@ -1,5 +1,6 @@
 const controller = {
     type: "mssql",
+    selectedSystem: null,
     init: function () {
         jQuery.sap.require("sap.m.MessageBox");
 
@@ -134,7 +135,11 @@ const controller = {
     },
 
     openTables: function () {
-        toolTablesUpdate.firePress();
+
+        if (controller.selectedSystem !== modeloPageDetail.oData.systemid) {
+            toolTablesUpdate.firePress();
+        }
+
         toolTablesFilter.setValue();
         toolTablesFilter.fireLiveChange();
         tabTables.clearSelection();
@@ -241,6 +246,8 @@ const controller = {
     },
 
     runQuery: function () {
+        panQueryOuter.setBusy(true);
+
         const fields = ModelData.Find(modeloPageDetail.oData.config.fields, "sel", true);
 
         const options = {
@@ -259,16 +266,23 @@ const controller = {
             },
         };
 
-        apiQuery(options).then(function (res) {
-            if (res.message) {
-                sap.m.MessageToast.show(req.message);
-            }
+        apiQuery(options)
+            .then(function (res) {
+                if (res.message) {
+                    sap.m.MessageToast.show(res.message);
+                }
 
-            modeltabQuery.setData(res.result);
-            panQueryTable.setHeaderText("Result (" + res.count + ")");
+                modeltabQuery.setData(res.result);
+                panQueryTable.setHeaderText("Result (" + res.count + ")");
 
-            Pagination.handle(res, tabQuery.sId);
-        });
+                Pagination.handle(res, tabQuery.sId);
+
+                panQueryOuter.setBusy(false);
+            })
+            .catch(function (res) {
+                panQueryOuter.setBusy(false);
+                console.log(res);
+            });
     },
 };
 

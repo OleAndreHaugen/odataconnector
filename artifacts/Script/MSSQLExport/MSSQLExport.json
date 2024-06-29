@@ -1,0 +1,33 @@
+{
+	"id": "06fa3902-6509-4e4a-aea5-df65fb8532b2",
+	"createdAt": "2023-05-14T08:48:15.000Z",
+	"createdBy": "ole-andre.haugen@neptune-software.com",
+	"globalScripts": [
+		{
+			"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
+			"name": "NeptuneConnectors - Utils",
+			"contextname": "Utils"
+		}
+	],
+	"externalModules": [
+		{
+			"id": "c1e44158-f85b-48c3-85df-cd3bb1f6c7f4",
+			"name": "typeorm",
+			"contextname": "typeorm",
+			"path": "typeorm"
+		}
+	],
+	"entitySets": [],
+	"apis": [],
+	"name": "MSSQLExport",
+	"ver": "24.06.28.0740",
+	"description": "",
+	"folder": "MSSQL",
+	"content": "file:///content.js",
+	"useAsGlobalScript": false,
+	"lastRunSuccessful": false,
+	"isTypescript": false,
+	"language": "javascript",
+	"jsscriptGroup": "8407e587-50c3-4d42-bb2e-35abf1281c47",
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

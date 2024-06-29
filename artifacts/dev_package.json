@@ -74,6 +74,15 @@
 			"package": {
 				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
 			}
+		},
+		{
+			"id": "07487fb4-130b-4f82-83d9-d4e3bf6c519d",
+			"application": "neptune_migration_mssql",
+			"title": "MS SQL Server",
+			"description": "MS SQL Server",
+			"package": {
+				"id": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+			}
 		}
 	],
 	"api": [
@@ -280,9 +289,19 @@
 			"description": null
 		},
 		{
+			"id": "06fa3902-6509-4e4a-aea5-df65fb8532b2",
+			"name": "MSSQLExport",
+			"description": ""
+		},
+		{
 			"id": "0321987c-1ecf-4757-908f-9c5540fbc0c6",
 			"name": "MSSQLAdaptiveRun",
 			"description": null
+		},
+		{
+			"id": "00089936-a679-409b-b608-5020e82b6840",
+			"name": "MSSQLCount",
+			"description": ""
 		}
 	],
 	"jsscript_group": [
@@ -377,6 +396,11 @@
 			"id": "2abccfae-f20f-4e40-8db0-0b26520095ea",
 			"description": "Connect Adaptive Framework to ServiceNow  ",
 			"name": "Adaptive Framework Connector: ServiceNow Connector"
+		},
+		{
+			"id": "1dcd1af6-1cee-492e-8194-09c04f4bd517",
+			"description": "Migration MS SQL Server to Neptune DB",
+			"name": "Adaptive Framework Connector: MS SQL Server Migration"
 		},
 		{
 			"id": "1c426bb7-102f-4e35-bb50-adb157229021",
