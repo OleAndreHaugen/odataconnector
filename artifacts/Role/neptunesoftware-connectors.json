@@ -5,6 +5,7 @@
 	"name": "neptunesoftware-connectors",
 	"description": "Adaptive Framework Connectors",
 	"ver": "23.2.23.1659",
+	"isGlobalAdmin": false,
 	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
 	"acl": []
 }

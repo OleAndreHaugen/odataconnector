@@ -6320,12 +6320,12 @@
 	"printWidth": 200,
 	"generateVersionOnActivation": false,
 	"activationHistoryCount": 0,
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967",
 	"apis": [
 		{
 			"id": "786a81ca-5973-45fa-b311-c348916d230a",
 			"name": "Neptune Adaptive Framework Connector",
 			"ver": "24.06.28.0654"
 		}
-	],
-	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+	]
 }

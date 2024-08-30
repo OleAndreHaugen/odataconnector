@@ -21,13 +21,14 @@ for (let i = 0; i < connector.config.fields.length; i++) {
             case "datetime":
                 type = "timestamp";
                 break;
-
             case "int":
-            case "decimal":
                 type = "integer";
                 break;
-
-            default:
+            case "decimal":
+                type = "decimal";
+                break;
+            case "bit":
+                type = "boolean";
                 break;
         }
 

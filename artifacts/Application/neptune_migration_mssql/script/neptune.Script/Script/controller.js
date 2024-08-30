@@ -150,6 +150,7 @@ const controller = {
                     });
 
                     const Dictionary = await resDictionary.json();
+                    if (Dictionary.dictionary) Dictionary = Dictionary.dictionary;
 
                     res?.forEach(function (item) {
                         const exists = ModelData.FindFirst(Dictionary, "name", controller.getTableNameP9(item.name));
@@ -221,7 +222,13 @@ const controller = {
         let p9Fields = [];
 
         fields?.forEach(function (field) {
-            if (field.name === "id") return;
+
+            // Prevent creation of auto P9 Fields
+            if ((field.name).toLowerCase() === "id") return;
+            if ((field.name).toLowerCase() === "createdat") return;
+            if ((field.name).toLowerCase() === "updatedat") return;
+            if ((field.name).toLowerCase() === "createdby") return;
+            if ((field.name).toLowerCase() === "updatedby") return; 
 
             let p9Field = {
                 fieldName: field.name,
@@ -292,7 +299,7 @@ const controller = {
                                 dbid: modeloPageDetail.oData.systemid,
                                 table: table.name,
                             },
-                        }).then(async function (fields) {                            
+                        }).then(async function (fields) {
                             controller.startSync(table, res.db, fields[0].name);
                         });
                     }
@@ -301,7 +308,7 @@ const controller = {
         });
     },
 
-    startSync: function (table, totRecords,orderBy) {
+    startSync: function (table, totRecords, orderBy) {
         const take = 50;
         let skip = 0;
         let totImported = 0;

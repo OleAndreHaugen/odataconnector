@@ -61,20 +61,20 @@ for (let i = 0; i < systemConnectors.length; i++) {
     }
 }
 
-// Get Setup Script (ID)
-const scriptSel = await manager.findOne("jsscript", {
-    where: { id: connectorScriptSel },
-    select: ["id"],
-});
+if (connectorScriptSel && connectorScriptRun) {
+    // Get Setup Script (ID)
+    const scriptSel = await manager.findOne("jsscript", {
+        where: { id: connectorScriptSel },
+        select: ["id"],
+    });
 
-// Get Run Script (ID)
-const scriptRun = await manager.findOne("jsscript", {
-    where: { id: connectorScriptRun },
-    select: ["id"],
-});
+    // Get Run Script (ID)
+    const scriptRun = await manager.findOne("jsscript", {
+        where: { id: connectorScriptRun },
+        select: ["id"],
+    });
 
-// Auto Create Connector
-if (scriptSel && scriptRun) {
+    // Auto Create Connector
     if (!foundConnector.id) {
         foundConnector.type = "S";
         foundConnector.disabled = false;
