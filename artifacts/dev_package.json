@@ -3,62 +3,84 @@
 	"createdAt": "2023-02-06T14:32:01.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
 	"git": {
-		"remote": "https://github.com/OleAndreHaugen/odataconnector.git"
+		"remote": "https://github.com/charles-neptune/odataconnector"
 	},
 	"name": "neptunesoftware-connector-af",
 	"description": "Adaptive Framework Connector",
-	"ver": "23.5.14.2053",
+	"ver": "25.02.03.1704",
 	"enableCICD": true,
-	"excludeTemplateFiles": false,
-	"roles": [],
 	"apps": [
 		{
 			"id": "edb95cc5-7ce8-461b-bd02-ba55ff2da83e",
 			"application": "neptune_connector_mssql",
 			"title": "MS SQL Server",
-			"description": "MS SQL Server"
+			"description": "MS SQL Server",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "ec2e7582-d646-467c-b08c-73d361f05133",
 			"application": "neptune_connector_pagination",
 			"title": "",
-			"description": ""
+			"description": "",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "ac8e4bdd-91e5-4e1f-b614-8aade405b2f8",
 			"application": "neptune_connector_odata",
 			"title": "OData Connector",
-			"description": "OData Connector"
+			"description": "OData Connector",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "9208d78b-029a-4f51-9d34-b8d1832bde86",
 			"application": "neptune_connector_servicenow",
 			"title": "ServiceNow Connector",
-			"description": "ServiceNow Connector"
+			"description": "ServiceNow Connector",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "8c319344-c115-40d9-b298-74ddf727693b",
 			"application": "neptune_connector_salesforce",
 			"title": "Saleforce Connector",
-			"description": "Saleforce Connector"
+			"description": "Saleforce Connector",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "5cbaca0f-d849-425b-8780-b0642303ddfa",
 			"application": "neptune_connector_planet9",
 			"title": "Open Edition Connector",
-			"description": "Open Edition Connector"
+			"description": "Open Edition Connector",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "14931031-0f92-4cfa-837c-1f9837f37490",
 			"application": "neptune_connector_hanadb",
 			"title": "HANA DB Connector",
-			"description": "HANA DB Connector"
+			"description": "HANA DB Connector",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		},
 		{
 			"id": "07487fb4-130b-4f82-83d9-d4e3bf6c519d",
 			"application": "neptune_migration_mssql",
 			"title": "MS SQL Server",
-			"description": "MS SQL Server"
+			"description": "MS SQL Server",
+			"package": {
+				"id": "30A546BC-ADB8-4C8D-B0F8-151B2A714967"
+			}
 		}
 	],
 	"api": [
@@ -100,6 +122,11 @@
 	],
 	"jsclass": [
 		{
+			"id": "ff686124-43df-ef11-9d13-e4b31880d4d6",
+			"name": "Encryption",
+			"description": "Encryption Helpers"
+		},
+		{
 			"id": "fd2bb3d2-91fd-4e2d-8656-07e0b442d313",
 			"name": "HanaSchema",
 			"description": null
@@ -118,6 +145,11 @@
 			"id": "f0138351-ad95-486b-97a7-21b0fcc30240",
 			"name": "clientSave",
 			"description": null
+		},
+		{
+			"id": "e3797058-1fdf-ef11-9d13-e4b31880d4d6",
+			"name": "SecuredURIRun",
+			"description": ""
 		},
 		{
 			"id": "dde08a65-ec1d-429d-9c67-e178e4b7a15d",
@@ -167,6 +199,11 @@
 		{
 			"id": "a75c7347-a8ad-4d56-824e-51ce4e2b4d3f",
 			"name": "ServiceNowItems",
+			"description": null
+		},
+		{
+			"id": "a57eed12-1fdf-ef11-9d13-e4b31880d4d6",
+			"name": "SecuredURISetup",
 			"description": null
 		},
 		{

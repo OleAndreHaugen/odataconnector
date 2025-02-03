@@ -103,7 +103,7 @@ async function HANAConnect(dbid) {
             host: dburi.host,
             port: dburi.port,
             user: dburi.username,
-            password: dburi.password,
+            password: globals.Encryption.decrypt(dburi.password),
         });
 
         client.on("error", function (err) {
@@ -174,7 +174,7 @@ async function MSSQLExec(dbid, query) {
             } else {
                 options = {
                     user: dburi.username,
-                    password: dburi.password,
+                    password: globals.Encryption.decrypt(dburi.password),
                     database: dburi.database,
                     server: dburi.host,
                     port: dburi.port,
@@ -183,6 +183,8 @@ async function MSSQLExec(dbid, query) {
                     },
                 };
             }
+
+            log.debug('options', options);
 
             // Connect to DB
             if (!connectionPools[dburi.database]) {

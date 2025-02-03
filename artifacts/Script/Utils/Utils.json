@@ -2,7 +2,13 @@
 	"id": "6ec72fc2-c411-401d-bd1c-b41dfbaf9156",
 	"createdAt": "2023-02-13T18:19:46.000Z",
 	"createdBy": "ole-andre.haugen@neptune-software.com",
-	"globalScripts": [],
+	"globalScripts": [
+		{
+			"id": "FF686124-43DF-EF11-9D13-E4B31880D4D6",
+			"name": "NeptuneConnectors - Encryption",
+			"contextname": "Encryption"
+		}
+	],
 	"externalModules": [
 		{
 			"id": "c1e44158-f85b-48c3-85df-cd3bb1f6c7f4",
@@ -37,12 +43,13 @@
 	],
 	"apis": [],
 	"name": "Utils",
-	"ver": "24.04.04.1144",
+	"ver": "25.01.30.1401",
 	"description": null,
 	"folder": null,
 	"content": "file:///content.js",
 	"useAsGlobalScript": true,
-	"lastRunSuccessful": true,
+	"transpiledContent": null,
+	"lastRunSuccessful": false,
 	"isTypescript": false,
 	"language": "javascript",
 	"jsscriptGroup": "8407e587-50c3-4d42-bb2e-35abf1281c47",

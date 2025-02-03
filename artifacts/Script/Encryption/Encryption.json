@@ -1,0 +1,28 @@
+{
+	"id": "ff686124-43df-ef11-9d13-e4b31880d4d6",
+	"createdAt": "2025-01-30T19:48:14.860Z",
+	"createdBy": "admin",
+	"globalScripts": [],
+	"externalModules": [
+		{
+			"id": "internal_crypto",
+			"name": "crypto",
+			"contextname": "crypto",
+			"path": "crypto"
+		}
+	],
+	"entitySets": [],
+	"apis": [],
+	"name": "Encryption",
+	"ver": "25.01.30.1430",
+	"description": "Encryption Helpers",
+	"folder": "",
+	"content": "file:///content.js",
+	"useAsGlobalScript": true,
+	"transpiledContent": null,
+	"lastRunSuccessful": false,
+	"isTypescript": false,
+	"language": "javascript",
+	"jsscriptGroup": "8407e587-50c3-4d42-bb2e-35abf1281c47",
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

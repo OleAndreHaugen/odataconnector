@@ -1,0 +1,33 @@
+{
+	"id": "e3797058-1fdf-ef11-9d13-e4b31880d4d6",
+	"createdAt": "2025-01-30T15:30:03.710Z",
+	"createdBy": "admin",
+	"globalScripts": [
+		{
+			"id": "FF686124-43DF-EF11-9D13-E4B31880D4D6",
+			"name": "NeptuneConnectors - Encryption",
+			"contextname": "Encryption"
+		}
+	],
+	"externalModules": [],
+	"entitySets": [
+		{
+			"id": "BB5D0142-B1A0-4F53-B3BE-E6AFFBE1D014",
+			"name": "neptune_af_connector_dburi",
+			"contextname": "neptune_af_connector_dburi"
+		}
+	],
+	"apis": [],
+	"name": "SecuredURIRun",
+	"ver": "25.01.30.1431",
+	"description": "",
+	"folder": "SecuredURIConnector",
+	"content": "file:///content.js",
+	"useAsGlobalScript": false,
+	"transpiledContent": null,
+	"lastRunSuccessful": true,
+	"isTypescript": false,
+	"language": "javascript",
+	"jsscriptGroup": "8407e587-50c3-4d42-bb2e-35abf1281c47",
+	"package": "30a546bc-adb8-4c8d-b0f8-151b2a714967"
+}

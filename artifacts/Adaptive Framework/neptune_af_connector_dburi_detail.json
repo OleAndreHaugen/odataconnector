@@ -39,7 +39,10 @@
 				"enableTab5": false,
 				"enableUppercase": false,
 				"enablePadding": true,
-				"title": "Connection String"
+				"title": "Connection String",
+				"textConfirmDelete": "Do you want to delete this entry ? ",
+				"titleConfirmDelete": "Delete ",
+				"requiredFieldsToast": "Please fill in all the required fields"
 			},
 			"form": {
 				"enableCompact": false,
@@ -57,26 +60,8 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "connectionstring",
-				"label": "Connection String",
-				"type": "mediumtext",
-				"usage": "BOTH"
-			},
-			{
-				"name": "createdAt",
-				"label": "Created At",
-				"type": "timestamp",
-				"usage": "BOTH"
-			},
-			{
-				"name": "createdBy",
-				"label": "Created By",
-				"type": "text",
-				"usage": "BOTH"
-			},
-			{
-				"name": "database",
-				"label": "Database Name",
+				"name": "role",
+				"label": "Role",
 				"type": "smalltext",
 				"usage": "BOTH"
 			},
@@ -87,26 +72,44 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "password",
-				"label": "Password",
-				"type": "smalltext",
-				"usage": "BOTH"
-			},
-			{
 				"name": "port",
 				"label": "Port",
 				"type": "integer",
 				"usage": "BOTH"
 			},
 			{
-				"name": "role",
-				"label": "Role",
+				"name": "username",
+				"label": "Username",
 				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "password",
+				"label": "Password",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "database",
+				"label": "Database Name",
+				"type": "smalltext",
+				"usage": "BOTH"
+			},
+			{
+				"name": "connectionstring",
+				"label": "Connection String",
+				"type": "mediumtext",
 				"usage": "BOTH"
 			},
 			{
 				"name": "updatedAt",
 				"label": "Updated At",
+				"type": "timestamp",
+				"usage": "BOTH"
+			},
+			{
+				"name": "createdAt",
+				"label": "Created At",
 				"type": "timestamp",
 				"usage": "BOTH"
 			},
@@ -117,9 +120,9 @@
 				"usage": "BOTH"
 			},
 			{
-				"name": "username",
-				"label": "Username",
-				"type": "smalltext",
+				"name": "createdBy",
+				"label": "Created By",
+				"type": "text",
 				"usage": "BOTH"
 			}
 		],
@@ -248,11 +251,11 @@
 	"description": "",
 	"group": "",
 	"type": "C",
-	"connectorid": "5136c2d8-8620-48ba-adfc-a270ca0c19c7",
+	"connectorid": "44400404-22df-ef11-9d13-e4b31880d4d6",
 	"scriptSel": null,
 	"scriptRun": null,
 	"tableid": null,
-	"ver": "23.8.19.927",
+	"ver": "25.01.30.0951",
 	"disabled": false,
 	"appType": "A",
 	"application": "planet9_adaptive_edit",
